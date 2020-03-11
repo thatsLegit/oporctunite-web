@@ -50,16 +50,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 
 
+//controller/fonctions = controler/fonction/vue*/
 
 
 
-
-
-
-//controller/vue = controler/fonction/vue*/
-$route['c_accueil_elevage/affiche_home_elevage'] = 'c_accueil_elevage/affiche_home_elevage/accueil_elevage';
-$route['authentification/form_validation'] = 'authentification/form_validation/accueil_elevage';
 //*controleurs par defaut du site recuperant la classe c_authentification dans controleurs permettant de recharger la page v_authentification*/
-$route['default_controller'] = 'authentification';
+
+$route['inscription'] = 'utilisateurs/inscriptionEleveur';
+
+$route['default_controller'] = 'pages/view';
+$route['(:any)'] = 'pages/view/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
