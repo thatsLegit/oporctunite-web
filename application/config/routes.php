@@ -56,7 +56,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 //*controleurs par defaut du site recuperant la classe c_authentification dans controleurs permettant de recharger la page v_authentification*/
 
-$route['inscription'] = 'utilisateurs/inscriptionEleveur';
+$route['inscription'] = 'utilisateurs/inscription';
+$route['login'] = 'utilisateurs/login';
+$route['logout'] = 'utilisateurs/login';
 
 $route['default_controller'] = 'pages/view';
 $route['(:any)'] = 'pages/view/$1';

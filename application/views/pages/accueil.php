@@ -1,3 +1,3 @@
 <div class="container">
-    <h2>Accueil</h2>
+    <h2>Présentation du projet</h2>
 </div>

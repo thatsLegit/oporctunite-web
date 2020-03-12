@@ -1,59 +1,57 @@
 <?php
 
-    //réecrire Inscriptions : fusion les deux fonctions
+    //pb : modal validation et photo inscription
+    
     class Utilisateurs extends CI_Controller{
-        public function inscriptionEleveur(){
-            $data['title'] = 'S\'enregistrer';
+        public function inscription(){
+            if($this->input->post('type_utilisateur') == 'elevage'){
+                //validation rules
+                $this->form_validation->set_rules('numEleveur', 'Numéro Eleveur');
+                $this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
+                $this->form_validation->set_rules('password', 'Password', 'required');
+                $this->form_validation->set_rules('password2', 'Confirmez le mot de passe', 'matches[password]');
+                $this->form_validation->set_rules('telephone', 'Telephone', 'required|callback_check_telephone_exists');
+                $this->form_validation->set_rules('nomElevage', 'Nom de l\elevage', 'required|callback_check_nomElevage_exists');
+                $this->form_validation->set_rules('codePostal', 'Code postal', 'required');
+                $this->form_validation->set_rules('adresse', 'adresse', 'required');
+                $this->form_validation->set_rules('tailleElevage', 'Taille de l\elevage', 'required|is_natural_no_zero');
 
-            //validation rules
-			$this->form_validation->set_rules('numEleveur', 'Numéro Eleveur');
-			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
-			$this->form_validation->set_rules('password', 'Password', 'required');
-            $this->form_validation->set_rules('password2', 'Confirmez le mot de passe', 'matches[password]');
-            $this->form_validation->set_rules('telephone', 'Telephone', 'required|callback_check_telephone_exists');
-            $this->form_validation->set_rules('nomElevage', 'Nom de l\elevage', 'required|callback_check_nomElevage_exists');
-            $this->form_validation->set_rules('codePostal', 'Code postal', 'required');
-            $this->form_validation->set_rules('adresse', 'adresse', 'required');
-            $this->form_validation->set_rules('tailleElevage', 'Taille de l\elevage', 'required|is_natural_no_zero');
-
-            if($this->form_validation->run() === FALSE){
-                $this->load->view('templates/header');
-                $this->load->view('utilisateurs/inscriptionEleveur', $data);
-                $this->load->view('templates/footer');
+                if($this->form_validation->run() === FALSE){
+                    $this->load->view('templates/header');
+                    $this->load->view('utilisateurs/inscription');
+                    $this->load->view('templates/footer');
+                } else {
+                    //encrypting password
+                    $enc_password = md5($this->input->post('password'));
+                    $this->utilisateurs_model->inscription($enc_password);
+                    $this->load->view('utilisateurs/conditions');
+                }
             } else {
-                //encrypting password
-                $enc_password = md5($this->input->post('password'));
-                $this->utilisateurs_model->inscriptionEleveur($enc_password);
-                $this->load->view('utilisateurs/conditions');
-            }
-        }
+                //validation rules
+                $this->form_validation->set_rules('numVeterinaire', 'Numéro véterinaire');
+                $this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
+                $this->form_validation->set_rules('password', 'Password', 'required');
+                $this->form_validation->set_rules('password2', 'Confirmez le mot de passe', 'matches[password]');
+                $this->form_validation->set_rules('telephone', 'Telephone', 'required|callback_check_telephone_exists');
+                $this->form_validation->set_rules('nomCabinet', 'Nom du cabinet', '|callback_check_nomCabinet_exists');
+                $this->form_validation->set_rules('codePostal', 'code postal', 'required');
+                $this->form_validation->set_rules('adresse', 'adresse', 'required');
 
-        public function validationCGU(){
-            $this->load->view('pages');
+                if($this->form_validation->run() === FALSE){
+                    $this->load->view('templates/header');
+                    $this->load->view('utilisateurs/inscription');
+                    $this->load->view('templates/footer');
+                } else {
+                    //encrypting password
+                    $enc_password = md5($this->input->post('password'));
+                    $this->utilisateurs_model->inscription($enc_password);
+                }
+            }            
         }
 
         public function inscriptionVeterinaire(){
-            $data['title'] = 'S\'enregistrer';
 
-            //validation rules
-			$this->form_validation->set_rules('numVeterinaire', 'Numéro véterinaire');
-			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
-			$this->form_validation->set_rules('password', 'Password', 'required');
-            $this->form_validation->set_rules('password2', 'Confirmez le mot de passe', 'matches[password]');
-            $this->form_validation->set_rules('telephone', 'Telephone', 'required|callback_check_telephone_exists');
-            $this->form_validation->set_rules('nomCabinet', 'Nom du cabinet', '|callback_check_nomCabinet_exists');
-            $this->form_validation->set_rules('codePostal', 'code postal', 'required');
-            $this->form_validation->set_rules('adresse', 'adresse', 'required');
-
-            if($this->form_validation->run() === FALSE){
-                $this->load->view('templates/header');
-                $this->load->view('utilisateurs/inscriptionVeterinaire', $data);
-                $this->load->view('templates/footer');
-            } else {
-                //encrypting password
-                $enc_password = md5($this->input->post('password'));
-                $this->utilisateurs_model->inscriptionVeterinaire($enc_password);
-            }
+            
         }
 
         // Check if username exists
@@ -79,14 +77,14 @@
          // Check if telephone exists
 		public function check_telephone_exists($telephone){
 			$this->form_validation->set_message('check_telephone_exists', 'Il existe dejà un compte avec ce numéro de téléphone');
-			if($this->utilisateur_model->check_telephone_exists($telephone)){
+			if($this->utilisateurs_model->check_telephone_exists($telephone)){
 				return true;
 			} else {
 				return false;
 			}
         }
         
-        // Check if username exists
+        // Check if nomCabinet exists
 		public function check_nomCabinet_exists($nomCabinet){
 			$this->form_validation->set_message('check_nomCabinet_exists', 'Un compte est dejà inscrit à ce nom !');
 			if($this->utilisateurs_model->check_nomCabinet_exists($nomCabinet)){
@@ -94,8 +92,8 @@
 			} else {
 				return false;
 			}
-		}
-
+        }
+        
         
         public function login(){
             $data['title'] = 'Se connecter';
@@ -103,30 +101,24 @@
             //validation rules
             $this->form_validation->set_rules('email', 'Email', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('statut', 'Statut', 'required');
 
             if($this->form_validation->run() === FALSE){
                 $this->load->view('templates/header');
                 $this->load->view('utilisateurs/login', $data);
                 $this->load->view('templates/footer');
+
             } else {
+                $email = $this->input->post('email');
+                $password = md5($this->input->post('password'));
+                $idUtilisateur = $this->utilisateurs_model->login($email, $password);
 
-                //Depending on the user type, get nomElevage or nomCabinet
-                if($this->input->post('statut')=='Elevage'){
-                    $nomElevage = $this->input->post('nomElevage');
-                    //en hashage pas en encodé
-                    $password = md5($this->input->post('password'));
-                    $idutilisateur = $this->utilisateurs_model->login($nomElevage, $password);
-                } else {
-                    $nomCabinet = $this->input->post('nomElevage');
-                    $password = md5($this->input->post('password'));
-                    $idutilisateur = $this->utilisateurs_model->login($nomElevage, $password);
-                }
-
-				if($idutilisateur){
+				if($idUtilisateur){
 					// Create session
 					$utilisateur_data = array(
-						'idutilisateur' => $idutilisateur,
-						//rajouter la photo et le type d'utilisateur
+						'idUtilisateur' => $idUtilisateur,
+                        //rajouter la photo et le type d'utilisateur
+                        //le nomCabinet ou nomElevage
 						'connecte' => true
 					);
 
@@ -134,12 +126,15 @@
                     redirect('pages');
 
 				} else {
-					redirect('utilisateurs/login');
+					redirect('login');
 				}		
 			}
         }  
 
         public function logout(){
-            
+            $this->session->unset_utilisateurdata();
+            redirect('login');
         }
     }
+
+?>

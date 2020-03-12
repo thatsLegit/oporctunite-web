@@ -1,43 +1,89 @@
 <?php
 
+    //check l'ordre d'insertion dans la bd et photo
     class Utilisateurs_model extends CI_Model{
 
-        public function inscriptionEleveur($enc_password){
-            $data1 = array(
-                'numEleveur' => $this->input->post('numEleveur'),
-                'nomElevage' => $this->input->post('nomElevage'),
-                'tailleElevage' => $this->input->post('tailleElevage')
-            );
-            $data2 = array(
-                'codePostal' => $this->input->post('departement'),
-                'email' => $this->input->post('email'),
-                'password' => $enc_password,
-                'telephone' => $this->input->post('telephone'),
-                'type_utilisateur' => 'eleveur'
-            );
+        public function inscription($enc_password){
+            if($this->input->post('type_utilisateur') == 'elevage'){
+                $data1 = array(
+                    'codePostal' => $this->input->post('codePostal'),
+                    'email' => $this->input->post('email'),
+                    'password' => $enc_password,
+                    'telephone' => $this->input->post('telephone'),
+                    'type_utilisateur' => 'elevage'
+                );   
+                $this->db->insert('utilisateur', $data1);
 
-            //INSERT
-            return $this->db->insert('utilisateur', $data2);
-            return $this->db->insert('elevage', $data1);
+                //recup idutilisateur
+                $this->db->where('email', $data1['email']);
+                $this->db->where('password', $data1['password']);
+                $idUtilisateur = $this->db->get('utilisateur');
+
+                $data2 = array(
+                    'numEleveur' => $this->input->post('numEleveur'),
+                    'nomElevage' => $this->input->post('nomElevage'),
+                    'tailleElevage' => $this->input->post('tailleElevage')
+                    'idutilisateur' => $idUtilisateur
+                );
+                
+                //INSERT into ELEVAGE
+                //return ?
+                $this->db->insert('elevage', $data2);
+
+            } else {
+                $data1 = array(
+                    'codePostal' => $this->input->post('departement'),
+                    'email' => $this->input->post('email'),
+                    'password' => $enc_password,
+                    'telephone' => $this->input->post('telephone'),
+                    'type_utilisateur' => 'eleveur'
+                );
+                $this->db->insert('utilisateur', $data1);
+
+                //recup idutilisateur
+                $this->db->where('email', $data1['email']);
+                $this->db->where('password', $data1['password']);
+                $idUtilisateur = $this->db->get('utilisateur');
+
+                $data2 = array(
+                    'numVeterinaire' => $this->input->post('numVeterinaire'),
+                    'nomCabinet' => $this->input->post('nomCabinet'),
+                    'idutilisateur' => $idUtilisateur
+                );               
+    
+                //INSERT into VETERINAIRE               
+                $this->db->insert('veterinaire', $data2);
+            }           
         }
 
-        public function inscriptionVeterinaire($enc_password){
-            $data1 = array(
-                'numVeterinaire' => $this->input->post('numVeterinaire'),
-                'nomCabinet' => $this->input->post('nomCabinet')
-            );
-            $data2 = array(
-                'codePostal' => $this->input->post('departement'),
-                'email' => $this->input->post('email'),
-                'password' => $enc_password,
-                'telephone' => $this->input->post('telephone'),
-                'type_utilisateur' => 'eleveur'
-            );
+        public function login($email, $password){ 
+            if($this->input->post('statut') == 'eleveur'){
+                $this->db->where('email', $email);
+                $this->db->where('password', $password);
+                $result = $this->db->get('utilisateur');
 
-            //INSERT
-            return $this->db->insert('utilisateur', $data2);
-            return $this->db->insert('veterinaire', $data1);
+                if($result->num_rows() == 1){
+                    //a revoir
+                    $type_utilisateur = $this->db->get_where('elevage', array('idutilisateur' => $result->row(0)->idutilisateur))->result_array();
+                    return $result->row(0)->idutilisateur;
+                } else {
+                    return false;
+                }
+            } else {
+                $this->db->where('email', $email);
+                $this->db->where('password', $password);
+                $result = $this->db->get('utilisateur');
+
+                if($result->num_rows() == 1){
+                    //a revoir
+                    $type_utilisateur = $this->db->get_where('veterinaire', array('idutilisateur' => $result->row(0)->idutilisateur))->result_array();
+                    return $result->row(0)->idutilisateur;
+                } else {
+                    return false;
+                }             
+            }
         }
+
 
         public function check_nomElevage_exists($nomElevage){
 			$query = $this->db->get_where('elevage', array('nomElevage' => $nomElevage));

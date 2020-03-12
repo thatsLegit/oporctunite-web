@@ -20,14 +20,21 @@ class Fiches extends CI_Controller{
         //mais ça peut se gérer juste ici à mon avis
     }
 
+    public function dropFromFavorites($critères){
+        //enlève une fiche des favories
+    }
+
+    public function favoris(){
+        //affiche une view contenant toutes les fiches mises en favoris
+        //call favoris_model
+    }
+
     
 	public function afficher_pagefiche(){
 	$data['fiche']= $this->fiches_modele->get_fiches();
 		   
         $this->load->view('header_elevage',$data);
         $this->load->view('fiches_conseils',$data); 
-      
-      
-		
+      	
 	}
 }
