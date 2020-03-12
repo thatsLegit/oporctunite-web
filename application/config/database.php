@@ -77,7 +77,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'IlyaDB',
+	'password' => '',
 	'database' => 'oporctunite',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
@@ -93,5 +93,5 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE,
-	'port' => '3306'
+	'port' => '3308'
 );

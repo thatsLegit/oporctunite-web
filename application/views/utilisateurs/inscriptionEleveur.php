@@ -1,7 +1,9 @@
 <div>
     <h3 class="text-center mt-5"><?= $title ?></h3>
 </div>
-
+ 
+ <!-- input type hidden pour le type de user -->
+    <!-- input type file pour upload la photo -->
 
         <div class="container">
             <div class="row">

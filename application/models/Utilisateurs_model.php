@@ -50,7 +50,17 @@
 
 		// Check email exists
 		public function check_email_exists($email){
-			$query = $this->db->get_where('users', array('email' => $email));
+			$query = $this->db->get_where('utilisateur', array('email' => $email));
+			if(empty($query->row_array())){
+				return true;
+			} else {
+				return false;
+			}
+        }
+        
+        // Check telephone exists
+		public function check_telephone_exists($telephone){
+			$query = $this->db->get_where('utilisateur', array('telephone' => $telephone));
 			if(empty($query->row_array())){
 				return true;
 			} else {
@@ -58,18 +68,13 @@
 			}
 		}
 
-        public function login($username, $password){            
-			$this->db->where('username', $username);
-			$this->db->where('password', $password);
-			$result = $this->db->get('users');
-
-			if($result->num_rows() == 1){
-				return $result->row(0)->id;
+        public function check_nomCabinet_exists($nomCabinet){
+			$query = $this->db->get_where('veterinaire', array('nomCabinet' => $nomCabinet));
+			if(empty($query->row_array())){
+				return true;
 			} else {
 				return false;
 			}
 		}
-
-
     }
 ?>

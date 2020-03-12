@@ -11,7 +11,7 @@
 			$this->form_validation->set_rules('password', 'Password', 'required');
             $this->form_validation->set_rules('password2', 'Confirmez le mot de passe', 'matches[password]');
             $this->form_validation->set_rules('telephone', 'Telephone', 'required|callback_check_telephone_exists');
-            $this->form_validation->set_rules('nomElevage', 'Nom de l\elevage', '|callback_check_nomElevage_exists');
+            $this->form_validation->set_rules('nomElevage', 'Nom de l\elevage', 'required|callback_check_nomElevage_exists');
             $this->form_validation->set_rules('codePostal', 'Code postal', 'required');
             $this->form_validation->set_rules('adresse', 'adresse', 'required');
             $this->form_validation->set_rules('tailleElevage', 'Taille de l\elevage', 'required|is_natural_no_zero');
@@ -24,7 +24,12 @@
                 //encrypting password
                 $enc_password = md5($this->input->post('password'));
                 $this->utilisateurs_model->inscriptionEleveur($enc_password);
+                $this->load->view('utilisateurs/conditions');
             }
+        }
+
+        public function validationCGU(){
+            $this->load->view('pages');
         }
 
         public function inscriptionVeterinaire(){
@@ -36,7 +41,7 @@
 			$this->form_validation->set_rules('password', 'Password', 'required');
             $this->form_validation->set_rules('password2', 'Confirmez le mot de passe', 'matches[password]');
             $this->form_validation->set_rules('telephone', 'Telephone', 'required|callback_check_telephone_exists');
-            $this->form_validation->set_rules('nomCabinet', 'Nom du cabinet', '|callback_check_nomElevage_exists');
+            $this->form_validation->set_rules('nomCabinet', 'Nom du cabinet', '|callback_check_nomCabinet_exists');
             $this->form_validation->set_rules('codePostal', 'code postal', 'required');
             $this->form_validation->set_rules('adresse', 'adresse', 'required');
 
@@ -121,7 +126,7 @@
 					// Create session
 					$utilisateur_data = array(
 						'idutilisateur' => $idutilisateur,
-						'nomElevage' => $nomElevage,
+						//rajouter la photo et le type d'utilisateur
 						'connecte' => true
 					);
 
