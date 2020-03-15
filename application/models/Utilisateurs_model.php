@@ -1,15 +1,17 @@
 <?php
 
-    //check l'ordre d'insertion dans la bd et photo
     class Utilisateurs_model extends CI_Model{
+        public function __construct(){
+            $this->load->database();
+        }
 
         public function inscription($enc_password){
             if($this->input->post('type_utilisateur') == 'elevage'){
                 $data1 = array(
-                    'codePostal' => $this->input->post('codePostal'),
                     'email' => $this->input->post('email'),
-                    'password' => $enc_password,
                     'telephone' => $this->input->post('telephone'),
+                    'password' => $enc_password,
+                    'utilisateurPhoto' => 'defaultImage.jpg',
                     'type_utilisateur' => 'elevage'
                 );   
                 $this->db->insert('utilisateur', $data1);
@@ -17,37 +19,40 @@
                 //recup idutilisateur
                 $this->db->where('email', $data1['email']);
                 $this->db->where('password', $data1['password']);
-                $idUtilisateur = $this->db->get('utilisateur');
+                $idUtilisateur = $this->db->get('utilisateur')->row(0)->idUtilisateur;
 
                 $data2 = array(
                     'numEleveur' => $this->input->post('numEleveur'),
                     'nomElevage' => $this->input->post('nomElevage'),
-                    'tailleElevage' => $this->input->post('tailleElevage')
+                    'codePostal' => $this->input->post('codePostal'),
+                    'adresse' => $this->input->post('adresse'),
+                    'tailleElevage' => $this->input->post('tailleElevage'),
                     'idutilisateur' => $idUtilisateur
                 );
-                
-                //INSERT into ELEVAGE
-                //return ?
+
+                //insérer dans élevage
                 $this->db->insert('elevage', $data2);
 
             } else {
                 $data1 = array(
-                    'codePostal' => $this->input->post('departement'),
                     'email' => $this->input->post('email'),
-                    'password' => $enc_password,
                     'telephone' => $this->input->post('telephone'),
-                    'type_utilisateur' => 'eleveur'
+                    'password' => $enc_password,
+                    'utilisateurPhoto' => 'defaultImage.jpg',
+                    'type_utilisateur' => 'veterinaire'
                 );
                 $this->db->insert('utilisateur', $data1);
 
                 //recup idutilisateur
                 $this->db->where('email', $data1['email']);
                 $this->db->where('password', $data1['password']);
-                $idUtilisateur = $this->db->get('utilisateur');
+                $idUtilisateur = $this->db->get('utilisateur')->row(0)->idUtilisateur;
 
                 $data2 = array(
                     'numVeterinaire' => $this->input->post('numVeterinaire'),
                     'nomCabinet' => $this->input->post('nomCabinet'),
+                    'codePostal' => $this->input->post('codePostal'),
+                    'adresse' => $this->input->post('adresse'),
                     'idutilisateur' => $idUtilisateur
                 );               
     
@@ -81,6 +86,27 @@
                 } else {
                     return false;
                 }             
+            }
+        }
+
+        public function add_image($imageId, $utilisateurId){
+            $data = array('utilisateurPhoto'=>$imageId);
+            $this->db->where('idutilisateur',$utilisateurId);
+            $this->db->update('utilisateur',$data);
+        }
+
+        public function get_utilisateur_id($email, $password){
+            $this->db->where('email', $email);
+            $this->db->where('password', $password);
+            return $this->db->get('utilisateur')->row(0)->idutilisateur;
+        }
+
+        public function getUserName($idUtilisateur, $statut){
+            if($statut == 'elevage'){
+                $this->db->where('idUtilisateur', $idUtilisateur);
+                return $this->db->get('elevage')->row(0)->nomElevage;
+            } else {
+                return $this->db->get('veterinaire')->row(0)->nomCabinet;
             }
         }
 

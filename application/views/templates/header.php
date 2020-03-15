@@ -52,7 +52,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="<?php echo base_url(); ?>logout">
+					<a href="<?php echo base_url(); ?>utilisateurs/logout">
 						<button type="button" class="btn btn-default btn-custom">
 							<span class="btntext glyphicon-class">Se deconnecter</span>
 						</button>

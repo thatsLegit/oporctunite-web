@@ -1,3 +1,1 @@
-<div class="container">
-    <h2>Présentation du projet</h2>
-</div>
+<h2><?= $titre ?></h2>

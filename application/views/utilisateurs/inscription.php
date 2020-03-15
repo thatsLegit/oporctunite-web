@@ -59,6 +59,11 @@
                     <input type="password" name="password2" class="form-control" aria-describedby="emailHelp" placeholder="Confirmez le mot de passe">
                 </div>
 
+                <div class="form-group">
+                    <label>Upload image</label>
+                    <input type="file" name="photo" size="20">
+                </div>
+
                 <div class="col-md-12 text-center ">
                     <button type="submit" class=" btn btn-block mybtn btn-success">S'inscrire</button>
                 </div>
@@ -155,8 +160,13 @@
                     <input type="password" name="password2" class="form-control" aria-describedby="emailHelp" placeholder="Confirmez le mot de passe">
                 </div>
 
+                <div class="form-group">
+                    <label>Upload image</label>
+                    <input type="file" name="photo" size="20">
+                </div>
+
                 <div class="col-md-12 text-center ">
-                    <button type="button" class=" btn btn-block mybtn btn-success">S'inscrire</button>
+                    <button type="submit" class=" btn btn-block mybtn btn-success">S'inscrire</button>
                 </div>
                 <?php echo form_close(); ?>               
                             
