@@ -19,7 +19,7 @@
                 //recup idutilisateur
                 $this->db->where('email', $data1['email']);
                 $this->db->where('password', $data1['password']);
-                $idUtilisateur = $this->db->get('utilisateur')->row(0)->idUtilisateur;
+                $idUtilisateur = $this->db->get('utilisateur')->row(0)->idutilisateur;
 
                 $data2 = array(
                     'numEleveur' => $this->input->post('numEleveur'),
@@ -46,7 +46,7 @@
                 //recup idutilisateur
                 $this->db->where('email', $data1['email']);
                 $this->db->where('password', $data1['password']);
-                $idUtilisateur = $this->db->get('utilisateur')->row(0)->idUtilisateur;
+                $idUtilisateur = $this->db->get('utilisateur')->row(0)->idutilisateur;
 
                 $data2 = array(
                     'numVeterinaire' => $this->input->post('numVeterinaire'),
@@ -68,8 +68,6 @@
                 $result = $this->db->get('utilisateur');
 
                 if($result->num_rows() == 1){
-                    //a revoir
-                    $type_utilisateur = $this->db->get_where('elevage', array('idutilisateur' => $result->row(0)->idutilisateur))->result_array();
                     return $result->row(0)->idutilisateur;
                 } else {
                     return false;
@@ -80,8 +78,6 @@
                 $result = $this->db->get('utilisateur');
 
                 if($result->num_rows() == 1){
-                    //a revoir
-                    $type_utilisateur = $this->db->get_where('veterinaire', array('idutilisateur' => $result->row(0)->idutilisateur))->result_array();
                     return $result->row(0)->idutilisateur;
                 } else {
                     return false;
@@ -89,9 +85,9 @@
             }
         }
 
-        public function add_image($imageId, $utilisateurId){
+        public function add_image($imageId){
             $data = array('utilisateurPhoto'=>$imageId);
-            $this->db->where('idutilisateur',$utilisateurId);
+            $this->db->where('idutilisateur',$imageId);
             $this->db->update('utilisateur',$data);
         }
 
@@ -110,7 +106,24 @@
             }
         }
 
-
+        public function check_numEleveur_exists($numEleveur){
+			$query = $this->db->get_where('elevage', array('numEleveur' => $numEleveur));
+			if(empty($query->row_array())){
+				return true;
+			} else {
+				return false;
+			}
+        }
+        
+        public function check_numVeterinaire_exists($numVeterinaire){
+			$query = $this->db->get_where('veterinaire', array('numVeterinaire' => $numVeterinaire));
+			if(empty($query->row_array())){
+				return true;
+			} else {
+				return false;
+			}
+        }
+        
         public function check_nomElevage_exists($nomElevage){
 			$query = $this->db->get_where('elevage', array('nomElevage' => $nomElevage));
 			if(empty($query->row_array())){
