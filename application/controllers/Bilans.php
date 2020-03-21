@@ -34,7 +34,7 @@
             $data['categoryP']['Facilité de mouvement'] = $this->categories_model->get_tests_by_wording('cases de mise bas', 'espace alloué');
             $data['categoryP']['Absence de blessures'] = $this->categories_model->get_tests_by_wording('boiterie', 'blessure corps', 'lésions vulve');
             $data['categoryP']['Absence de maladies'] = $this->categories_model->get_tests_by_wording('Mortalité', 'Toux', 'Éternuement', 'pompage', 'prolapsus rectal', 'diarrhée', 
-                                                                                                        'constipation', 'métrite', 'mammite', 'prolapsus utérin', 'condition de la peau'
+                                                                                                        'constipation', 'métrite', 'mammite', 'prolapsus utérin', 'condition de la peau',
                                                                                                         'ruptures et hernies', 'infections locales');
             $data['categoryP']['Absence de blessures causées par certaines pratiques d elevage'] = $this->categories_model->get_tests_by_wording('coupes de queue', 'Pose d anneaux au niveau du groin');
             $data['categoryP']['Expression du comportement social'] = $this->categories_model->get_tests_by_wording('comportement social');

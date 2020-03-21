@@ -1,6 +1,9 @@
 <?php
 class Pages extends CI_Controller{
 
+	//faire ici aussi la page paramètres qui permet de modif
+	//les données telles que la photo ou taille d'elevage...
+
 	//affiche à la premiere page du site, page de garde,
 	//permet aussi d'afficher les infos sur le projet
 	

@@ -61,27 +61,19 @@
             }           
         }
 
-        public function login($email, $password){ 
-            if($this->input->post('statut') == 'eleveur'){
-                $this->db->where('email', $email);
-                $this->db->where('password', $password);
-                $result = $this->db->get('utilisateur');
-
-                if($result->num_rows() == 1){
-                    return $result->row(0)->idutilisateur;
-                } else {
-                    return false;
-                }
+        public function login($tel, $email, $password){ 
+            //select idutilisateur
+            //from utilisateur
+            //where email = $email
+            //or tel = $tel
+            //and password = $password;
+            $result = $this->db->where("password='".$password."' 
+                                AND (email='".$email."' OR telephone='".$tel."')")
+                                ->get('utilisateur');
+            if($result->num_rows() == 1){
+                return $result->row(0)->idutilisateur;
             } else {
-                $this->db->where('email', $email);
-                $this->db->where('password', $password);
-                $result = $this->db->get('utilisateur');
-
-                if($result->num_rows() == 1){
-                    return $result->row(0)->idutilisateur;
-                } else {
-                    return false;
-                }             
+                return false;
             }
         }
 
@@ -98,11 +90,13 @@
         }
 
         public function getUserName($idUtilisateur, $statut){
+            
             if($statut == 'elevage'){
-                $this->db->where('idUtilisateur', $idUtilisateur);
-                return $this->db->get('elevage')->row(0)->nomElevage;
+                return $this->db->where('idutilisateur', $idUtilisateur)
+                                    ->get('elevage')->row(0)->nomElevage;
             } else {
-                return $this->db->get('veterinaire')->row(0)->nomCabinet;
+                return $this->db->where('idutilisateur', $idUtilisateur)
+                                    ->get('veterinaire')->row(0)->nomCabinet;
             }
         }
 

@@ -1,6 +1,12 @@
 <?php
 
-    //faire email ou tel a la co si jamais a l'inscri le user se trompe
+    //pour la connexion, ajouter la fonction de changement de mdp
+    //confirmation d'inscription par mail
+    //rajouter la photo dans les données de session
+    //créer un compte admin et ses droits
+
+    //Probleme session a l'inscription + modif nom photo user
+    //Ajouter champ village, hameau, lieu-dit dans l'inscription
     
     class Utilisateurs extends CI_Controller{
         public function inscription(){
@@ -37,13 +43,24 @@
                     $config['max_height'] = '3000';
 
                     $this->load->library('upload', $config);
-
                     if($this->upload->do_upload()){
                         //filename = idUtilisateur
                         $data = array('upload_data' => $this->upload->data());
-                        $imageId = $this->utilisateurs_model->get_utilisateur_id($this->input->post('email'), $enc_password);
-                        $this->utilisateurs_model->add_image($imageId);
+                        $Id = $this->utilisateurs_model->get_utilisateur_id($this->input->post('email'), $enc_password);
+                        $this->utilisateurs_model->add_image($Id);
                     }
+                    //session message
+                    $this->session->set_flashdata('elevage_created', 
+                    'Bienvenue sur Oporctunité '.$this->input->post('nomElevage'));
+
+                    //init session
+					$utilisateur_data = array(
+                        'idutilisateur' => $Id,
+                        'statut' => 'elevage',
+                        'nom' => $this->utilisateurs_model->getUserName($Id, 'elevage'),
+						'connecte' => true
+					);
+                    $this->session->set_userdata($utilisateur_data);
 
                     //Enfin, rediriger vers la page d'accueil
                     redirect('');
@@ -63,6 +80,7 @@
                     $this->load->view('templates/header');
                     $this->load->view('utilisateurs/inscription');
                     $this->load->view('templates/footer');
+
                 } else {
                     //encrypting password
                     $enc_password = md5($this->input->post('password'));
@@ -82,9 +100,21 @@
                     if($this->upload->do_upload()){
                         //filename = idUtilisateur
                         $data = array('upload_data' => $this->upload->data());
-                        $imageId = $this->utilisateurs_model->get_utilisateur_id($this->input->post('email'), $enc_password);
-                        $this->utilisateurs_model->add_image($imageId);
+                        $Id = $this->utilisateurs_model->get_utilisateur_id($this->input->post('email'), $enc_password);
+                        $this->utilisateurs_model->add_image($Id);
                     }
+                    //session message
+                    $this->session->set_flashdata('veterinaire_created', 
+                    'Bienvenue sur Oporctunité '.$this->input->post('nomCabinet'));
+
+                    //init session
+					$utilisateur_data = array(
+                        'idutilisateur' => $Id,
+                        'statut' => 'veterinaire',
+                        'nom' => $this->utilisateurs_model->getUserName($Id, 'veterinaire'),
+						'connecte' => true
+					);
+                    $this->session->set_userdata($utilisateur_data);
 
                     //Enfin, rediriger vers la page d'accueil
                     redirect('');
@@ -159,9 +189,8 @@
             $data['title'] = 'Se connecter';
 
             //validation rules
-            $this->form_validation->set_rules('email', 'Email', 'required');
+            $this->form_validation->set_rules('login', 'login', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required');
-            //$this->form_validation->set_rules('statut','Statut','required|callback_check_default');
 
             if($this->form_validation->run() === FALSE){
                 $this->load->view('templates/header');
@@ -169,18 +198,18 @@
                 $this->load->view('templates/footer');
 
             } else {
-                $email = $this->input->post('email');
+                $email = $this->input->post('login');
+                $tel = $this->input->post('login');
                 $password = md5($this->input->post('password'));
-                $idUtilisateur = $this->utilisateurs_model->login($email, $password);
+                $idUtilisateur = $this->utilisateurs_model->login($tel, $email, $password);
 
                 // Create session
 				if($idUtilisateur){
-                    $nom = $this->utilisateurs_model->getUserName($idUtilisateur, $this->input->post('statut'));
-                
+
 					$utilisateur_data = array(
-                        'idUtilisateur' => $idUtilisateur,
-                        'statut' => $this->input->post('statut'),
-                        'nom' => $nom,
+                        'idutilisateur' => $idUtilisateur,
+                        'statut' => $this->input->post('select'),
+                        'nom' => $this->utilisateurs_model->getUserName($idUtilisateur, $this->input->post('select')),
 						'connecte' => true
 					);
 
@@ -203,6 +232,10 @@
             $this->session->unset_userdata('nom');
             $this->session->unset_userdata('connecte');
             redirect('');
+        }
+
+        public function forgotten(){
+
         }
     }
 

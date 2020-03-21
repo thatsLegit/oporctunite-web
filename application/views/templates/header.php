@@ -61,8 +61,16 @@
 			</ul>
 		</div>
 	</nav>
-	
 
 	<div class="container rounded text-white">
+
+	<!-- Flash messages -->
+    <?php if($this->session->flashdata('elevage_created')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('elevage_created').'</p>'; ?>
+      <?php endif; ?>
+
+      <?php if($this->session->flashdata('veterinaire_created')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('veterinaire_created').'</p>'; ?>
+      <?php endif; ?>
 
 
