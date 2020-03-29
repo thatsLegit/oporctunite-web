@@ -60,6 +60,19 @@ checkVeterinaire['telephone2'] = function(id) {
     }
 };
 
+checkVeterinaire['ville2'] = function(id) {
+    var ville2 = document.getElementById(id),
+        tooltipStyle = getTooltip(ville2);
+    
+    if (ville2.value.length >= 2) {
+        tooltipStyle.className = 'd-none';
+        return true;
+    } else {
+        tooltipStyle.className = 'd-inline-block bg-danger';
+        return false;
+    }
+};
+
 checkVeterinaire['codePostal2'] = function(id) {
     var codePostal2 = document.getElementById(id),
         tooltipStyle = getTooltip(codePostal2);
@@ -77,7 +90,7 @@ checkVeterinaire['adresse2'] = function(id) {
     var adresse2 = document.getElementById(id),
         tooltipStyle = getTooltip(adresse2);
     
-    if (adresse2.value.length >= 2) {
+    if (adresse2.value.length >= 6) {
         tooltipStyle.className = 'd-none';
         return true;
     } else {
@@ -181,6 +194,19 @@ checkEleveur['telephone'] = function(id) {
     }
 };
 
+checkEleveur['ville'] = function(id) {
+    var ville = document.getElementById(id),
+        tooltipStyle = getTooltip(ville);
+    
+    if (ville.value.length >= 2) {
+        tooltipStyle.className = 'd-none';
+        return true;
+    } else {
+        tooltipStyle.className = 'd-inline-block bg-danger';
+        return false;
+    }
+};
+
 checkEleveur['codePostal'] = function(id) {
     var codePostal = document.getElementById(id),
         tooltipStyle = getTooltip(codePostal);
@@ -198,7 +224,7 @@ checkEleveur['adresse'] = function(id) {
     var adresse = document.getElementById(id),
         tooltipStyle = getTooltip(adresse);
     
-    if (adresse.value.length >= 2) {
+    if (adresse.value.length >= 6) {
         tooltipStyle.className = 'd-none';
         return true;
     } else {

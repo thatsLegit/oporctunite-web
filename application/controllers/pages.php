@@ -12,8 +12,27 @@ class Pages extends CI_Controller{
 		if (!file_exists(APPPATH.'views/pages/'.$page.'.php')){
 			show_404();
 		}
-		$this->load->view('templates/header');
-		$this->load->view('pages/'.$page, $data);
-		$this->load->view('templates/footer');
+
+		//le user n'est pas connecte
+		if(!$this->session->userdata('connecte')){
+			$this->load->view('templates/header');
+			$this->load->view('pages/'.$page, $data);
+			$this->load->view('templates/footer');
+		} else {
+		//le user est co, en fonction du type :
+			if($this->session->userdata('statut') == 'elevage'){
+				$this->load->view('templates/header', $data);
+				$this->load->view('pages/accueil-elevage', $data);
+				$this->load->view('templates/footer', $data);
+			} elseif ($this->session->userdata('statut') == 'veterinaire'){
+				$this->load->view('templates/header');
+				$this->load->view('pages/accueil-veterinaire', $data);
+				$this->load->view('templates/footer');
+			} else {
+				$this->load->view('templates/header');
+				$this->load->view('pages/accueil-admin', $data);
+				$this->load->view('templates/footer');
+			}
+		}
 	}
 }

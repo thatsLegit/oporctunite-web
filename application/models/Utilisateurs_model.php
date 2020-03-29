@@ -10,6 +10,9 @@
                 $data1 = array(
                     'email' => $this->input->post('email'),
                     'telephone' => $this->input->post('telephone'),
+                    'ville' => $this->input->post('ville'),
+                    'codePostal' => $this->input->post('codePostal'),
+                    'adresse' => $this->input->post('adresse'),
                     'password' => $enc_password,
                     'utilisateurPhoto' => 'defaultImage.jpg',
                     'type_utilisateur' => 'elevage'
@@ -24,19 +27,20 @@
                 $data2 = array(
                     'numEleveur' => $this->input->post('numEleveur'),
                     'nomElevage' => $this->input->post('nomElevage'),
-                    'codePostal' => $this->input->post('codePostal'),
-                    'adresse' => $this->input->post('adresse'),
                     'tailleElevage' => $this->input->post('tailleElevage'),
                     'idutilisateur' => $idUtilisateur
                 );
 
-                //insérer dans élevage
+                //INSERT INTO ELEVAGE
                 $this->db->insert('elevage', $data2);
 
             } else {
                 $data1 = array(
                     'email' => $this->input->post('email'),
                     'telephone' => $this->input->post('telephone'),
+                    'ville' => $this->input->post('ville'),
+                    'codePostal' => $this->input->post('codePostal'),
+                    'adresse' => $this->input->post('adresse'),
                     'password' => $enc_password,
                     'utilisateurPhoto' => 'defaultImage.jpg',
                     'type_utilisateur' => 'veterinaire'
@@ -51,22 +55,15 @@
                 $data2 = array(
                     'numVeterinaire' => $this->input->post('numVeterinaire'),
                     'nomCabinet' => $this->input->post('nomCabinet'),
-                    'codePostal' => $this->input->post('codePostal'),
-                    'adresse' => $this->input->post('adresse'),
                     'idutilisateur' => $idUtilisateur
                 );               
     
-                //INSERT into VETERINAIRE               
+                //INSERT INTO VETERINAIRE               
                 $this->db->insert('veterinaire', $data2);
             }           
         }
 
         public function login($tel, $email, $password){ 
-            //select idutilisateur
-            //from utilisateur
-            //where email = $email
-            //or tel = $tel
-            //and password = $password;
             $result = $this->db->where("password='".$password."' 
                                 AND (email='".$email."' OR telephone='".$tel."')")
                                 ->get('utilisateur');
@@ -77,8 +74,8 @@
             }
         }
 
-        public function add_image($imageId){
-            $data = array('utilisateurPhoto'=>$imageId);
+        public function add_image($imageId, $name){
+            $data = array('utilisateurPhoto'=>$name);
             $this->db->where('idutilisateur',$imageId);
             $this->db->update('utilisateur',$data);
         }

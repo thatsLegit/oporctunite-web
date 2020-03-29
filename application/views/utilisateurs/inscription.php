@@ -40,6 +40,11 @@
 
                 <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Vos coordonnées : </label></strong>
                 <div class="form-group">
+                    <input type="text" name="ville" id="ville" class="form-control" aria-describedby="emailHelp" placeholder="Ville, commune, lieu-dit">
+                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner ce champs.</span>
+                </div>
+
+                <div class="form-group">
                     <input type="text" name="adresse" id="adresse" class="form-control" aria-describedby="emailHelp" placeholder="Adresse">
                     <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner votre adresse.</span>
                 </div>
@@ -109,7 +114,7 @@
                                 <p>Pour accéder et utiliser ce Site vous devez être un éleveur porcin et disposer d’une adresse de courrier électronique valide. Il est aussi possible d’y accéder si vous êtes vétérinaire. 
                                 Lorsque vous créez un compte, vous pourrez être amené à remplir des champs obligatoires dans un formulaire, signalés comme tels par un astérisque. Dans ce cas, il est nécessaire que vous complétiez ces champs préalablement à votre inscription sur le Site. Toute inscription inexacte ou incomplète ne sera pas prise en compte.
                                 Vous reconnaissez que les données que vous nous communiquez et qui sont stockées dans nos systèmes d’information sont exactes et valent preuve de votre identité. Nous vous remercions de bien vouloir nous faire part de toute éventuelle modification de ces données.
-                                L’accès à son compte personnel nécessite l’utilisation de codes d’accès personnels. Dans ce cas, il vous appartient de prendre les mesures propres à assurer le secret de ces codes. Vous pourrez bien entendu les modifier à tout moment. Toutefois, le nombre de tentatives d’accès au Site et/ou à certaines de ses Rubriques pourra être limité afin de prévenir un usage frauduleux desdits codes. Nous vous invitons à nous informer de toute utilisation frauduleuse dont vous pourriez éventuellement avoir connaissance à l’adresse mail adresseDeLaura@outlook.com.
+                                L’accès à son compte personnel nécessite l’utilisation de codes d’accès personnels. Dans ce cas, il vous appartient de prendre les mesures propres à assurer le secret de ces codes. Vous pourrez bien entendu les modifier à tout moment. Toutefois, le nombre de tentatives d’accès au Site et/ou à certaines de ses Rubriques pourra être limité afin de prévenir un usage frauduleux desdits codes. Nous vous invitons à nous informer de toute utilisation frauduleuse dont vous pourriez éventuellement avoir connaissance à l’adresse mail oporctunite@envt.fr.
                                 En cas de non-respect des règles décrites dans les présentes Conditions d’Utilisation, nous nous réservons le droit de suspendre votre accès au Site. Dans ce cas, nous vous en informerons dans les meilleurs délais.
                                 Bien que nous nous efforcions de maintenir le Site accessible à tout moment, nous ne pouvons pas vous garantir cet accès en toute circonstance. En effet, et notamment pour des raisons de maintenance, de mise à jour, ou pour toute autre raison que nous ne maîtriserions pas, l’accès au Site pourra être interrompu.</p><br>
                                 <h5>2. PROPRIETE INTELLECTUELLE</h5>
@@ -137,7 +142,7 @@
                                 <h5>4. INFORMATIONS CONTENUES SUR LE SITE</h5>
                                 <h6>a. Dispositions générales</h6>
                                 <p>Nous nous efforçons de vous délivrer des informations exactes et mises à jour. Toutefois, les transmissions de données et d’informations sur Internet ne bénéficiant que d’une fiabilité technique relative, nous ne pouvons vous garantir l’exactitude de l’ensemble des informations qui figurent sur ce Site.
-                                Par ailleurs, nous vous rappelons que des inexactitudes ou omissions peuvent apparaître dans les informations disponibles sur ce Site notamment du fait d’intrusion de tiers. Nous vous invitons à nous signaler toute inexactitude ou omission à l’adresse suivante : adresseDeLaura@outlook.com</p><br>
+                                Par ailleurs, nous vous rappelons que des inexactitudes ou omissions peuvent apparaître dans les informations disponibles sur ce Site notamment du fait d’intrusion de tiers. Nous vous invitons à nous signaler toute inexactitude ou omission à l’adresse suivante : oporctunite@envt.fr</p><br>
 
                                 <h5>5. DONNEES A CARACTERE PERSONNEL</h5>
                                 <p>Nous pouvons être amenés à collecter des données personnelles vous concernant, notamment lorsque vous (i) vous vous inscrivez sur le Site, (ii) téléchargez un Contenu Téléchargeable, (iii) répondez à un sondage ou à une étude.
@@ -190,6 +195,11 @@
                 </div>
 
                 <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Vos coordonnées : </label></strong>
+                <div class="form-group">
+                    <input type="text" name="ville" id="ville2" class="form-control" aria-describedby="emailHelp" placeholder="Ville, commune, lieu-dit">
+                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner ce champs.</span>
+                </div>
+
                 <div class="form-group">
                     <input type="text" name="adresse" id="adresse2" class="form-control"aria-describedby="emailHelp" placeholder="Adresse">
                     <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner votre adresse.</span>

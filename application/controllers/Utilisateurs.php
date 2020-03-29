@@ -2,11 +2,11 @@
 
     //pour la connexion, ajouter la fonction de changement de mdp
     //confirmation d'inscription par mail
-    //rajouter la photo dans les données de session
     //créer un compte admin et ses droits
 
-    //Probleme session a l'inscription + modif nom photo user
-    //Ajouter champ village, hameau, lieu-dit dans l'inscription
+    //rajouter la photo dans les données de session + plein d'autres données en fait
+    //creer les vues d'accueil du site.
+    //bug upload image a l'inscription coté veto
     
     class Utilisateurs extends CI_Controller{
         public function inscription(){
@@ -21,6 +21,7 @@
                 $this->form_validation->set_rules('password2', 'Confirmez le mot de passe', 'matches[password]');
                 $this->form_validation->set_rules('telephone', 'Telephone', 'required|callback_check_telephone_exists');
                 $this->form_validation->set_rules('nomElevage', 'Nom de l\'elevage', 'required|callback_check_nomElevage_exists');
+                $this->form_validation->set_rules('ville', 'Ville', 'required');
                 $this->form_validation->set_rules('codePostal', 'Code postal', 'required');
                 $this->form_validation->set_rules('adresse', 'adresse', 'required', array('required'=>'Veuillez renseigner une addresse.'));
                 $this->form_validation->set_rules('tailleElevage', 'Taille de l\'elevage', 'required|is_natural_no_zero', array('required'=>'Veuillez entrer une valeur pour la taille de l\'élevage'));
@@ -35,19 +36,22 @@
                     //Créer l'utilisateur
                     $this->utilisateurs_model->inscription($enc_password);
                     //Ajouter la photo ensuite en la renommant avec l'id utilisateur
+                    $Id = $this->utilisateurs_model->get_utilisateur_id($this->input->post('email'), $enc_password);
+                    $ext = pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
+                    $name = $Id . "." . $ext;
+
                     //upload images config
                     $config['upload_path'] = './assets/img/photos';
                     $config['allowed_types'] = 'gif|jpg|png';
                     $config['max_size'] = '2048';
                     $config['max_width'] = '3000';
                     $config['max_height'] = '3000';
+                    $config['file_name'] = $name;
 
+                    //ajouter le nom à la bd
                     $this->load->library('upload', $config);
                     if($this->upload->do_upload()){
-                        //filename = idUtilisateur
-                        $data = array('upload_data' => $this->upload->data());
-                        $Id = $this->utilisateurs_model->get_utilisateur_id($this->input->post('email'), $enc_password);
-                        $this->utilisateurs_model->add_image($Id);
+                        $this->utilisateurs_model->add_image($Id, $name);
                     }
                     //session message
                     $this->session->set_flashdata('elevage_created', 
@@ -73,6 +77,7 @@
                 $this->form_validation->set_rules('password2', 'Confirmez le mot de passe', 'matches[password]');
                 $this->form_validation->set_rules('telephone', 'Telephone', 'required|callback_check_telephone_exists');
                 $this->form_validation->set_rules('nomCabinet', 'Nom du cabinet', 'required|callback_check_nomCabinet_exists');
+                $this->form_validation->set_rules('ville', 'Ville', 'required');
                 $this->form_validation->set_rules('codePostal', 'code postal', 'required');
                 $this->form_validation->set_rules('adresse', 'adresse', 'required');
 
@@ -86,23 +91,27 @@
                     $enc_password = md5($this->input->post('password'));
                     //Créer l'utilisateur
                     $this->utilisateurs_model->inscription($enc_password);
-                    //Ajouter l'image ensuite
+                    //Ajouter la photo ensuite en la renommant avec l'id utilisateur
+                    $Id = $this->utilisateurs_model->get_utilisateur_id($this->input->post('email'), $enc_password);
+                    $ext = pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
+                    $name = $Id . "." . $ext;
+
                     //upload images config
                     $config['upload_path'] = './assets/images/photos';
                     $config['allowed_types'] = 'gif|jpg|png';
                     $config['max_size'] = '2048';
                     $config['max_width'] = '3000';
                     $config['max_height'] = '3000';
+                    $config['file_name'] = $name;
 
                     $this->load->library('upload', $config);
 
-                    //Si une image est ajoutée, modif le nom, sinon par défaut le nom est mis à defaultImage.jpg
+                    //ajouter le nom à la bd
+                    $this->load->library('upload', $config);
                     if($this->upload->do_upload()){
-                        //filename = idUtilisateur
-                        $data = array('upload_data' => $this->upload->data());
-                        $Id = $this->utilisateurs_model->get_utilisateur_id($this->input->post('email'), $enc_password);
-                        $this->utilisateurs_model->add_image($Id);
+                        $this->utilisateurs_model->add_image($Id, $name);
                     }
+
                     //session message
                     $this->session->set_flashdata('veterinaire_created', 
                     'Bienvenue sur Oporctunité '.$this->input->post('nomCabinet'));
@@ -231,6 +240,11 @@
             $this->session->unset_userdata('statut');
             $this->session->unset_userdata('nom');
             $this->session->unset_userdata('connecte');
+
+            //session message
+            $this->session->set_flashdata('user_loggedOut', 
+            'Vous etes deconnecté.');
+
             redirect('');
         }
 

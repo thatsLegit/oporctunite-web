@@ -27,16 +27,25 @@
 		<div class="collapse navbar-collapse" id="navbarColor02">
 			<ul class="navbar-nav mr-auto">
 				<li><a class="nav-link" href="<?php echo base_url(); ?>fiches">Rechercher une fiche</a></li>
-				<li><a class="nav-link" href="<?php echo base_url(); ?>favoris">Mes favoris</a></li>
-				<li><a  class="nav-link" href="<?php echo base_url(); ?>follow">Suivre</a></li>
-				<!-- Laisser les deux suivre, l'un est pour les vétos, l'autre pr les eleveurs,
-				faudra voir l'affichage dans la vue avec les sessions -->
-				<li><a  class="nav-link" href="<?php echo base_url(); ?>follower">Suivre</a></li>
-				<li><a  class="nav-link" href="<?php echo base_url(); ?>Bilans">Mon bilan</a></li>
+
+				<?php if($this->session->userdata('connecte')) : ?>
+					<li><a class="nav-link" href="<?php echo base_url(); ?>favoris">Mes fiches</a></li>
+
+					<?php if($this->session->userdata('statut')=='elevage') : ?>
+					<li><a  class="nav-link" href="<?php echo base_url(); ?>follow">Trouver un vétérinaire</a></li>
+					<li><a  class="nav-link" href="<?php echo base_url(); ?>Bilans">Mon bilan</a></li>
+					<?php endif; ?>
+
+					<?php if($this->session->userdata('statut')=='veterinaire') : ?>
+					<li><a  class="nav-link" href="<?php echo base_url(); ?>follower">Mes eleveurs</a></li>
+					<?php endif; ?>
+				<?php endif; ?>
+
 				<li><a class="nav-link" href="<?php echo base_url(); ?>contact">Contacts</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">	
+				<?php if(!$this->session->userdata('connecte')) : ?>
 				<li>
 					<a href="<?php echo base_url(); ?>inscription">
 						<button type="button" class="btn btn-default btn-custom">
@@ -51,13 +60,16 @@
 						</button>
 					</a>
 				</li>
+				<?php endif; ?>
+				<?php if($this->session->userdata('connecte')) : ?>
 				<li>
 					<a href="<?php echo base_url(); ?>utilisateurs/logout">
 						<button type="button" class="btn btn-default btn-custom">
 							<span class="btntext glyphicon-class">Se deconnecter</span>
 						</button>
 					</a>
-				</li>				
+				</li>	
+				<?php endif; ?>	
 			</ul>
 		</div>
 	</nav>
@@ -71,6 +83,10 @@
 
       <?php if($this->session->flashdata('veterinaire_created')): ?>
         <?php echo '<p class="alert alert-success">'.$this->session->flashdata('veterinaire_created').'</p>'; ?>
+      <?php endif; ?>
+
+	  <?php if($this->session->flashdata('user_loggedOut')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedOut').'</p>'; ?>
       <?php endif; ?>
 
 
