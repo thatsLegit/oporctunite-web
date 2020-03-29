@@ -6,10 +6,14 @@
 
     //rajouter la photo dans les données de session + plein d'autres données en fait
     //creer les vues d'accueil du site.
-    //bug upload image a l'inscription coté veto
     
     class Utilisateurs extends CI_Controller{
         public function inscription(){
+
+            //Si l'utilisateur est dejà co, le rediriger vers la page d'accueil
+            if($this->session->userdata('connecte')){
+                redirect('');
+            }
 
             $this->config->set_item('language', 'french');
 
@@ -97,14 +101,12 @@
                     $name = $Id . "." . $ext;
 
                     //upload images config
-                    $config['upload_path'] = './assets/images/photos';
+                    $config['upload_path'] = './assets/img/photos';
                     $config['allowed_types'] = 'gif|jpg|png';
                     $config['max_size'] = '2048';
                     $config['max_width'] = '3000';
                     $config['max_height'] = '3000';
                     $config['file_name'] = $name;
-
-                    $this->load->library('upload', $config);
 
                     //ajouter le nom à la bd
                     $this->load->library('upload', $config);
@@ -194,6 +196,11 @@
         
         public function login(){
 
+            //Si l'utilisateur est dejà co, le rediriger vers la page d'accueil
+            if($this->session->userdata('connecte')){
+                redirect('');
+            }
+
             $this->config->set_item('language', 'french');
             $data['title'] = 'Se connecter';
 
@@ -223,7 +230,7 @@
 					);
 
                     $this->session->set_userdata($utilisateur_data);
-                    redirect('');
+                    redirect('profil');
 
 				} else {
 					redirect('login');
@@ -236,6 +243,12 @@
         }
 
         public function logout(){
+
+            //Si l'utilisateur est dejà co, le rediriger vers la page d'accueil
+            if(!$this->session->userdata('connecte')){
+                redirect('');
+            }
+
             $this->session->unset_userdata('idUtilisateur');
             $this->session->unset_userdata('statut');
             $this->session->unset_userdata('nom');

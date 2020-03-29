@@ -61,7 +61,13 @@ $route['login'] = 'utilisateurs/login';
 $route['logout'] = 'utilisateurs/login';
 
 $route['default_controller'] = 'pages/view';
-$route['(:any)'] = 'pages/view/$1';
+$route['followers'] = 'VeterinaireSuit/index';
+$route['follows'] = 'EleveurSuit/index';
+$route['bilans'] = 'Bilans/view';
+$route['fiches'] = 'Fiches/fiches';
+$route['favoris'] = 'Fiches/fiches_favoris';
+$route['profil'] = 'Pages/profil';
+$route['(:any)'] = 'Pages/view/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

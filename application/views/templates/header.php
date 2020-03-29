@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css"/>
 	<!-- Bootstrap cdn -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/starrr.css">
 	<!-- Font Awesome CSS
      <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
      Google Fonts 
@@ -26,21 +27,22 @@
 
 		<div class="collapse navbar-collapse" id="navbarColor02">
 			<ul class="navbar-nav mr-auto">
+				<!-- Zones publique -->
 				<li><a class="nav-link" href="<?php echo base_url(); ?>fiches">Rechercher une fiche</a></li>
-
-				<?php if($this->session->userdata('connecte')) : ?>
-					<li><a class="nav-link" href="<?php echo base_url(); ?>favoris">Mes fiches</a></li>
-
-					<?php if($this->session->userdata('statut')=='elevage') : ?>
-					<li><a  class="nav-link" href="<?php echo base_url(); ?>follow">Trouver un vétérinaire</a></li>
-					<li><a  class="nav-link" href="<?php echo base_url(); ?>Bilans">Mon bilan</a></li>
+					<!-- Zones all membre -->
+					<?php if($this->session->userdata('connecte')) : ?>
+						<li><a class="nav-link" href="<?php echo base_url(); ?>profil">Mon profil</a></li>
+						<li><a class="nav-link" href="<?php echo base_url(); ?>favoris">Mes fiches</a></li>
+						<!-- Zones elevage -->
+						<?php if($this->session->userdata('statut')=='elevage') : ?>
+						<li><a  class="nav-link" href="<?php echo base_url(); ?>follows">Trouver un vétérinaire</a></li>
+						<li><a  class="nav-link" href="<?php echo base_url(); ?>bilans">Mon bilan</a></li>
+						<?php endif; ?>
+						<!-- Zones Veto -->
+						<?php if($this->session->userdata('statut')=='veterinaire') : ?>
+						<li><a  class="nav-link" href="<?php echo base_url(); ?>followers">Mes eleveurs</a></li>
+						<?php endif; ?>
 					<?php endif; ?>
-
-					<?php if($this->session->userdata('statut')=='veterinaire') : ?>
-					<li><a  class="nav-link" href="<?php echo base_url(); ?>follower">Mes eleveurs</a></li>
-					<?php endif; ?>
-				<?php endif; ?>
-
 				<li><a class="nav-link" href="<?php echo base_url(); ?>contact">Contacts</a></li>
 			</ul>
 

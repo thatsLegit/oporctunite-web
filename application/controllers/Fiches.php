@@ -1,6 +1,9 @@
 <?php 
 class Fiches extends CI_Controller{
 
+    //On gère les consultations des fiches là ?
+    //gérer l'access control des fiches favoris
+
     public function __construct(){
         parent::__construct();
         $this->load->model('Utilisateurs_model');
@@ -14,8 +17,9 @@ class Fiches extends CI_Controller{
         $data['search']='false';
         $data['categoriesG']=$this->Categories_model->getCategorieG();
         $data['fiches']=$this->Fiches_model->getFiches();
-        $this->load->view('templates/header-elevage', $data);
+        $this->load->view('templates/header');
         $this->load->view('fiches/fiches_conseil_search',$data);
+        $this->load->view('templates/footer');
     }
 
     public function fiches_favoris(){
@@ -25,8 +29,9 @@ class Fiches extends CI_Controller{
         $data['search']='false';
         $data['categoriesG']=$this->Categories_model->getCategorieG();
         $data['fiches']=$this->Fiches_model->getFiches_favoris($utilisateur);
-        $this->load->view('templates/header-elevage', $data);
+        $this->load->view('templates/header');
         $this->load->view('fiches/fiches_conseil_search',$data);
+        $this->load->view('templates/footer');
     }
 
     public function autocomplete(){
@@ -82,7 +87,7 @@ class Fiches extends CI_Controller{
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titreFiche);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['titre'] ='Fiche conseil';
-            $this->load->view('templates/header-elevage',$data);
+            $this->load->view('templates/header',$data);
             $this->load->view('fiches/fiches_conseils',$data);
            
         }
@@ -91,8 +96,9 @@ class Fiches extends CI_Controller{
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titreFiche);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['titre'] ='Fiche conseil';
-            $this->load->view('templates/header-elevage',$data);
+            $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
+            $this->load->view('templates/footer');
         }
        
     }
@@ -113,8 +119,9 @@ class Fiches extends CI_Controller{
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titreFiche);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['titre'] ='Fiche conseil';
-            $this->load->view('templates/header-elevage',$data);
+            $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
+            $this->load->view('templates/footer');
         }
         else{
             $this->Fiches_model->add_note($titreFiche, $utilisateur, $ajouterNote, $commentaire);
@@ -123,13 +130,10 @@ class Fiches extends CI_Controller{
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titreFiche);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['titre'] ='Fiche conseil';
-            $this->load->view('templates/header-elevage',$data);
+            $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
+            $this->load->view('templates/footer');
         }
-    }
-
-    public function view($idfiche){
-        //affiche des détails sur une fiche dans une page à part
     }
 
     public function dropFromFavorites($critères){
@@ -153,8 +157,9 @@ class Fiches extends CI_Controller{
                     $data['fiches'] = $this->Fiches_model->get_fiches_search($categorie);
                     $data['search']='true';
                     $data['titre'] ='Les fiches';
-                    $this->load->view('templates/header-elevage', $data);
+                    $this->load->view('templates/header');
                     $this->load->view('fiches/fiches_conseil_search',$data);
+                    $this->load->view('templates/footer');
             }
             else{
                     $this->fiches();
@@ -180,8 +185,9 @@ class Fiches extends CI_Controller{
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titre_fiche);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titre_fiche);
             $data['titre'] ='Fiche conseil';
-            $this->load->view('templates/header-elevage',$data);
+            $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
+            $this->load->view('templates/footer');
         }
     }
 

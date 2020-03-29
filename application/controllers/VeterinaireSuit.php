@@ -6,12 +6,21 @@
     class VeterinaireSuit extends CI_Controller{
         
         public function index($offset = 0){
-            //pagination
+
+            if(!$this->session->userdata('connecte')){
+                redirect('');
+            }
+            //le veto n'a pas d'accès à ces vues
+            if($this->session->userdata('statut') != 'veterinaire'){
+                redirect('');
+            }
+        
+            /* //pagination
             $this->load->library('pagination');
 
             $config['base_url'] = base_url().'veterinaireSuit/index/';
             //total rows : compte le nombre de followers du veterinaire
-            $config['total_rows'] = $this->follows_model->get_follows_number(FALSE, $config['per_page']; 
+            $config['total_rows'] = $this->follows_model->get_follows_number(FALSE, $config['per_page']); 
             $config['per_page'] = 10;
             $config['uri_segment'] = 3;
             // Produces: class="pagination-link"
@@ -21,15 +30,20 @@
 
             //request the model
             $data['title'] = 'Elevages que vous suivez';
-            $data['follows'] = $this->follows_model->get_follows(FALSE, $config['per_page'], $offset);
+            $data['follows'] = $this->follows_model->get_follows(FALSE, $config['per_page'], $offset); */
             
             //construct views with queried data
             $this->load->view('templates/header');
-            $this->load->view('veterinaireSuit/index', $data);
+            $this->load->view('veterinaireSuit/index');
             $this->load->view('templates/footer');
         }
 
-        public function view($idUtilisateur = NULL){
+        /* public function view($idUtilisateur = NULL){
+
+            if(!$this->session->userdata('connecte')){
+                redirect('');
+            }
+            
             $data['elevage'] = $this->utilisateur_model->get_elevage($idUtilisateur);
             //Faudra se demerder pour load le graphique de résultat des tests d'eleveur ici. Bonne chance.
 
@@ -40,7 +54,7 @@
             $this->load->view('templates/header');
             $this->load->view('VeterinaireSuit/view', $data);
             $this->load->view('templates/footer');
-        }
+        } */
     }
 
 ?>

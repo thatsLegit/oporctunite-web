@@ -10,15 +10,15 @@
 
         public function view(){
 
-            if(!$this->session->userdata('logged_in')){
-                redirect('utilisateurs/login');
+            if(!$this->session->userdata('connecte')){
+                redirect('login');
             }
 
             //le veto n'a pas d'accès à ces vues
-            if($this->session->userdata('type_utilisateur') == 'veterinaire'){
-                redirect('pages');
+            if($this->session->userdata('statut') != 'elevage'){
+                redirect('');
             }
-
+            /*
             //données de session ou statiques
             $idUtilisateur = $this->session->userdata('idUtilisateur');
             $data['titre'] = 'Suivi de mon elevage';
@@ -42,12 +42,13 @@
             $data['categoryP']['Bonne relation homme-animal'] = $this->categories_model->get_tests_by_wording('peur de l’homme');
             $data['categoryP']['Emotions positives'] = $this->categories_model->get_tests_by_wording('évaluation qualitative du comportement');
 
-            //les notes g et p sont calculées dans la vue
+            //les notes g et p sont calculées dans la vue */
 
             //load la vue bilan
             $this->load->view('templates/header');
-            $this->load->view('bilans/view', $data);
             $this->load->view('templates/footer');
+            $this->load->view('bilans/view');
+            
         }
 
         

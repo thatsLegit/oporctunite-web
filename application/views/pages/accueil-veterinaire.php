@@ -1,5 +1,5 @@
-<h2><?= $titre ?></h2>
+<h2>Profil</h2>
 
-<?php if($this->session->userdata('connecte')) :
+<?php
 echo $this->session->userdata('nom') . ' est connecté'; 
-endif?>
+?>
