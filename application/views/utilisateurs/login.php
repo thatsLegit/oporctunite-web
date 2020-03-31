@@ -1,3 +1,14 @@
+<style>
+    #titre{
+        margin-top: 150px;
+    }
+
+    #inscription{
+        color: white;
+    }
+
+</style>
+
 <div id="titre">
     <h3 class="text-center mt-5">O'porctunité</h3>
 </div>
@@ -7,8 +18,8 @@
         <div class="col-md-5 mx-auto">
             <div class="form mt-5">
 
-                <?php echo validation_errors();?>
-                <?php echo form_open('utilisateurs/login', array('id' => 'formulaireConnexion'));?>       
+                <?php echo validation_errors();
+                echo form_open('utilisateurs/login', array('id' => 'formulaireConnexion'));?>       
 
                     <div class="form-group">
                         <select class="custom-select mb-3" name="select" id="select">
@@ -39,6 +50,9 @@
                     </div>
 
                 </form>
+
+                <div class="mt-2 mb-4 text-center"><a href="<?php echo base_url(); ?>inscription" id="inscription" class="text-center">Pas encore de compte?</a></div>
+                
             </div>
         </div>
    </div>

@@ -1,3 +1,3 @@
-<h2><?= $titre ?></h2>
-
-<!-- Page d'accueil par défaut, pas de connexion -->
+<?php if($this->session->userdata('connecte')) :
+echo $this->session->userdata('nom') . ' est connecté'; 
+endif?>

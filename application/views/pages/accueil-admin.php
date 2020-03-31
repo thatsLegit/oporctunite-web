@@ -1,2 +1,0 @@
-
-<p>Compte administrateur</p>

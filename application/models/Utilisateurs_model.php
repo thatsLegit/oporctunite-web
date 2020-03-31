@@ -64,6 +64,11 @@
         }
 
         public function login($tel, $email, $password){ 
+            //select idutilisateur
+            //from utilisateur
+            //where email = $email
+            //or tel = $tel
+            //and password = $password;
             $result = $this->db->where("password='".$password."' 
                                 AND (email='".$email."' OR telephone='".$tel."')")
                                 ->get('utilisateur');
@@ -151,6 +156,128 @@
 			} else {
 				return false;
 			}
-		}
+        }
+        
+        public function getElevageByName($name){
+            $this->db->select('*');
+            $this->db->from('elevage');
+            $this->db->where('elevage.nomElevage', $name);
+            $this->db->join('utilisateur', 'elevage.idutilisateur = utilisateur.idutilisateur' ); 
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+
+        public function getVeterinaireByName($id){
+            $this->db->select('*');
+            $this->db->from('veterinaire');
+            $this->db->where('veterinaire.idutilisateur', $id);
+            $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur' ); 
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+
+        public function getVeterinaire(){
+            $this->db->select('*');
+            $this->db->from('veterinaire');
+            $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur' ); 
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+
+        public function getVeterinaire_suivi($name_elevage){
+            $this->db->select('*');
+            $this->db->from('suivre');
+            $this->db->where('elevage.nomElevage', $name_elevage);
+            $this->db->join('elevage', 'elevage.numEleveur = suivre.numEleveur' ); 
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+
+        public function getElevage_suivi($id_veterinaire){
+            $this->db->select('*');
+            $this->db->from('suivre');
+            $this->db->where('veterinaire.idutilisateur', $id_veterinaire);
+            $this->db->join('veterinaire', 'veterinaire.numVeterinaire = suivre.numVeterinaire' );
+            $this->db->join('elevage', 'elevage.numEleveur = suivre.numEleveur' );
+            $this->db->join('utilisateur', 'utilisateur.idutilisateur = elevage.idutilisateur' ); 
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+
+        public function getNum_Elevage_name($name_elevage){
+            $this->db->select('numEleveur');
+            $this->db->from('elevage');
+            $this->db->where('elevage.nomElevage', $name_elevage);
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+
+        public function getNum_Veterinaire_name($name_veterinaire){
+            $this->db->select('numVeterinaire');
+            $this->db->from('veterinaire');
+            $this->db->where('veterinaire.nomCabinet', $name_veterinaire);
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+
+        public function get_suivi($numElevage, $numVeterinaire){
+            $this->db->select('*');
+            $this->db->from('suivre');
+            $this->db->where('numEleveur', $numElevage);
+            $this->db->where('numVeterinaire', $numVeterinaire);
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+
+        public function add_suivi($numElevage, $numVeterinaire){
+
+            $data = array(
+                'numEleveur' => $numElevage,
+                'numVeterinaire' => $numVeterinaire,
+                'etat' => "En Cours"
+            );
+        
+            $this->db->insert('suivre', $data);
+        }
+
+        public function delete_suivi($numElevage, $numVeterinaire){
+
+            $this->db->where('numEleveur', $numElevage);
+            $this->db->where('numVeterinaire', $numVeterinaire);
+            $this->db->delete('suivre');
+        
+        }
+
+        public function update_refuser_suivi($numElevage, $numVeterinaire){
+
+            $data = array(
+                'numEleveur' => $numElevage,
+                'numVeterinaire'  => $numVeterinaire,
+                'etat'  => 'Refuser'
+            );
+        
+            $this->db->replace('suivre', $data);
+        
+        }
+
+        public function update_accepter_suivi($numElevage, $numVeterinaire){
+
+            $data = array(
+                'numEleveur' => $numElevage,
+                'numVeterinaire'  => $numVeterinaire,
+                'etat'  => 'Accepter'
+            );
+        
+            $this->db->replace('suivre', $data);
+        
+        }
     }
 ?>

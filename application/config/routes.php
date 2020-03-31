@@ -60,14 +60,8 @@ $route['inscription'] = 'utilisateurs/inscription';
 $route['login'] = 'utilisateurs/login';
 $route['logout'] = 'utilisateurs/login';
 
-$route['default_controller'] = 'pages/view';
-$route['followers'] = 'VeterinaireSuit/index';
-$route['follows'] = 'EleveurSuit/index';
-$route['bilans'] = 'Bilans/view';
-$route['fiches'] = 'Fiches/fiches';
-$route['favoris'] = 'Fiches/fiches_favoris';
-$route['profil'] = 'Pages/profil';
-$route['(:any)'] = 'Pages/view/$1';
+$route['default_controller'] = 'utilisateurs/login';
+$route['(:any)'] = 'pages/view/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

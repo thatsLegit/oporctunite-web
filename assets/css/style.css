@@ -1,13 +1,3 @@
-body{
-    margin: 0;
-    padding: 0;
-    background-image: url("../img/pig.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-	font-family: "Montserrat", Arial, Helvetica, sans-serif;
-}
-
 nav .navbar-nav li a{
 	color: white !important;
 	opacity: 0.75
@@ -97,25 +87,4 @@ select{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
     background-color: gainsboro;
-}
-
-
-/*PAGINATION*/
-.pagination-links{
-	margin:30px 0;
-}
-
-.pagination-links strong{
-	padding: 8px 13px;
-	margin:5px;
-	background: #f4f4f4;
-	border: 1px #ccc solid;
-}
-
-/*the one your on is not a link*/
-a.pagination-link{
-	padding: 8px 13px;
-	margin:5px;
-	background: #f4f4f4;
-	border: 1px #ccc solid;
 }

@@ -1,4 +1,19 @@
+<style>
+    #titre{
+        margin-top: 50px;
+    }
+
+    #inscription{
+        color: white;
+    }
+
+</style>
+
 <body onload="cacher()">
+
+<div id="titre">
+    <h3 class="text-center mt-5">O'porctunité</h3>
+</div>
 
 <div class="container">
     <div class="col-md-5 mx-auto">
@@ -94,6 +109,9 @@
                 </div>
                 </form>
 
+                <div class="mt-2 mb-4 text-center"><a href="<?php echo base_url(); ?>login" id="inscription" class="text-center">Se connecter</a></div>
+                
+
                 <!-- The Modal -->
                 <div class="modal" id="myModal">
                     <div class="modal-dialog">
@@ -146,13 +164,13 @@
 
                                 <h5>5. DONNEES A CARACTERE PERSONNEL</h5>
                                 <p>Nous pouvons être amenés à collecter des données personnelles vous concernant, notamment lorsque vous (i) vous vous inscrivez sur le Site, (ii) téléchargez un Contenu Téléchargeable, (iii) répondez à un sondage ou à une étude.
-                                Ces données à caractère personnel feront l’objet d’un traitement informatique destiné exclusivement à QUELLE SOCIETE ? et pourront être utilisées de la manière suivante :
+                                Ces données à caractère personnel feront l’objet d’un traitement informatique destiné exclusivement à QUELLE SOCIETE ? et pourront être utilisées de la manière suivante :
                                 •	Études statistiques : nous compilons et étudions vos données afin de définir votre profil et de mieux adapter nos services à vos attentes. Ces études statistiques sont strictement confidentielles ;
                                 •	Suivi de la relation client : si vous nous faites parvenir un message, les données sont conservées et utilisées afin d’apporter une réponse à votre demande et d’en assurer le suivi ;
-                                •	Fourniture de services : l’accès à certains espaces tels que l’espace d’amélioration des fiches conseils, etc.
+                                •	Fourniture de services : l’accès à certains espaces tels que l’espace d’amélioration des fiches conseils, etc.
                                 Conformément à la Loi « Informatique et Libertés du 6 janvier 1978 modifiée en 2004, vous bénéficiez d’un droit d’accès, d’opposition, de rectification et de suppression des données qui vous concernent. Vous pouvez exercer ce droit à tout moment en adressant un courrier électronique, accompagné d’une photocopie de votre pièce d’identité ou de votre passeport, à l’adresse suivante : ADRESSE LAURA
                                 Pour plus d’informations sur le traitement de vos données à caractère personnel, nous vous invitons à consulter notre Politique Données Personnelles accessible ici.</p><br>
-                                 
+                                 
                                 <h5>6. MODIFICATION DU SITE ET DES CONDITIONS D’UTILISATION</h5>
                                 <p>Nous pouvons être amenés à modifier les contenus et informations inclus dans ce Site ainsi que les présentes Conditions d’Utilisation, notamment afin de respecter toute nouvelle législation et/ou réglementation applicable et/ou afin d’améliorer le Site. Toute modification sera intégrée dans les présentes Conditions d’Utilisation.</p><br>
                                 <h5>7. HEBERGEMENT</h5>
@@ -250,6 +268,9 @@
                 </div>
                 </form>
 
+                <div class="mt-2 mb-4 text-center"><a href="<?php echo base_url(); ?>login" id="inscription" class="text-center">Se connecter</a></div>
+                
+
                 <!-- The Modal -->
                 <div class="modal" id="myModal2">
                     <div class="modal-dialog">
@@ -303,13 +324,13 @@
 
                                 <h5>5. DONNEES A CARACTERE PERSONNEL</h5>
                                 <p>Nous pouvons être amenés à collecter des données personnelles vous concernant, notamment lorsque vous (i) vous vous inscrivez sur le Site, (ii) téléchargez un Contenu Téléchargeable, (iii) répondez à un sondage ou à une étude.
-                                Ces données à caractère personnel feront l’objet d’un traitement informatique destiné exclusivement à QUELLE SOCIETE ? et pourront être utilisées de la manière suivante :
+                                Ces données à caractère personnel feront l’objet d’un traitement informatique destiné exclusivement à QUELLE SOCIETE ? et pourront être utilisées de la manière suivante :
                                 •	Études statistiques : nous compilons et étudions vos données afin de définir votre profil et de mieux adapter nos services à vos attentes. Ces études statistiques sont strictement confidentielles ;
                                 •	Suivi de la relation client : si vous nous faites parvenir un message, les données sont conservées et utilisées afin d’apporter une réponse à votre demande et d’en assurer le suivi ;
-                                •	Fourniture de services : l’accès à certains espaces tels que l’espace d’amélioration des fiches conseils, etc.
+                                •	Fourniture de services : l’accès à certains espaces tels que l’espace d’amélioration des fiches conseils, etc.
                                 Conformément à la Loi « Informatique et Libertés du 6 janvier 1978 modifiée en 2004, vous bénéficiez d’un droit d’accès, d’opposition, de rectification et de suppression des données qui vous concernent. Vous pouvez exercer ce droit à tout moment en adressant un courrier électronique, accompagné d’une photocopie de votre pièce d’identité ou de votre passeport, à l’adresse suivante : ADRESSE LAURA
                                 Pour plus d’informations sur le traitement de vos données à caractère personnel, nous vous invitons à consulter notre Politique Données Personnelles accessible ici.</p><br>
-                                 
+                                 
                                 <h5>6. MODIFICATION DU SITE ET DES CONDITIONS D’UTILISATION</h5>
                                 <p>Nous pouvons être amenés à modifier les contenus et informations inclus dans ce Site ainsi que les présentes Conditions d’Utilisation, notamment afin de respecter toute nouvelle législation et/ou réglementation applicable et/ou afin d’améliorer le Site. Toute modification sera intégrée dans les présentes Conditions d’Utilisation.</p><br>
                                 <h5>7. HEBERGEMENT</h5>

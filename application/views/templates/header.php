@@ -20,30 +20,30 @@
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="<?php echo base_url(); ?>">O'porctunite</a>
+		<a class="navbar-brand" href="<?php echo base_url(); ?>Utilisateurs/profil">O'porctunite</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarColor02">
 			<ul class="navbar-nav mr-auto">
-				<!-- Zones publique -->
-				<li><a class="nav-link" href="<?php echo base_url(); ?>fiches">Rechercher une fiche</a></li>
+				
 					<!-- Zones all membre -->
 					<?php if($this->session->userdata('connecte')) : ?>
-						<li><a class="nav-link" href="<?php echo base_url(); ?>profil">Mon profil</a></li>
-						<li><a class="nav-link" href="<?php echo base_url(); ?>favoris">Mes fiches</a></li>
+						<li><a class="nav-link" href="<?php echo base_url(); ?>Utilisateurs/profil">Mon profil</a></li>
+						<li><a class="nav-link" href="<?php echo base_url(); ?>fiches/fiches">Fiches conseils</a></li>
+						<li><a class="nav-link" href="<?php echo base_url(); ?>fiches/fiches_favoris">Fiches favoris</a></li>
 						<!-- Zones elevage -->
 						<?php if($this->session->userdata('statut')=='elevage') : ?>
-						<li><a  class="nav-link" href="<?php echo base_url(); ?>follows">Trouver un vétérinaire</a></li>
-						<li><a  class="nav-link" href="<?php echo base_url(); ?>bilans">Mon bilan</a></li>
+						<li><a  class="nav-link" href="<?php echo base_url(); ?>Utilisateurs/elevage_suivi">Trouver un vétérinaire</a></li>
+						<li><a  class="nav-link" href="<?php echo base_url(); ?>bilans/view">Mon bilan</a></li>
 						<?php endif; ?>
 						<!-- Zones Veto -->
 						<?php if($this->session->userdata('statut')=='veterinaire') : ?>
-						<li><a  class="nav-link" href="<?php echo base_url(); ?>followers">Mes eleveurs</a></li>
+						<li><a  class="nav-link" href="<?php echo base_url(); ?>Utilisateurs/veterinaire_suivi">Mes eleveurs</a></li>
 						<?php endif; ?>
 					<?php endif; ?>
-				<li><a class="nav-link" href="<?php echo base_url(); ?>contact">Contacts</a></li>
+				<li><a class="nav-link" href="<?php echo base_url(); ?>pages/view/contact">Contacts</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">	

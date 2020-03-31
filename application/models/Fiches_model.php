@@ -46,6 +46,14 @@ class Fiches_model extends CI_Model{
         $this->db->insert('mettrefavoris', $data);
     }
 
+    public function delete_favoris($titreFiche, $utilisateur){
+
+        $this->db->where('idutilisateur', $utilisateur);
+        $this->db->where('titreFiche', $titreFiche);
+        $this->db->delete('mettrefavoris');
+    
+    }
+
     public function add_note($titreFiche, $utilisateur, $ajouterNote, $commentaire){
 
         $data = array(
@@ -74,6 +82,18 @@ class Fiches_model extends CI_Model{
        return $query->result_array();
    }
 
+   public function get_fiches_search_favoris($categorie, $utilisateur){
+
+    $this->db->select('*');
+    $this->db->from('fiche');
+    $this->db->where('nomCategorieG', $categorie);
+    $this->db->join('mettrefavoris', 'mettrefavoris.titreFiche = fiche.titreFiche');
+    $this->db->where('mettrefavoris.idutilisateur', $utilisateur);
+    $query = $this->db->get();
+
+    return $query->result_array();
+}
+
    public function get_fiches_nom($titre_fiche){
 
        $this->db->select('*');
@@ -84,12 +104,24 @@ class Fiches_model extends CI_Model{
        return $query->result_array();
    }
 
+   public function get_avis($titre_fiche){
+
+    $this->db->select('*');
+    $this->db->from('donneravis');
+    $this->db->where('titreFiche', $titre_fiche);
+    $this->db->join('utilisateur', 'donneravis.idutilisateur = utilisateur.idutilisateur');
+    $query = $this->db->get();
+
+    return $query->result_array();
+}
+
    public function get_note_moyenne($titre_fiche){
 
        $this->db->select('commentaireAvis');
        $this->db->select_avg('noteAvis');
        $this->db->from('donneravis');
        $this->db->where('titreFiche', $titre_fiche);
+       $this->db->group_by('commentaireAvis', $titre_fiche);
        $query = $this->db->get();
 
        return $query->result_array();
