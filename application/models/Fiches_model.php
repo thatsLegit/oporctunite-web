@@ -14,6 +14,14 @@ class Fiches_model extends CI_Model{
        return $this->db->get('fiche', 10)->result();
    }
 
+   public function get_ajaxReco($label){
+       $this->db->select('titreFiche, nomCategorieG');
+       $this->db->from('fiche');
+       $this->db->where('fiche.nomCategorieG', $label);
+
+       return $this->db->get('fiche', 10)->result();
+   }
+
    public function get_favoris_titre($titreFiche, $utilisateur){
         $this->db->select('*');
         $this->db->from('mettrefavoris');

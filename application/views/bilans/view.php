@@ -1,6 +1,10 @@
+<!-- mettre des hovers sur les datasets labels et graphique historique -->
+<!-- augmenter police labels -->
+
 <head>	
 	<script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
     <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style>
 	canvas {
 		-moz-user-select: none;
@@ -25,21 +29,6 @@
 		color: #818181;
 	}
 
-	.button1 {
-		display: inline;
-		padding: 10px;
-	}
-
-	.button2 {
-		display: inline;
-		padding: 10px;
-	}
-
-	.button-box {
-		width:100%;
-		text-align:center;
-	}
-
 	table, th, td {
 		border: 1px solid black;
 		color: black;
@@ -52,6 +41,88 @@
 	#canvas2{
 		margin: 20px;
 	}
+
+	/* graphique historique */
+
+	:root {
+  --square-size: 15px;
+  --square-gap: 5px;
+  --week-width: calc(var(--square-size) + var(--square-gap));
+}
+
+.months { grid-area: months; }
+.days { grid-area: days; }
+.squares { grid-area: squares; }
+
+.graph {
+  display: inline-grid;
+  grid-template-areas: "empty months"
+                       "days squares";
+  grid-template-columns: auto 1fr;
+  grid-gap: 10px;
+}
+
+
+.months {
+  display: grid;
+  grid-template-columns: calc(var(--week-width) * 4) /* Jan */
+                         calc(var(--week-width) * 4) /* Fev */
+                         calc(var(--week-width) * 4) /* Mar */
+                         calc(var(--week-width) * 5) /* Avr */
+                         calc(var(--week-width) * 4) /* Mai */
+                         calc(var(--week-width) * 4) /* Jun */
+                         calc(var(--week-width) * 5) /* Jul */
+                         calc(var(--week-width) * 4) /* Aout */
+                         calc(var(--week-width) * 4) /* Sep */
+                         calc(var(--week-width) * 5) /* Oct */
+                         calc(var(--week-width) * 4) /* Nov */
+                         calc(var(--week-width) * 5) /* Dec */;
+}
+
+.days,
+.squares {
+  display: grid;
+  grid-gap: var(--square-gap);
+  grid-template-rows: repeat(7, var(--square-size));
+}
+
+.squares {
+  grid-auto-flow: column;
+  grid-auto-columns: var(--square-size);
+}
+
+
+/* Other styling */
+
+.graph {
+  padding: 20px;
+  border: 1px #e1e4e8 solid;
+  margin: 20px;
+}
+
+.days li:nth-child(odd) {
+  visibility: hidden;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.squares li {
+  background-color: #ebedf0;
+}
+
+.squares li[data-level="1"] {
+  background-color: #c6e48b;
+}
+
+.squares li[data-level="2"] {
+  background-color: #7bc96f;
+}
+
+.squares li[data-level="3"] {
+  background-color: #196127;
+}
 
 </style>
 </head>
@@ -67,123 +138,188 @@
 			</div>
 		</div>
 	</div>
-	
-	<center style="color:black;margin:25px;"><h4>Comment interpreter ces résultats ?</h4></center>
+
 	<div class="row">
-		<div class="table-responsive">
-			<table class="table">
-				<tr>
-					<th colspan="2" class="text-center">Bonne santé</th>
-				</tr>
-					<tr>
-						<td rowspan="5">Absence de blessures</td>
-						<tr><td>Boiteries</td></tr>
-						<tr><td>Blessures sur le corps</td></tr>
-						<tr><td>Lésions de la vulve</td></tr>
-						<tr><td>Mammite</td></tr>
-					</tr>
-					<tr>
-						<td rowspan="13">Absence de maladies</td>
-						<tr><td>Mortalité</td></tr>
-						<tr><td>Eternuement</td></tr>
-						<tr><td>Toux</td></tr>
-						<tr><td>Pompage</td></tr>
-						<tr><td>Prolapsus rectal</td></tr>
-						<tr><td>Diarrhée</td></tr>
-						<tr><td>Constipation</td></tr>
-						<tr><td>Métrite</td></tr>
-						<tr><td>Condition de la peau</td></tr>
-						<tr><td>Ruptures et hernies</td></tr>
-						<tr><td>Infections locales</td></tr>
-						<tr><td>Prolapsus utérin</td></tr>
-					</tr>
-					<tr>
-						<td>Absence de douleur due aux interventions de convenance</td>
-						<td>Pose d'anneaux nasaux et coupe de queue</td>
-					</tr>
-				</tr>
-			</table>
+		<div>
+			<p> 
+				Les notes sont obtenues avec vos données de tests. 
+				<a href="#" data-toggle="modal" data-target="#CatModal">
+					Consultez ici les les détails de la notation et les catégories de test.
+				</a>
+			</p>
 		</div>
-		<div class="table-responsive">
-			<table class="table">
-				<tr>
-					<th colspan="2" class="text-center">Comportement approprié</th>
-				<tr>
-					<tr>
-						<td>Expression sociale du comportement</td>
-						<td>Comportement social (positif ou négatif)</td>
-					</tr>
-					<tr>
-						<td rowspan="3">Expression des autres comportements</td>
-						<tr><td>Stereotypies</td></tr>
-						<tr><td>Exploration individuelle</td></tr>
-					</tr>
-					<tr>
-						<td>Bonne relation homme-animal</td>
-						<td>La peur des hommes</td>
-					</tr>
-					<tr>
-						<td>Evaluation qualitative du comportement</td>
-						<td>Emotions positives</td>
-					</tr>
-				</tr>
-			</table>
+
+		<!-- The Modal -->
+		<div class="modal" id="CatModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title" style="color:black">Notre système de notation</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body" style="padding: 5px; color:black">
+						<div class="table-responsive">
+							<table class="table">
+								<tr>
+									<th colspan="2" class="text-center">Bonne santé</th>
+								</tr>
+									<tr>
+										<td rowspan="5">Absence de blessures</td>
+										<tr><td>Boiteries</td></tr>
+										<tr><td>Blessures sur le corps</td></tr>
+										<tr><td>Lésions de la vulve</td></tr>
+										<tr><td>Mammite</td></tr>
+									</tr>
+									<tr>
+										<td rowspan="13">Absence de maladies</td>
+										<tr><td>Mortalité</td></tr>
+										<tr><td>Eternuement</td></tr>
+										<tr><td>Toux</td></tr>
+										<tr><td>Pompage</td></tr>
+										<tr><td>Prolapsus rectal</td></tr>
+										<tr><td>Diarrhée</td></tr>
+										<tr><td>Constipation</td></tr>
+										<tr><td>Métrite</td></tr>
+										<tr><td>Condition de la peau</td></tr>
+										<tr><td>Ruptures et hernies</td></tr>
+										<tr><td>Infections locales</td></tr>
+										<tr><td>Prolapsus utérin</td></tr>
+									</tr>
+									<tr>
+										<td>Absence de douleur due aux interventions de convenance</td>
+										<td>Pose d'anneaux nasaux et coupe de queue</td>
+									</tr>
+								</tr>
+							</table>
+						</div>
+						<div class="table-responsive">
+							<table class="table">
+								<tr>
+									<th colspan="2" class="text-center">Comportement approprié</th>
+								<tr>
+									<tr>
+										<td>Expression sociale du comportement</td>
+										<td>Comportement social (positif ou négatif)</td>
+									</tr>
+									<tr>
+										<td rowspan="3">Expression des autres comportements</td>
+										<tr><td>Stereotypies</td></tr>
+										<tr><td>Exploration individuelle</td></tr>
+									</tr>
+									<tr>
+										<td>Bonne relation homme-animal</td>
+										<td>La peur des hommes</td>
+									</tr>
+									<tr>
+										<td>Evaluation qualitative du comportement</td>
+										<td>Emotions positives</td>
+									</tr>
+								</tr>
+							</table>
+						</div>
+						<div class="table-responsive">
+							<table class="table">
+								<tr>
+									<th colspan="2" class="text-center">Hébergement approprié</th>
+								<tr>
+									<tr>
+										<td rowspan="4">Confort au repos</td>
+										<tr><td>Bursite</td></tr>
+										<tr><td>Plaie à l'épaule</td></tr>
+										<tr><td>Lisier sur le corps</td></tr>
+									</tr>
+									<tr>
+										<td rowspan="3">Confort thermal</td>
+										<tr><td>Halètement</td></tr>
+										<tr><td>Blotissement</td></tr>
+									</tr>
+									<tr>
+										<td rowspan="3">Facilité de mouvement</td>
+										<tr><td>Espace alloué</td></tr>
+										<tr><td>Les cases de mise-bas</td></tr>
+									</tr>
+								</tr>
+							</table>
+						</div>
+						<div class="table-responsive">
+							<table class="table">
+								<tr>
+									<th colspan="2" class="text-center">Nourriture convenable</th>
+								<tr>
+									<tr>
+										<td>Expression sociale du comportement</td>
+										<td>Comportement social (positif ou négatif)</td>
+									</tr>
+									<tr>
+										<td rowspan="3">Expression des autres comportements</td>
+										<tr><td>Stereotypies</td></tr>
+										<tr><td>Exploration individuelle</td></tr>
+									</tr>
+									<tr>
+										<td>Bonne relation homme-animal</td>
+										<td>La peur des hommes</td>
+									</tr>
+									<tr>
+										<td>Evaluation qualitative du comportement</td>
+										<td>Emotions positives</td>
+									</tr>
+								</tr>
+							</table>
+						</div>
+					</div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="table-responsive">
-			<table class="table">
-				<tr>
-					<th colspan="2" class="text-center">Hébergement approprié</th>
-				<tr>
-					<tr>
-						<td rowspan="4">Confort au repos</td>
-						<tr><td>Bursite</td></tr>
-						<tr><td>Plaie à l'épaule</td></tr>
-						<tr><td>Lisier sur le corps</td></tr>
-					</tr>
-					<tr>
-						<td rowspan="3">Confort thermal</td>
-						<tr><td>Halètement</td></tr>
-						<tr><td>Blotissement</td></tr>
-					</tr>
-					<tr>
-						<td rowspan="3">Facilité de mouvement</td>
-						<tr><td>Espace alloué</td></tr>
-						<tr><td>Les cases de mise-bas</td></tr>
-					</tr>
-				</tr>
-			</table>
-		</div>
-		<div class="table-responsive">
-			<table class="table">
-				<tr>
-					<th colspan="2" class="text-center">Nourriture convenable</th>
-				<tr>
-					<tr>
-						<td>Expression sociale du comportement</td>
-						<td>Comportement social (positif ou négatif)</td>
-					</tr>
-					<tr>
-						<td rowspan="3">Expression des autres comportements</td>
-						<tr><td>Stereotypies</td></tr>
-						<tr><td>Exploration individuelle</td></tr>
-					</tr>
-					<tr>
-						<td>Bonne relation homme-animal</td>
-						<td>La peur des hommes</td>
-					</tr>
-					<tr>
-						<td>Evaluation qualitative du comportement</td>
-						<td>Emotions positives</td>
-					</tr>
-				</tr>
-			</table>
+	</div>
+
+	<center style="color:black;margin:25px;"><h4>Nos recommandations</h4></center>
+	<div class="row" id="recommandations" style="color:black;"><p></p>
+	</div>
+
+	<center style="color:black;margin:25px;"><h4>Votre historique de tests</h4></center>
+	<div class="row">
+		<div class="graph">
+			<ul class="months">
+			<li><p>Jan</p></li>
+			<li><p>Fev</p></li>
+			<li><p>Mar</p></li>
+			<li><p>Avr</p></li>
+			<li><p>Mai</p></li>
+			<li><p>Jun</p></li>
+			<li><p>Jul</p></li>
+			<li><p>Aout</p></li>
+			<li><p>Sep</p></li>
+			<li><p>Oct</p></li>
+			<li><p>Nov</p></li>
+			<li><p>Dec</p></li>
+			</ul>
+			<ul class="days">
+			<li><p>Dim</p></li>
+			<li><p>Lun</p></li>
+			<li><p>Mar</p></li>
+			<li><p>Mer</p></li>
+			<li><p>Jeu</p></li>
+			<li><p>Ven</p></li>
+			<li><p>Sam</p></li>
+			</ul>
+			<ul class="squares">
+			<!-- added via javascript -->
+			</ul>
 		</div>
 	</div>
 </div>
 
- 
 
-<script>
+<script type="text/javascript">
 	var randomScalingFactor = function() {
 		return Math.round(Math.random() * 5);
 	};
@@ -302,4 +438,47 @@
 	};
 
 	var colorNames = Object.keys(window.chartColors);
+
+
+	//graphique historique tests
+	// Add squares
+    const squares = document.querySelector('.squares');
+    for (var i = 1; i < 365; i++) {
+    const level = Math.floor(Math.random() * 4);  
+    squares.insertAdjacentHTML('beforeend', `<li data-level="${level}"></li>`);
+    }
+
+	(function(){
+		var tailleData = configPCat.data.datasets[0].data.length;
+		var labels = new Array();
+		for (var i=0;i<tailleData;i++){
+			if (configGCat.data.datasets[0].data[i] <= configGCat.data.datasets[1].data[i]){
+				labels.push(configGCat.data.labels[i]);
+			}
+		}
+		
+		var recommandations = document.getElementById("recommandations");
+		labels.forEach(label => recommandations.innerHTML += "<br>" + label);
+		labels.forEach(label => rechercheFiches(label));
+	})();
+
+	function rechercheFiches(label){
+		var post_data = {
+            'label': label
+        };
+
+		$.ajax({
+			type: "POST",
+			url: '<?php echo base_url(); ?>Fiches/ajaxReco/',
+			data: post_data,
+			success: function (data) {
+				// return success
+				if (data.length > 0) {                         
+					$('#recommandations').innerHTML+=data;
+				}
+			}
+		});
+	}
+
 </script>
+

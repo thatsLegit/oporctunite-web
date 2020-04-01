@@ -61,9 +61,40 @@ class Fiches extends CI_Controller{
                 else
                 {
                     echo '<div class="col" id="fiche">
-                            <h5> <em> Aucune fiche a été trouvé </em> <h5>
+                            <h5> <em> Aucune fiche n\'a été trouvé </em> <h5>
                             </div>';
                 }
+    }
+
+    public function ajaxReco(){
+        
+        $this->load->model('Fiches_model');
+        $label = $this->input->post('label');
+        $result = $this->Fiches_model->get_ajaxReco($label);
+
+        if (!empty($result)){
+                foreach ($result as $row):
+
+                echo validation_errors();
+                echo form_open('fiches/read');
+
+                echo '<div class="col" id="fiche">
+                        <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
+                        <h5>'.$row->titreFiche.'</h5>
+                        <p>'.$row->nomCategorieG.'</p>
+                        <div id="fiche-bas">
+                            <button type="submit" id="fiche-button" value="'.$row->titreFiche.'">En savoir plus</button>
+                        </div>
+                    </div>
+                    </form>';
+            endforeach;
+        }
+        else
+        {
+            echo '<div class="col" id="fiche">
+                    <h5> <em> On dirait que vous êtes dejà au top, vos animaux ont de la chance ! </em> <h5>
+                    </div>';
+        }
     }
 
     public function add_favoris(){
@@ -146,10 +177,6 @@ class Fiches extends CI_Controller{
             $this->load->view('templates/header',$data);
             $this->load->view('fiches/fiches_conseils',$data);
         }
-    }
-
-    public function view($idfiche){
-        //affiche des détails sur une fiche dans une page à part
     }
 
     public function dropFromFavorites($critères){

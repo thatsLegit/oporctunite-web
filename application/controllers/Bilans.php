@@ -46,18 +46,9 @@
             //load la vue bilan
             $this->load->view('templates/header');
             $this->load->view('bilans/view');
+            $this->load->view('templates/footer');
             
         }
-
-    
-        public function activityGraphGen(){
-    
-        }
-    
-        public function testTreeGen(){
-    
-        }
-        
     }
 
 ?>

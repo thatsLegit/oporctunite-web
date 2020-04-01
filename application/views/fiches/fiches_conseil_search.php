@@ -202,7 +202,7 @@
                             <h5> <em> Aucune fiche a été trouvé </em></h5>
                             </div>';
                 }
-                else{
+                else {
                     foreach($fiches as $f){
                         echo validation_errors();
             
@@ -240,7 +240,6 @@
                 }
                 else
                 {
-
                     var post_data = {
                         'search_data': input_data,
                         '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
@@ -261,7 +260,7 @@
                     });
 
                 }
-            }
+        }
         </script>
 
 </body>
