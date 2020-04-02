@@ -95,9 +95,8 @@
 /* Other styling */
 
 .graph {
-  padding: 20px;
   border: 1px #e1e4e8 solid;
-  margin: 20px;
+  margin-top: 20px;
 }
 
 .days li:nth-child(odd) {
@@ -124,10 +123,42 @@ ul {
   background-color: #196127;
 }
 
+/*fiches*/
+
+#container-fiche{
+            margin-top: 50px;
+        }
+
+        #fiche{
+            margin: 20px;
+            width: 20vw;
+            height: 20vh;
+            background-color: white;
+            color: black;
+            text-align: center;
+            border-radius: 5px;
+            border: solid black 1.5px;
+        }
+
+        #fiche h5{
+            padding-top: 15px;
+        }
+
+        #fiche p{
+            font-size: .85rem;
+        }
+
+        #fiche button{
+            width: 6vw;
+            height: 3vh;
+            font-size: .75rem;
+            border-radius: 5px;
+        }
+
 </style>
 </head>
 
-<center style="color:black;margin:25px;"><h3>Mes résultats aux tests</h3></center>
+<div class="row" style="color:black;margin:25px;"><p class="h3">Mes résultats aux tests</p></div>
 <div style="margin:25px;" class="container">
 	<div class="row">
 			<div class="col-md">
@@ -282,10 +313,12 @@ ul {
 	</div>
 
 	<center style="color:black;margin:25px;"><h4>Nos recommandations</h4></center>
-	<div class="row" id="recommandations" style="color:black;"><p></p>
-	</div>
+		<div class="container" id="container-fiche">
+			<div class="row" id="recommandations">
+			</div>
+		</div>
 
-	<center style="color:black;margin:25px;"><h4>Votre historique de tests</h4></center>
+	<center style="color:black;margin-top:75px;"><h4>Historique des tests</h4></center>
 	<div class="row">
 		<div class="graph">
 			<ul class="months">
@@ -328,7 +361,7 @@ ul {
 	var configGCat = {
 		type: 'radar',
 		data: {
-			labels: ['Bonne santé', 'Comportement approprié', 'Hébergement approprié', 'Nourriture convenable'],
+			labels: ['Bonne santé', 'comportement approprié', 'Hébergement approprié', 'Nourriture convenable'],
 			datasets: [{
 				label: 'Mes données',
 				backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
@@ -452,33 +485,32 @@ ul {
 		var tailleData = configPCat.data.datasets[0].data.length;
 		var labels = new Array();
 		for (var i=0;i<tailleData;i++){
-			if (configGCat.data.datasets[0].data[i] <= configGCat.data.datasets[1].data[i]){
+			if (configGCat.data.datasets[0].data[i] < configGCat.data.datasets[1].data[i]){
 				labels.push(configGCat.data.labels[i]);
 			}
 		}
-		
-		var recommandations = document.getElementById("recommandations");
-		labels.forEach(label => recommandations.innerHTML += "<br>" + label);
+		if(labels.length==0){
+			$('#recommandations').html("<p>Il semblerait que nous n'ayons pas de fiches à vous recommander, votre elevage est dejà au top. Vos animaux ont de la chance !</p>");
+		}
 		labels.forEach(label => rechercheFiches(label));
-	})();
 
-	function rechercheFiches(label){
-		var post_data = {
-            'label': label
-        };
-
-		$.ajax({
-			type: "POST",
-			url: '<?php echo base_url(); ?>Fiches/ajaxReco/',
-			data: post_data,
-			success: function (data) {
-				// return success
-				if (data.length > 0) {                         
-					$('#recommandations').innerHTML+=data;
+		function rechercheFiches(label){
+			var post_data = {
+                'label': label,
+            };
+			$.ajax({
+				type: "POST",
+				url: '<?php echo base_url(); ?>Fiches/ajaxReco/',
+				data: post_data,
+				success: function (data) {
+					// return success
+					if (data.length > 0) {                         
+						$('#recommandations').append(data);
+					}
 				}
-			}
-		});
-	}
-
+			});
+		}
+	})();
+	
 </script>
 

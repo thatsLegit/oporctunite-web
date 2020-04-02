@@ -82,7 +82,7 @@
             <div id="container-profil">
                 <?php
                     foreach($eleveur as $e){
-                            echo '<img name="imageProfil" id="imageProfil" src="../'.$e['utilisateurPhoto'].'" alt="Image de Profil">';
+                        echo '<img name="imageProfil" id="imageProfil" src="../assets/img/photos/'.$e['utilisateurPhoto'].'" alt="Image de Profil">';
                     }
                 ?>
             </div>

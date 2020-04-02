@@ -3,10 +3,6 @@ class Fiches extends CI_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Utilisateurs_model');
-        $this->load->model('Categories_model');
-        $this->load->model('Fiches_model');
-        $this->load->helper('url_helper');
     }
     
     public function fiches(){
@@ -32,38 +28,38 @@ class Fiches extends CI_Controller{
     public function autocomplete(){
         //recherche des fiches
   
-                // load model
-                $this->load->model('Fiches_model');
+        // load model
+        $this->load->model('Fiches_model');
 
-                $search_data = $this->input->post('search_data');
+        $search_data = $this->input->post('search_data');
 
-                $result = $this->Fiches_model->get_autocomplete($search_data);
+        $result = $this->Fiches_model->get_autocomplete($search_data);
 
-                if (!empty($result))
-                {
-                    foreach ($result as $row):
+        if (!empty($result))
+        {
+            foreach ($result as $row):
 
-                        echo validation_errors();
-            
-                        echo form_open('fiches/read');
+                echo validation_errors();
+    
+                echo form_open('fiches/read');
 
-                        echo '<div class="col" id="fiche">
-                                <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
-                                <h5>'.$row->titreFiche.'</h5>
-                                <p>'.$row->nomCategorieG.'</p>
-                                <div id="fiche-bas">
-                                    <button type="submit" id="fiche-button" value="'.$row->titreFiche.'">En savoir plus</button>
-                                </div>
-                            </div>
-                            </form>';
-                    endforeach;
-                }
-                else
-                {
-                    echo '<div class="col" id="fiche">
-                            <h5> <em> Aucune fiche n\'a été trouvé </em> <h5>
-                            </div>';
-                }
+                echo '<div class="col" id="fiche">
+                        <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
+                        <h5>'.$row->titreFiche.'</h5>
+                        <p>'.$row->nomCategorieG.'</p>
+                        <div id="fiche-bas">
+                            <button type="submit" id="fiche-button" value="'.$row->titreFiche.'">En savoir plus</button>
+                        </div>
+                    </div>
+                    </form>';
+            endforeach;
+        }
+        else
+        {
+            echo '<div class="col" id="fiche">
+                    <h5> <em> Aucune fiche n\'a été trouvé </em> <h5>
+                    </div>';
+        }
     }
 
     public function ajaxReco(){
@@ -88,12 +84,6 @@ class Fiches extends CI_Controller{
                     </div>
                     </form>';
             endforeach;
-        }
-        else
-        {
-            echo '<div class="col" id="fiche">
-                    <h5> <em> On dirait que vous êtes dejà au top, vos animaux ont de la chance ! </em> <h5>
-                    </div>';
         }
     }
 
