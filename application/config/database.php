@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'oporctunite.envt.fr',
+	'hostname' => 'localhost',
 	'username' => 'phpmyadmin',
 	'password' => 'oporctunite_admin',
 	'database' => 'OPORCTUNITE',
