@@ -23,7 +23,10 @@
 
     <style>
       
-        
+         body{
+      
+        background-color:   #C0C0C0;
+      }
         h4 {
             margin-top: 20px;
             margin-bottom: 20px;
@@ -193,7 +196,7 @@
                                 }
                                 else{
                                     foreach($moyenne as $m){
-                                        $note = round($m['noteAvis'], 2.2);
+                                        $note = round($m['noteMoyenne'], 2.2);
                                         echo $note;
 
                                         echo(makeRating($note));

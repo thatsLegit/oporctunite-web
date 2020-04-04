@@ -12,12 +12,14 @@
     <!-- Montserrat Font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background: whitesmoke;
-            color: gray;
+       body{
             margin: 0;
             padding: 0;
-            font-family: "Montserrat",Arial, Helvetica, sans-serif;
+            background-image: url("<?php echo base_url(); ?>assets/img/pigtheme.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
 
         .header {
@@ -35,6 +37,13 @@
             align-content: center;
            
         }
+        .menu{
+            background-color: rgba(255,255,255,0.8);
+            padding: 20px;
+            width: 550px;
+            border-radius: 15px;
+        }
+        
         
         .title{
             font-size: 1.7em;
@@ -111,8 +120,13 @@
                 </label>
             </div>
             <div id="container-profil">
-                <label class="">Nouveautés :</label><br>
-                <label class="zone_text">$notifs</label>
+                <label class="">Taille elevage :</label><br>
+                <label class="zone_text"> <?php 
+                        foreach($eleveur as $e){
+                            echo $e['tailleElevage'];
+                            
+                        }
+                    ?></label>
             </div>
         </div>
 

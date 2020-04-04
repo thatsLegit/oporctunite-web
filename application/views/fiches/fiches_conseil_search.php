@@ -19,6 +19,15 @@
             ::selection{ background-color: #E13300; color: white; }
             ::moz-selection{ background-color: #E13300; color: white; }
             ::webkit-selection{ background-color: #E13300; color: white; }
+  body{
+            margin: 0;
+            padding: 0;
+            background-image: url("<?php echo base_url(); ?>assets/img/pigtheme.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+        }
 
          
 
@@ -35,17 +44,24 @@
                 padding: 5px;
                 margin: 5px 0;
                 box-sizing: border-box;
+                border-radius: 20px;
             }
 
         label {
             margin: 40px;
         }
+         h6{
+            color: black;
+        }
+        h4{
+    color: grey;
+    margin-top: 20px;
+}
 
         .mybtn {
             border: none;
             border-radius: 50px;
-            background-color: #87C165;
-            width: 300px;
+            width: 200px;
             padding: 10px;
             font-size: 20px;
             margin-bottom: 10px;
@@ -57,8 +73,8 @@
             height: 70px;
             text-align: center;
             background-color: white;
-            border: none;
-            border-radius: 6px;
+           
+            border-radius: 20px;
         }
 
 
@@ -98,7 +114,7 @@
         #fiche{
             margin: 20px;
             width: 20vw;
-            height: 20vh;
+            height: 25vh;
             background-color: white;
             color: black;
             text-align: center;
@@ -115,8 +131,8 @@
         }
 
         #fiche button{
-            width: 6vw;
-            height: 3vh;
+            width: 8vw;
+            height: 5vh;
             font-size: .75rem;
             border-radius: 5px;
         }
@@ -131,10 +147,12 @@
 </head>
 
 <body>
-
-    <div id="recherche" class="text-center">
+  <h4 class="text-center">Fiches conseils
+            </h4>
+  <div id="recherche" class="text-center">
+        <h6>Recherche par intitulé :</h6><br>  
         <div class="something">
-            <input placeholder="recherche" name="search_data" id="search_data" type="text" onkeyup="ajaxSearch();">
+            <input placeholder="Entrer le nom d'une fiche" name="search_data" id="search_data" type="text" onkeyup="ajaxSearch();">
             
         </div>
     </div>
@@ -144,7 +162,7 @@
 
     echo form_open('fiches/search');
     ?>
-
+<div class="text-center"><h6>Recherche par categorie :</h6><br></div>
         <div class="text-center" id="container1">
             <select class="select" name="categ" id="categ">
                 <option value="1" hidden class="statut">Catégories</option>
@@ -182,7 +200,7 @@
         </div>
 
         <div class="col-md-12 text-center" id="search-button">
-            <button type="submit" class=" btn btn-block mybtn btn-success">Chercher</button>
+            <button type="submit" class=" btn mybtn btn-success">Rechercher</button>
         </div>
 
     </form>

@@ -12,13 +12,16 @@
     <!-- Montserrat Font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background: whitesmoke;
-            color: gray;
+       body{
             margin: 0;
             padding: 0;
-            font-family: "Montserrat",Arial, Helvetica, sans-serif;
+            background-image: url("<?php echo base_url(); ?>assets/img/pigtheme.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
+
 
         .header {
             background-color: #87C165;
@@ -36,6 +39,12 @@
            
         }
         
+            .menu{
+            background-color: rgba(255,255,255,0.8);
+            padding: 20px;
+            width: 550px;
+            border-radius: 15px;
+        }
         .title{
             font-size: 1.7em;
             font-weight: 700 !important;
@@ -82,12 +91,12 @@
             <div id="container-profil">
                 <?php
                     foreach($veterinaire as $v){
-                            echo '<img name="imageProfil" id="imageProfil" src="../'.$v['utilisateurPhoto'].'" alt="Image de Profil">';
+                        echo '<img name="imageProfil" id="imageProfil" src="../assets/img/photos/'.$v['utilisateurPhoto'].'" alt="Image de Profil">';
                     }
                 ?>
             </div>
             <div id="container-profil">
-                <label class="">Nom d'élevage :</label><br>
+                <label class="">Nom :</label><br>
                 <label class="zone_text">
                     <?php 
                         if($this->session->userdata('connecte')) :
@@ -97,7 +106,7 @@
                 </label>
             </div>
             <div id="container-profil">
-                <label class="">Lieu d'elevage :</label><br>
+                <label class="">Adresse du cabinet :</label><br>
                 <label class="zone_text">
                     <?php 
                         foreach($veterinaire as $v){
@@ -108,9 +117,11 @@
                     ?>
                 </label>
             </div>
-            <div id="container-profil">
-                <label class="">Nouveautés :</label><br>
-                <label class="zone_text">$notifs</label>
+             <div id="container-profil">
+                <label class="">Nombre d'elevage suivis :</label><br>
+                <label class="zone_text">
+                  
+                </label>
             </div>
         </div>
 

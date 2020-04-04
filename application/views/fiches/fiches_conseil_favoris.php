@@ -20,7 +20,15 @@
             ::moz-selection{ background-color: #E13300; color: white; }
             ::webkit-selection{ background-color: #E13300; color: white; }
 
-         
+          body{
+            margin: 0;
+            padding: 0;
+            background-image: url("<?php echo base_url(); ?>assets/img/pigtheme.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+        }
 
             a {
                 color: #003399;
@@ -35,6 +43,7 @@
                 padding: 5px;
                 margin: 5px 0;
                 box-sizing: border-box;
+                border-radius: 20px;
             }
 
         label {
@@ -44,7 +53,6 @@
         .mybtn {
             border: none;
             border-radius: 50px;
-            background-color: #87C165;
             width: 300px;
             padding: 10px;
             font-size: 20px;
@@ -60,8 +68,14 @@
             border: none;
             border-radius: 6px;
         }
-
-
+h4{
+    color: grey;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+ h6{
+            color: black;
+        }
         .zone_text {
             color: #87C165;
             width: 300px;
@@ -98,7 +112,7 @@
         #fiche{
             margin: 20px;
             width: 20vw;
-            height: 20vh;
+            height: 25vh;
             background-color: white;
             color: black;
             text-align: center;
@@ -115,8 +129,8 @@
         }
 
         #fiche button{
-            width: 6vw;
-            height: 3vh;
+            width: 8vw;
+            height: 5vh;
             font-size: .75rem;
             border-radius: 5px;
         }
@@ -133,20 +147,15 @@
 </head>
 
 <body>
-
-    <div id="recherche" class="text-center">
-        <div class="something">
-            <input placeholder="recherche" name="search_data" id="search_data" type="text" onkeyup="ajaxSearch();">
-            
-        </div>
-    </div>
+ <h4 class="text-center">Mes Favoris
+            </h4>
 
     <?php
     echo validation_errors();
 
     echo form_open('fiches/search_favoris');
     ?>
-
+<div class="text-center"><h6>Recherche par categorie :</h6></div>
         <div class="text-center" id="container1">
             <select class="select" name="categ" id="categ">
                 <option value="1" hidden class="statut">Catégories</option>

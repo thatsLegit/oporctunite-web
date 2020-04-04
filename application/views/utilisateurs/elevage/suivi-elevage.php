@@ -54,8 +54,6 @@
     <div id="main" class="text-center">
         <div id="menu-accueil">
             <h2 class="title">Bienvenue 
-            <br>
-            <br>
                 <?php
                     echo "<h5>".$this->session->userdata('nom')."</h5>";
                 ?>

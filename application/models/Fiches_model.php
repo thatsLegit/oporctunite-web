@@ -124,10 +124,11 @@ class Fiches_model extends CI_Model{
    public function get_note_moyenne($titre_fiche){
 
        $this->db->select('commentaireAvis');
-       $this->db->select_avg('noteAvis');
+       $this->db->select_avg('noteAvis', 'noteMoyenne');
        $this->db->from('donneravis');
        $this->db->where('titreFiche', $titre_fiche);
        $this->db->group_by('commentaireAvis', $titre_fiche);
+
        $query = $this->db->get();
 
        return $query->result_array();

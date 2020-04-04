@@ -132,7 +132,7 @@ ul {
         #fiche{
             margin: 20px;
             width: 20vw;
-            height: 20vh;
+            height: 25vh;
             background-color: white;
             color: black;
             text-align: center;
@@ -149,8 +149,8 @@ ul {
         }
 
         #fiche button{
-            width: 6vw;
-            height: 3vh;
+            width: 8vw;
+            height: 5vh;
             font-size: .75rem;
             border-radius: 5px;
         }
@@ -158,7 +158,7 @@ ul {
 </style>
 </head>
 
-<div class="row" style="color:black;margin:25px;"><p class="h3">Mes résultats aux tests</p></div>
+<div class="text-center" style="color:black;margin:25px;"><p class="h3">Mes résultats de tests</p></div>
 <div style="margin:25px;" class="container">
 	<div class="row">
 			<div class="col-md">

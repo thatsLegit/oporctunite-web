@@ -40,7 +40,7 @@
                 <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Votre elevage : </label></strong>
                 <div class="form-group">
                     <input type="text" name="numEleveur" id="numEleveur" class="form-control" aria-describedby="emailHelp" placeholder="identifiant eleveur">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">L'identifiant professional doit comporter 7 caractères.</span>
+                    <span class="d-inline-block bg-danger" style="font-size:1em;">L'identifiant professional doit comporter 7 caractères commencant par FR.</span>
                 </div>
                 
                 <div class="form-group">
@@ -61,7 +61,7 @@
 
                 <div class="form-group">
                     <input type="text" name="adresse" id="adresse" class="form-control" aria-describedby="emailHelp" placeholder="Adresse">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner votre adresse.</span>
+                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner votre adresse complète.</span>
                 </div>
 
                 <div class="form-group">

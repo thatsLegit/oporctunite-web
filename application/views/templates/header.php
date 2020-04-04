@@ -41,6 +41,10 @@
 						<?php if($this->session->userdata('statut')=='veterinaire') : ?>
 						<li><a  class="nav-link" href="<?php echo base_url(); ?>Utilisateurs/veterinaire_suivi">Mes eleveurs</a></li>
 						<?php endif; ?>
+						<?php if($this->session->userdata('statut')=='admin') : ?>
+						<li><a  class="nav-link" href="<?php echo base_url(); ?>Utilisateurs/admin_suivi">Les utilisateurs</a></li>
+						<li><a  class="nav-link" href="<?php echo base_url(); ?>fiches/add_fiche">Ajouter Fiches</a></li>
+						<?php endif; ?>
 					<?php endif; ?>
 				<li><a class="nav-link" href="<?php echo base_url(); ?>pages/view/contact">Contacts</a></li>
 			</ul>
@@ -65,7 +69,7 @@
 				<?php if($this->session->userdata('connecte')) : ?>
 				<li>
 					<a href="<?php echo base_url(); ?>utilisateurs/logout">
-						<button type="button" class="btn btn-default btn-custom">
+						<button type="button" class="btn btn-outline-light">
 							<span class="btntext glyphicon-class">Se deconnecter</span>
 						</button>
 					</a>

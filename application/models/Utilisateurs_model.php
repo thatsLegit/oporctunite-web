@@ -96,9 +96,14 @@
             if($statut == 'elevage'){
                 return $this->db->where('idutilisateur', $idUtilisateur)
                                     ->get('elevage')->row(0)->nomElevage;
-            } else {
+            }
+            elseif($statut == 'veterinaire') {
                 return $this->db->where('idutilisateur', $idUtilisateur)
                                     ->get('veterinaire')->row(0)->nomCabinet;
+            }
+            else{
+                return $this->db->where('idutilisateur', $idUtilisateur)
+                                    ->get('utilisateur')->row(0)->email;
             }
         }
 
@@ -182,6 +187,24 @@
             $this->db->select('*');
             $this->db->from('veterinaire');
             $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur' ); 
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+
+        public function getElevage(){
+            $this->db->select('*');
+            $this->db->from('elevage');
+            $this->db->join('utilisateur', 'elevage.idutilisateur = utilisateur.idutilisateur' ); 
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+
+        public function getAdmin($id){
+            $this->db->select('*');
+            $this->db->from('utilisateur');
+            $this->db->where('idutilisateur', $id);
             $query = $this->db->get();
 
             return $query->result_array();

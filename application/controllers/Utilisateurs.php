@@ -235,7 +235,7 @@
                         redirect('utilisateurs/profil');
                     }
                     elseif($this->input->post('select') == "admin"){
-                        redirect('admin');
+                        redirect('utilisateurs/profil');
                     }
                     else{
                         show_404();
@@ -291,6 +291,13 @@
                 $this->load->view('utilisateurs/profil-veterinaire', $data);
                 $this->load->view('templates/footer', $data);
             }
+            elseif($this->session->userdata('statut') == "admin"){
+                $data['admin']=$this->utilisateurs_model->getAdmin($id);
+
+                $this->load->view('templates/header', $data);
+                $this->load->view('utilisateurs/profil-admin', $data);
+                $this->load->view('templates/footer', $data);
+            }
             else{
                 show_404();
             }
@@ -323,6 +330,17 @@
 
             $this->load->view('templates/header');
             $this->load->view('utilisateurs/veterinaire/suivi-veterinaire', $data);
+            $this->load->view('templates/footer');
+        }
+
+        public function admin_suivi(){
+
+            $data['elevage']=$this->utilisateurs_model->getElevage();
+
+            $data['veterinaire']=$this->utilisateurs_model->getVeterinaire();
+
+            $this->load->view('templates/header');
+            $this->load->view('utilisateurs/admin/suivi-admin', $data);
             $this->load->view('templates/footer');
         }
 

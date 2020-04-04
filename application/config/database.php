@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'oporctunite.envt.fr',
-	'username' => 'phpmyadmin',
-	'password' => 'oporctunite_admin',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => 'IlyaDB',
 	'database' => 'OPORCTUNITE',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

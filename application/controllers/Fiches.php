@@ -99,6 +99,7 @@ class Fiches extends CI_Controller{
             
             $this->Fiches_model->add_favoris($titreFiche, $utilisateur);
             
+            $data['avis'] = $this->Fiches_model->get_avis($titreFiche);
             $data['maNote'] = $this->Fiches_model->get_ma_note($titreFiche, $utilisateur);
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titreFiche);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
@@ -109,6 +110,7 @@ class Fiches extends CI_Controller{
            
         }
         else{
+            $data['avis'] = $this->Fiches_model->get_avis($titreFiche);
             $data['maNote'] = $this->Fiches_model->get_ma_note($titreFiche, $utilisateur);
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titreFiche);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
@@ -127,7 +129,8 @@ class Fiches extends CI_Controller{
         $utilisateur = $this->session->userdata('idutilisateur');
             
         $this->Fiches_model->delete_favoris($titreFiche, $utilisateur);
-            
+
+        $data['avis'] = $this->Fiches_model->get_avis($titreFiche);
         $data['maNote'] = $this->Fiches_model->get_ma_note($titreFiche, $utilisateur);
         $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titreFiche);
         $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
@@ -150,8 +153,10 @@ class Fiches extends CI_Controller{
         $this->form_validation->set_rules('commentaire', 'Ajouter un commentaire', 'required');
 
         if($this->form_validation->run() === FALSE){
+            $data['avis'] = $this->Fiches_model->get_avis($titreFiche);
             $data['maNote'] = $this->Fiches_model->get_ma_note($titreFiche, $utilisateur);
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titreFiche);
+            $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['titre'] ='Fiche conseil';
             $this->load->view('templates/header',$data);
@@ -160,8 +165,10 @@ class Fiches extends CI_Controller{
         else{
             $this->Fiches_model->add_note($titreFiche, $utilisateur, $ajouterNote, $commentaire);
 
+            $data['avis'] = $this->Fiches_model->get_avis($titreFiche);
             $data['maNote'] = $this->Fiches_model->get_ma_note($titreFiche, $utilisateur);
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titreFiche);
+            $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['titre'] ='Fiche conseil';
             $this->load->view('templates/header',$data);
@@ -248,6 +255,33 @@ class Fiches extends CI_Controller{
             $data['titre'] ='Fiche conseil';
             $this->load->view('templates/header',$data);
             $this->load->view('fiches/fiches_conseils',$data);
+        }
+    }
+
+    public function add_fiche(){
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->helper('url');
+
+        $titre_fiche = $this->input->post('titre');
+        $categorie = $this->input->post('categ');
+        
+        $this->form_validation->set_rules('titre', 'Titre fiche', 'required');
+        $this->form_validation->set_rules('categ', 'Catégorie', 'required');
+        $this->form_validation->set_rules('fiche', 'Fiche', 'required');
+
+        if($this->form_validation->run() === FALSE){
+            $data['categoriesG']=$this->Categories_model->getCategorieG();
+            $this->load->view('templates/header',$data);
+            $this->load->view('fiches/fiches_add',$data);
+        }
+        else{
+
+            //Ajouter le code afin d'ajouter une nouvelle fiche conseil
+            
+            $data['categoriesG']=$this->Categories_model->getCategorieG();
+            $this->load->view('templates/header',$data);
+            $this->load->view('fiches/fiches_add',$data);
         }
     }
 
