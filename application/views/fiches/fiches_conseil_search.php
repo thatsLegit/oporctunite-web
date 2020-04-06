@@ -16,11 +16,10 @@
 
     <style>
         
-        ::selection{ background-color: #E13300; color: white; }
-        ::moz-selection{ background-color: #E13300; color: white; }
-        ::webkit-selection{ background-color: #E13300; color: white; }
-        
-        body {
+            ::selection{ background-color: #E13300; color: white; }
+            ::moz-selection{ background-color: #E13300; color: white; }
+            ::webkit-selection{ background-color: #E13300; color: white; }
+  body{
             margin: 0;
             padding: 0;
             background-image: url("<?php echo base_url(); ?>assets/img/pigtheme.png");
@@ -30,33 +29,34 @@
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
 
-        a {
-            color: #003399;
-            background-color: transparent;
-            font-weight: normal;
-        }
+         
 
-        /* start (custom style) */
-        input[type=text] {
-            width: 350px;
-            padding: 5px;
-            margin: 5px 0;
-            box-sizing: border-box;
-            border-radius: 20px;
-        }
+            a {
+                color: #003399;
+                background-color: transparent;
+                font-weight: normal;
+
+            }
+
+            /* start (custom style) */
+            input[type=text] {
+                width: 350px;
+                padding: 5px;
+                margin: 5px 0;
+                box-sizing: border-box;
+                border-radius: 20px;
+            }
 
         label {
             margin: 40px;
         }
-
-        h6 {
+         h6{
             color: black;
         }
-
         h4{
-            color: grey;
-            margin-top: 20px;
-        }
+    color: grey;
+    margin-top: 20px;
+}
 
         .mybtn {
             border: none;
@@ -67,6 +67,27 @@
             margin-bottom: 10px;
         }
 
+        .btnsearch {
+            margin: 0;
+            width: 50px;
+            height: 70px;
+            text-align: center;
+            background-color: white;
+           
+            border-radius: 20px;
+        }
+
+
+        .zone_text {
+            color: #87C165;
+            width: 300px;
+            height: 70px;
+            text-align: center;
+            background-color: white;
+            border: none;
+            border-radius: 6px;
+
+        }
 
         #container1 {
             padding: 10px;
@@ -75,11 +96,15 @@
             justify-content: space-around;
         }
         
-        select {
+        select{
             width: 300px;
             border-radius: 5px;
             height: 50px;
             margin-bottom: 50px;
+        }
+
+        #main{
+            margin-top: 75px;
         }
 
         #container-fiche{

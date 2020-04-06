@@ -19,7 +19,6 @@
     <script src="/assets/js/starrr.js"></script>
     <link rel="stylesheet" href="/assets/css/starrr.css">
 
-    
 
     <style>
       
