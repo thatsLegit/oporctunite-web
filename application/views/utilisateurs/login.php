@@ -22,16 +22,6 @@
                 echo form_open('utilisateurs/login', array('id' => 'formulaireConnexion'));?>       
 
                     <div class="form-group">
-                        <select class="custom-select mb-3" name="select" id="select">
-                            <option value="" hidden>Statut</option>
-                            <option value="elevage">Eleveur</option>
-                            <option value="veterinaire">Veterinaire</option>
-                            <option value="admin">Autre</option>
-                        </select>
-                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez selectionner une catégorie.</span>
-                    </div>
-
-                    <div class="form-group">
                         <input type="text" name="login" id="login" class="form-control" placeholder="Email ou téléphone"/>
                         <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer un identifiant de connexion.</span>
                     </div>

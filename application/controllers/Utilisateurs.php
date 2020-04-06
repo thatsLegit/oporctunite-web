@@ -216,25 +216,27 @@
                 $password = md5($this->input->post('password'));
                 $idUtilisateur = $this->utilisateurs_model->login($tel, $email, $password);
 
+                $statut = $this->utilisateurs_model->getStatut($idUtilisateur);
+
                 // Create session
 				if($idUtilisateur){
 
 					$utilisateur_data = array(
                         'idutilisateur' => $idUtilisateur,
-                        'statut' => $this->input->post('select'),
-                        'nom' => $this->utilisateurs_model->getUserName($idUtilisateur, $this->input->post('select')),
+                        'statut' => $statut,
+                        'nom' => $this->utilisateurs_model->getUserName($idUtilisateur, $statut),
 						'connecte' => true
 					);
 
                     $this->session->set_userdata($utilisateur_data);
 
-                    if($this->input->post('select') == "elevage"){
+                    if($utilisateur_data['statut'] == "elevage"){
                         redirect('utilisateurs/profil');
                     }
-                    elseif($this->input->post('select') == "veterinaire"){
+                    elseif($utilisateur_data['statut'] == "veterinaire"){
                         redirect('utilisateurs/profil');
                     }
-                    elseif($this->input->post('select') == "admin"){
+                    elseif($utilisateur_data['statut'] == "admin"){
                         redirect('utilisateurs/profil');
                     }
                     else{

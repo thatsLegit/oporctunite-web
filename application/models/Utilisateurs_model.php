@@ -91,6 +91,11 @@
             return $this->db->get('utilisateur')->row(0)->idutilisateur;
         }
 
+        public function getStatut($idUtilisateur){
+            return $this->db->where('idutilisateur', $idUtilisateur)
+                                ->get('utilisateur')->row(0)->type_utilisateur;
+        }
+
         public function getUserName($idUtilisateur, $statut){
             
             if($statut == 'elevage'){

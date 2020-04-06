@@ -26,12 +26,6 @@
             font-family: "Montserrat",Arial, Helvetica, sans-serif;
         }
 
-        .header {
-            background-color: #87C165;
-            width: auto;
-            height: auto;
-        }
-
         h2, h5, p{
             color: #818181;
         }

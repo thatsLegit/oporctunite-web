@@ -27,7 +27,6 @@
             width: auto;
             height: auto;
         }
-
        
 
         #main {

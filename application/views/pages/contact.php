@@ -100,32 +100,7 @@ label , h5{
                     </div>
                 </div>
             </div>
-            <div class="menu">
-                <h2 class="title">Veterinaires</h2>
-                <div class="infosVeto">
-                    <div>
-                        <label class="">Dr $nom :</label><br>
-                    </div>
-                    <div>
-                        <label class="">$lieu</label><br>
-                    </div>
-                     <div>
-                        <label class="">$adresse</label><br>
-                    </div>
-                    <div>
-                        <label class="">$mail</label><br>
-                    </div>
-                    <div>
-                        <label class="">$numtel</label><br>
-                    </div>
-                </div>
-
-
-            </div>
-
         </div>
-       
-
     </div>
 
 
