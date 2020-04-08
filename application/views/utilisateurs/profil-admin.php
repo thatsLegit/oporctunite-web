@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-
-    
-    <!-- Montserrat Font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
     <style>
        body{
             margin: 0;
@@ -21,14 +9,6 @@
             background-size: cover;
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
-
-        .header {
-            background-color: #87C165;
-            width: auto;
-            height: auto;
-        }
-
-       
 
         #main {
             padding: 10px;
@@ -43,7 +23,6 @@
             width: 550px;
             border-radius: 15px;
         }
-        
         
         .title{
             font-size: 1.7em;
@@ -81,7 +60,6 @@
             margin-top: -3vh;
         }
     </style>
-
 </head>
 
 <body>
@@ -89,11 +67,7 @@
         <div class="menu" id="menu-accueil">
             <h2 class="title">Bienvenue !</h2>
             <div id="container-profil">
-                <?php
-                    foreach($admin as $a){
-                        echo '<img name="imageProfil" id="imageProfil" src="../assets/img/photos/'.$a['utilisateurPhoto'].'" alt="Image de Profil">';
-                    }
-                ?>
+                <img name="imageProfil" id="imageProfil" src="<?php echo '../assets/img/photos/'.$this->session->userdata['utilisateurPhoto']?>" alt="Image de Profil">
             </div>
             <div id="container-profil">
                 <label class="">Mail Admin :</label><br>
@@ -109,13 +83,11 @@
                 <label class="">Adresse :</label><br>
                 <label class="zone_text">
                     <?php 
-                        foreach($admin as $a){
-                            echo $a['adresse'];
-                            echo '<br>';
-                            echo $a['codePostal'];
-                            echo '<br>';
-                            echo $a['ville'];
-                        }
+                        echo $this->session->userdata['adresse'];
+                        echo '<br>';
+                        echo $this->session->userdata['codePostal'];
+                        echo '<br>';
+                        echo $this->session->userdata['ville'];
                     ?>
                 </label>
             </div>

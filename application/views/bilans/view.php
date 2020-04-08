@@ -5,157 +5,152 @@
 	<script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
     <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<style>
-	canvas {
-		-moz-user-select: none;
-		-webkit-user-select: none;
-		-ms-user-select: none;
-	}
-	body {
-		background: whitesmoke;
-		color: #818181;
-		margin: 0;
-		padding: 0;
-		font-family: "Montserrat",Arial, Helvetica, sans-serif;
+	<style>
+		canvas {
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+
+		body {
+			background: whitesmoke;
+			color: #818181;
+			margin: 0;
+			padding: 0;
+			font-family: "Montserrat",Arial, Helvetica, sans-serif;
+		}
+
+		h2, h5, p{
+			color: #818181;
+		}
+
+		table, th, td {
+			border: 1px solid black;
+			color: black;
+		}
+
+		#canvas{
+			margin: 20px;
+		}
+
+		#canvas2{
+			margin: 20px;
+		}
+
+		/* graphique historique */
+
+		:root {
+		--square-size: 15px;
+		--square-gap: 5px;
+		--week-width: calc(var(--square-size) + var(--square-gap));
+		}
+
+		.months { grid-area: months; }
+		.days { grid-area: days; }
+		.squares { grid-area: squares; }
+
+		.graph {
+			display: inline-grid;
+			grid-template-areas: "empty months"
+								"days squares";
+			grid-template-columns: auto 1fr;
+			grid-gap: 10px;
+		}
+
+
+		.months {
+		display: grid;
+		grid-template-columns: calc(var(--week-width) * 4) /* Jan */
+								calc(var(--week-width) * 4) /* Fev */
+								calc(var(--week-width) * 4) /* Mar */
+								calc(var(--week-width) * 5) /* Avr */
+								calc(var(--week-width) * 4) /* Mai */
+								calc(var(--week-width) * 4) /* Jun */
+								calc(var(--week-width) * 5) /* Jul */
+								calc(var(--week-width) * 4) /* Aout */
+								calc(var(--week-width) * 4) /* Sep */
+								calc(var(--week-width) * 5) /* Oct */
+								calc(var(--week-width) * 4) /* Nov */
+								calc(var(--week-width) * 5) /* Dec */;
+		}
+
+		.days,
+		.squares {
+		display: grid;
+		grid-gap: var(--square-gap);
+		grid-template-rows: repeat(7, var(--square-size));
+		}
+
+		.squares {
+		grid-auto-flow: column;
+		grid-auto-columns: var(--square-size);
+		}
+
+
+	/* Other styling */
+
+	.graph {
+	border: 1px #e1e4e8 solid;
+	margin-top: 20px;
 	}
 
-	.header {
-		background-color: #87C165;
-		width: auto;
-		height: auto;
+	.days li:nth-child(odd) {
+	visibility: hidden;
 	}
 
-	h2, h5, p{
-		color: #818181;
+	ul {
+		list-style-type: none;
 	}
 
-	table, th, td {
-		border: 1px solid black;
+	.squares li {
+	background-color: #ebedf0;
+	}
+
+	.squares li[data-level="1"] {
+	background-color: #c6e48b;
+	}
+
+	.squares li[data-level="2"] {
+	background-color: #7bc96f;
+	}
+
+	.squares li[data-level="3"] {
+	background-color: #196127;
+	}
+
+	/*fiches*/
+
+	#container-fiche{
+		margin-top: 50px;
+	}
+
+	#fiche{
+		margin: 20px;
+		width: 20vw;
+		height: 25vh;
+		background-color: white;
 		color: black;
+		text-align: center;
+		border-radius: 5px;
+		border: solid black 1.5px;
 	}
 
-	#canvas{
-		margin: 20px;
+	#fiche h5{
+		padding-top: 15px;
 	}
 
-	#canvas2{
-		margin: 20px;
+	#fiche p{
+		font-size: .85rem;
 	}
 
-	/* graphique historique */
+	#fiche button{
+		width: 8vw;
+		height: 5vh;
+		font-size: .75rem;
+		border-radius: 5px;
+	}
 
-	:root {
-  --square-size: 15px;
-  --square-gap: 5px;
-  --week-width: calc(var(--square-size) + var(--square-gap));
-}
-
-.months { grid-area: months; }
-.days { grid-area: days; }
-.squares { grid-area: squares; }
-
-.graph {
-  display: inline-grid;
-  grid-template-areas: "empty months"
-                       "days squares";
-  grid-template-columns: auto 1fr;
-  grid-gap: 10px;
-}
-
-
-.months {
-  display: grid;
-  grid-template-columns: calc(var(--week-width) * 4) /* Jan */
-                         calc(var(--week-width) * 4) /* Fev */
-                         calc(var(--week-width) * 4) /* Mar */
-                         calc(var(--week-width) * 5) /* Avr */
-                         calc(var(--week-width) * 4) /* Mai */
-                         calc(var(--week-width) * 4) /* Jun */
-                         calc(var(--week-width) * 5) /* Jul */
-                         calc(var(--week-width) * 4) /* Aout */
-                         calc(var(--week-width) * 4) /* Sep */
-                         calc(var(--week-width) * 5) /* Oct */
-                         calc(var(--week-width) * 4) /* Nov */
-                         calc(var(--week-width) * 5) /* Dec */;
-}
-
-.days,
-.squares {
-  display: grid;
-  grid-gap: var(--square-gap);
-  grid-template-rows: repeat(7, var(--square-size));
-}
-
-.squares {
-  grid-auto-flow: column;
-  grid-auto-columns: var(--square-size);
-}
-
-
-/* Other styling */
-
-.graph {
-  border: 1px #e1e4e8 solid;
-  margin-top: 20px;
-}
-
-.days li:nth-child(odd) {
-  visibility: hidden;
-}
-
-ul {
-    list-style-type: none;
-}
-
-.squares li {
-  background-color: #ebedf0;
-}
-
-.squares li[data-level="1"] {
-  background-color: #c6e48b;
-}
-
-.squares li[data-level="2"] {
-  background-color: #7bc96f;
-}
-
-.squares li[data-level="3"] {
-  background-color: #196127;
-}
-
-/*fiches*/
-
-#container-fiche{
-            margin-top: 50px;
-        }
-
-        #fiche{
-            margin: 20px;
-            width: 20vw;
-            height: 25vh;
-            background-color: white;
-            color: black;
-            text-align: center;
-            border-radius: 5px;
-            border: solid black 1.5px;
-        }
-
-        #fiche h5{
-            padding-top: 15px;
-        }
-
-        #fiche p{
-            font-size: .85rem;
-        }
-
-        #fiche button{
-            width: 8vw;
-            height: 5vh;
-            font-size: .75rem;
-            border-radius: 5px;
-        }
-
-</style>
+	</style>
 </head>
 
 <div class="text-center" style="color:black;margin:25px;"><p class="h3">Mes résultats de tests</p></div>

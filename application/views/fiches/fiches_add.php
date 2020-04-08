@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-
 <head>
-    <meta charset="utf-8">
-    <title>O'porctunité Web</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css" />
-
-
     <style>
-
-          body{
+        body {
             margin: 0;
             padding: 0;
             background-image: url("<?php echo base_url(); ?>assets/img/pigtheme.png");
@@ -26,14 +10,14 @@
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
 
-            /* start (custom style) */
-            input[type=text] {
-                width: 350px;
-                padding: 5px;
-                margin: 5px 0;
-                box-sizing: border-box;
-                border-radius: 20px;
-            }
+        /* start (custom style) */
+        input[type=text] {
+            width: 350px;
+            padding: 5px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border-radius: 20px;
+        }
 
         label {
             margin: 40px;
@@ -47,14 +31,12 @@
             font-size: 20px;
             margin-bottom: 10px;
         }
-
         
         h4{
             color: grey;
             margin-top: 20px;
             margin-bottom: 50px;
         }
- 
         
         #container1 {
             padding: 10px;
@@ -87,10 +69,8 @@
 
         #categ{
             margin-left: 4vw;
-        }
-        
+        }      
     </style>
-
 </head>
 
 <body>

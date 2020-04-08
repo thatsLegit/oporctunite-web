@@ -1,26 +1,10 @@
-<!DOCTYPE html>
-<html lang="fr">
-
 <head>
-    <meta charset="utf-8">
-    <title>O'porctunité Web</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style> 
+        ::selection{ background-color: #E13300; color: white; }
+        ::moz-selection{ background-color: #E13300; color: white; }
+        ::webkit-selection{ background-color: #E13300; color: white; }
 
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css" />
-
-
-    <style>
-        
-            ::selection{ background-color: #E13300; color: white; }
-            ::moz-selection{ background-color: #E13300; color: white; }
-            ::webkit-selection{ background-color: #E13300; color: white; }
-
-          body{
+        body {
             margin: 0;
             padding: 0;
             background-image: url("<?php echo base_url(); ?>assets/img/pigtheme.png");
@@ -30,52 +14,44 @@
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
 
-            a {
-                color: #003399;
-                background-color: transparent;
-                font-weight: normal;
+        a {
+            color: #003399;
+            background-color: transparent;
+            font-weight: normal;
+        }
 
-            }
-
-            /* start (custom style) */
-            input[type=text] {
-                width: 350px;
-                padding: 5px;
-                margin: 5px 0;
-                box-sizing: border-box;
-                border-radius: 20px;
-            }
+        /* start (custom style) */
+        input[type=text] {
+            width: 350px;
+            padding: 5px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border-radius: 20px;
+        }
 
         label {
             margin: 40px;
         }
 
+        h4{
+            color: grey;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        h6{
+            color: black;
+        }
+
         .mybtn {
             border: none;
             border-radius: 50px;
-            width: 300px;
+            width: 200px;
             padding: 10px;
             font-size: 20px;
             margin-bottom: 10px;
         }
 
-        .btnsearch {
-            margin: 0;
-            width: 50px;
-            height: 70px;
-            text-align: center;
-            background-color: white;
-            border: none;
-            border-radius: 6px;
-        }
-h4{
-    color: grey;
-    margin-top: 20px;
-    margin-bottom: 50px;
-}
- h6{
-            color: black;
-        }
         .zone_text {
             color: #87C165;
             width: 300px;
@@ -138,12 +114,8 @@ h4{
         #recherche{
             margin-top: 5vh;
             margin-bottom: 5vh;
-        }
-
-
-        
+        }    
     </style>
-
 </head>
 
 <body>
@@ -193,7 +165,7 @@ h4{
         </div>
 
         <div class="col-md-12 text-center" id="search-button">
-            <button type="submit" class=" btn btn-block mybtn btn-success">Chercher</button>
+            <button type="submit" class=" btn mybtn btn-success">Rechercher</button>
         </div>
 
     </form>

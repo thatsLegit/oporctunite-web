@@ -5,8 +5,6 @@
 	<meta charset="utf-8">
 	<title>Oporctunité</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css"/>
 	<!-- bootswatch theme -->
 	<link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css"/>
 	<!-- Bootstrap cdn -->
@@ -43,4 +41,7 @@
         <?php echo '<p class="alert alert-success">'.$this->session->flashdata('veterinaire_created').'</p>'; ?>
       <?php endif; ?>
 
+	  <?php if($this->session->flashdata('user_loggedOut')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedOut').'</p>'; ?>
+      <?php endif; ?>
 

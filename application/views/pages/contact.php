@@ -1,28 +1,12 @@
-<!DOCTYPE html>
-<html lang="fr">
-
 <head>
-    <meta charset="utf-8">
-    <title>O'porctunité Web</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
- <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css" />
-    <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
-
     <style>
         body {
             background-color: : white;
             margin: 0;
             padding: 0;
             color: grey !important;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
-
 
         #main {
             padding: 10px;
@@ -31,9 +15,11 @@
             align-content: center;
 
         }
-label , h5{
-    color: grey;
-}
+
+        label , h5{
+            color: grey;
+        }
+
         h2 {
             padding: 20px;
             margin-top: 20px;
@@ -60,8 +46,6 @@ label , h5{
             padding: 10px !important;
         }
 
-      
-
         .container {
             border: 1px solid;
             height: 150px;
@@ -74,7 +58,6 @@ label , h5{
             margin-bottom: 50px;
         }
     </style>
-
 </head>
 
 <body>

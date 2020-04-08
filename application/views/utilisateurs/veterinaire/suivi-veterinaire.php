@@ -1,35 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="css/style.css" rel="stylesheet">
-    <!-- Montserrat Font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
-
-</head>
-
-<style>
-
+    <style>
         body {
             background: whitesmoke;
             color: #818181;
             margin: 0;
             padding: 0;
             font-family: "Montserrat",Arial, Helvetica, sans-serif;
-        }
-
-        .header {
-            background-color: #87C165;
-            width: auto;
-            height: auto;
         }
 
         h2, h5, p{
@@ -51,8 +27,8 @@
         .container{
             margin-bottom: 10vh;
         }
-
-</style>
+    </style>
+</head>
 
 <body>
     <div id="main" class="text-center">

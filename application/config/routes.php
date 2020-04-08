@@ -58,7 +58,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['inscription'] = 'utilisateurs/inscription';
 $route['login'] = 'utilisateurs/login';
-$route['logout'] = 'utilisateurs/login';
+$route['logout'] = 'utilisateurs/logout';
+
+$route['bilan'] = 'bilans/view';
+
+$route['profil'] = 'Utilisateurs/profil';
+
+$route['suivre'] = 'Utilisateurs/elevage_suivi';
+$route['suivis'] = 'Utilisateurs/veterinaire_suivi';
+$route['suivi_administrateur'] = 'Utilisateurs/admin_suivi';
+
+$route['fiches'] = 'fiches/fiches';
+$route['fiches_favoris'] = 'fiches/fiches_favoris';
+$route['ajout_fiche'] = 'fiches/add_fiche';
 
 $route['default_controller'] = 'utilisateurs/login';
 $route['(:any)'] = 'pages/view/$1';

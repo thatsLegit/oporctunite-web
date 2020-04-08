@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-
-    
-    <!-- Montserrat Font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
     <style>
        body{
             margin: 0;
@@ -22,24 +10,14 @@
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
 
-
-        .header {
-            background-color: #87C165;
-            width: auto;
-            height: auto;
-        }
-
-       
-
         #main {
             padding: 10px;
             display: flex;
             justify-content: center;
-            align-content: center;
-           
+            align-content: center;    
         }
         
-            .menu{
+        .menu{
             background-color: rgba(255,255,255,0.8);
             padding: 20px;
             width: 550px;
@@ -81,7 +59,6 @@
             margin-top: -3vh;
         }
     </style>
-
 </head>
 
 <body>
@@ -89,11 +66,7 @@
         <div class="menu" id="menu-accueil">
             <h2 class="title">Bienvenue !</h2>
             <div id="container-profil">
-                <?php
-                    foreach($veterinaire as $v){
-                        echo '<img name="imageProfil" id="imageProfil" src="../assets/img/photos/'.$v['utilisateurPhoto'].'" alt="Image de Profil">';
-                    }
-                ?>
+                <img name="imageProfil" id="imageProfil" src="<?php echo '../assets/img/photos/'.$this->session->userdata['utilisateurPhoto']?>" alt="Image de Profil">
             </div>
             <div id="container-profil">
                 <label class="">Nom :</label><br>
@@ -109,11 +82,11 @@
                 <label class="">Adresse du cabinet :</label><br>
                 <label class="zone_text">
                     <?php 
-                        foreach($veterinaire as $v){
-                            echo $v['codePostal'];
-                            echo '<br>';
-                            echo $v['adresse'];
-                        }
+                        echo $this->session->userdata['adresse'];
+                        echo '<br>';
+                        echo $this->session->userdata['codePostal'];
+                        echo '<br>';
+                        echo $this->session->userdata['ville'];
                     ?>
                 </label>
             </div>

@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-
-    
-    <!-- Montserrat Font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
     <style>
-       body{
+        body{
             margin: 0;
             padding: 0;
             background-image: url("<?php echo base_url(); ?>assets/img/pigtheme.png");
@@ -22,27 +10,19 @@
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
 
-        .header {
-            background-color: #87C165;
-            width: auto;
-            height: auto;
-        }
-       
-
         #main {
             padding: 10px;
             display: flex;
             justify-content: center;
-            align-content: center;
-           
+            align-content: center;    
         }
+
         .menu{
             background-color: rgba(255,255,255,0.8);
             padding: 20px;
             width: 550px;
             border-radius: 15px;
         }
-        
         
         .title{
             font-size: 1.7em;
@@ -66,7 +46,7 @@
             padding: 13px;
             width: 200px;
             border-radius: 5px;
-             font-size: 1em;
+                font-size: 1em;
             font-weight: 700 !important;
         }
 
@@ -80,7 +60,6 @@
             margin-top: -3vh;
         }
     </style>
-
 </head>
 
 <body>
@@ -88,11 +67,7 @@
         <div class="menu" id="menu-accueil">
             <h2 class="title">Bienvenue !</h2>
             <div id="container-profil">
-                <?php
-                    foreach($eleveur as $e){
-                        echo '<img name="imageProfil" id="imageProfil" src="../assets/img/photos/'.$e['utilisateurPhoto'].'" alt="Image de Profil">';
-                    }
-                ?>
+                <img name="imageProfil" id="imageProfil" src="<?php echo '../assets/img/photos/'.$this->session->userdata['utilisateurPhoto']?>" alt="Image de Profil">
             </div>
             <div id="container-profil">
                 <label class="">Nom d'élevage :</label><br>
@@ -108,24 +83,23 @@
                 <label class="">Lieu d'elevage :</label><br>
                 <label class="zone_text">
                     <?php 
-                        foreach($eleveur as $e){
-                            echo $e['adresse'];
-                            echo '<br>';
-                            echo $e['codePostal'];
-                            echo '<br>';
-                            echo $e['ville'];
-                        }
+                        echo $this->session->userdata['adresse'];
+                        echo '<br>';
+                        echo $this->session->userdata['codePostal'];
+                        echo '<br>';
+                        echo $this->session->userdata['ville'];
                     ?>
                 </label>
             </div>
             <div id="container-profil">
                 <label class="">Taille elevage :</label><br>
-                <label class="zone_text"> <?php 
-                        foreach($eleveur as $e){
-                            echo $e['tailleElevage'];
-                            
-                        }
-                    ?></label>
+                <label class="zone_text"> 
+                    <?php 
+                        foreach ($tailleElevage as $taille) : 
+                            echo $taille['tailleElevage'];
+                        endforeach;
+                    ?>
+                </label>
             </div>
         </div>
 

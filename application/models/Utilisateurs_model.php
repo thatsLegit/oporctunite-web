@@ -79,6 +79,8 @@
             }
         }
 
+        //Pour l'inscription
+
         public function add_image($imageId, $name){
             $data = array('utilisateurPhoto'=>$name);
             $this->db->where('idutilisateur',$imageId);
@@ -91,13 +93,14 @@
             return $this->db->get('utilisateur')->row(0)->idutilisateur;
         }
 
-        public function getStatut($idUtilisateur){
+        //A la connexion
+
+        public function getUtilisateur($idUtilisateur){
             return $this->db->where('idutilisateur', $idUtilisateur)
-                                ->get('utilisateur')->row(0)->type_utilisateur;
+                                ->get('utilisateur')->row(0);
         }
 
         public function getUserName($idUtilisateur, $statut){
-            
             if($statut == 'elevage'){
                 return $this->db->where('idutilisateur', $idUtilisateur)
                                     ->get('elevage')->row(0)->nomElevage;
@@ -167,22 +170,29 @@
 				return false;
 			}
         }
-        
-        public function getElevageByName($name){
-            $this->db->select('*');
+
+        public function getTailleElevage($name_elevage){
+            $this->db->select('tailleElevage');
             $this->db->from('elevage');
-            $this->db->where('elevage.nomElevage', $name);
-            $this->db->join('utilisateur', 'elevage.idutilisateur = utilisateur.idutilisateur' ); 
+            $this->db->where('elevage.nomElevage', $name_elevage);
             $query = $this->db->get();
 
             return $query->result_array();
         }
 
-        public function getVeterinaireByName($id){
-            $this->db->select('*');
+        public function getNum_Elevage_name($name_elevage){
+            $this->db->select('numEleveur');
+            $this->db->from('elevage');
+            $this->db->where('elevage.nomElevage', $name_elevage);
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
+
+        public function getNum_Veterinaire_name($name_veterinaire){
+            $this->db->select('numVeterinaire');
             $this->db->from('veterinaire');
-            $this->db->where('veterinaire.idutilisateur', $id);
-            $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur' ); 
+            $this->db->where('veterinaire.nomCabinet', $name_veterinaire);
             $query = $this->db->get();
 
             return $query->result_array();
@@ -206,15 +216,7 @@
             return $query->result_array();
         }
 
-        public function getAdmin($id){
-            $this->db->select('*');
-            $this->db->from('utilisateur');
-            $this->db->where('idutilisateur', $id);
-            $query = $this->db->get();
-
-            return $query->result_array();
-        }
-
+        //Pour le suivi
         public function getVeterinaire_suivi($name_elevage){
             $this->db->select('*');
             $this->db->from('suivre');
@@ -232,24 +234,6 @@
             $this->db->join('veterinaire', 'veterinaire.numVeterinaire = suivre.numVeterinaire' );
             $this->db->join('elevage', 'elevage.numEleveur = suivre.numEleveur' );
             $this->db->join('utilisateur', 'utilisateur.idutilisateur = elevage.idutilisateur' ); 
-            $query = $this->db->get();
-
-            return $query->result_array();
-        }
-
-        public function getNum_Elevage_name($name_elevage){
-            $this->db->select('numEleveur');
-            $this->db->from('elevage');
-            $this->db->where('elevage.nomElevage', $name_elevage);
-            $query = $this->db->get();
-
-            return $query->result_array();
-        }
-
-        public function getNum_Veterinaire_name($name_veterinaire){
-            $this->db->select('numVeterinaire');
-            $this->db->from('veterinaire');
-            $this->db->where('veterinaire.nomCabinet', $name_veterinaire);
             $query = $this->db->get();
 
             return $query->result_array();

@@ -15,7 +15,7 @@
 
             //Si l'utilisateur est dejà co, le rediriger vers la page d'accueil
             if($this->session->userdata('connecte')){
-                redirect('');
+                redirect('profil');
             }
 
             $this->config->set_item('language', 'french');
@@ -74,7 +74,7 @@
                     $this->session->set_userdata($utilisateur_data);
 
                     //Enfin, rediriger vers la page de connexion ?
-                    redirect('');
+                    redirect('login');
                 }
             } else {
                 //validation rules
@@ -131,7 +131,7 @@
                     $this->session->set_userdata($utilisateur_data);
 
                     //Enfin, rediriger vers la page de connexion ?
-                    redirect('');
+                    redirect('login');
                 }
             }            
         }
@@ -211,20 +211,29 @@
                 $this->load->view('templates/footer');
 
             } else {
+                //Avant connexion
                 $email = $this->input->post('login');
                 $tel = $this->input->post('login');
                 $password = md5($this->input->post('password'));
                 $idUtilisateur = $this->utilisateurs_model->login($tel, $email, $password);
 
-                $statut = $this->utilisateurs_model->getStatut($idUtilisateur);
-
+                //Après connexion
                 // Create session
 				if($idUtilisateur){
+                    //getUtilisateurByID
+                    $Utilisateur = $this->utilisateurs_model->getUtilisateur($idUtilisateur);
 
 					$utilisateur_data = array(
                         'idutilisateur' => $idUtilisateur,
-                        'statut' => $statut,
-                        'nom' => $this->utilisateurs_model->getUserName($idUtilisateur, $statut),
+                        'statut' => $Utilisateur->type_utilisateur,
+                        'nom' => $this->utilisateurs_model->getUserName($idUtilisateur, $Utilisateur->type_utilisateur),
+                        'email' => $Utilisateur->email,
+                        'telephone' => $Utilisateur->telephone,
+                        'ville' => $Utilisateur->ville,
+                        'codePostal' => $Utilisateur->codePostal,
+                        'adresse' => $Utilisateur->adresse,
+                        'utilisateurPhoto' => $Utilisateur->utilisateurPhoto,
+                        'dateInscription' => $Utilisateur->dateInscription,
 						'connecte' => true
 					);
 
@@ -255,19 +264,16 @@
 
         public function logout(){
             if(!$this->session->userdata('connecte')){
-                redirect('utilisateurs/login');
+                redirect('login');
             }
 
-            $this->session->unset_userdata('idutilisateur');
-            $this->session->unset_userdata('statut');
-            $this->session->unset_userdata('nom');
-            $this->session->unset_userdata('connecte');
+            $this->session->sess_destroy();
 
             //session message
             $this->session->set_flashdata('user_loggedOut', 
-            'Vous etes deconnecté.');
+            'Vous etes maintenant deconnecté.');
 
-            redirect('utilisateurs/login');
+            redirect('login');
         }
 
         public function forgotten(){
@@ -280,43 +286,30 @@
             $id = $this->session->userdata('idutilisateur');
 
             if($this->session->userdata('statut') == "elevage"){
-                $data['eleveur']=$this->utilisateurs_model->getElevageByName($name);
-
-                $this->load->view('templates/header', $data);
+                $data['tailleElevage'] = $this->utilisateurs_model->getTailleElevage($name);
+                $this->load->view('templates/header');
                 $this->load->view('utilisateurs/profil-elevage', $data);
-                $this->load->view('templates/footer', $data);
+                $this->load->view('templates/footer');
             }
             elseif($this->session->userdata('statut') == "veterinaire"){
-                $data['veterinaire']=$this->utilisateurs_model->getVeterinaireByName($id);
-
-                $this->load->view('templates/header', $data);
-                $this->load->view('utilisateurs/profil-veterinaire', $data);
-                $this->load->view('templates/footer', $data);
+                $this->load->view('templates/header');
+                $this->load->view('utilisateurs/profil-veterinaire');
+                $this->load->view('templates/footer');
             }
             elseif($this->session->userdata('statut') == "admin"){
-                $data['admin']=$this->utilisateurs_model->getAdmin($id);
-
-                $this->load->view('templates/header', $data);
-                $this->load->view('utilisateurs/profil-admin', $data);
-                $this->load->view('templates/footer', $data);
+                $this->load->view('templates/header');
+                $this->load->view('utilisateurs/profil-admin');
+                $this->load->view('templates/footer');
             }
-            else{
+            else {
                 show_404();
             }
-        }
-
-        public function veterinaire(){
-            $this->load->view('templates/header');
-            $this->load->view('utilisateurs/profil-veterinaire', $data);
-            $this->load->view('templates/footer');
         }
 
         public function elevage_suivi(){
 
             $name_elevage = $this->session->userdata('nom');
-
             $data['veterinaire']=$this->utilisateurs_model->getVeterinaire();
-
             $data['veterinaire_suivi']=$this->utilisateurs_model->getVeterinaire_suivi($name_elevage);
 
             $this->load->view('templates/header');
@@ -324,10 +317,10 @@
             $this->load->view('templates/footer');
         }
 
+        //pq id ?
         public function veterinaire_suivi(){
 
             $id_veterinaire = $this->session->userdata('idutilisateur');
-
             $data['elevage_suivi']=$this->utilisateurs_model->getElevage_suivi($id_veterinaire);
 
             $this->load->view('templates/header');
@@ -338,7 +331,6 @@
         public function admin_suivi(){
 
             $data['elevage']=$this->utilisateurs_model->getElevage();
-
             $data['veterinaire']=$this->utilisateurs_model->getVeterinaire();
 
             $this->load->view('templates/header');
@@ -404,10 +396,7 @@
                 $this->load->view('utilisateurs/veterinaire/suivi-veterinaire', $data);
                 $this->load->view('templates/footer');
 
-                
-
-            }
-            else{
+            } else {
                 $name_elevage = $this->session->userdata('nom');
                 $numVeterinaire = $this->input->post('numVeterinaire');
     
@@ -420,7 +409,6 @@
                 $this->utilisateurs_model->delete_suivi($numElevage, $numVeterinaire);
     
                 $data['veterinaire']=$this->utilisateurs_model->getVeterinaire();
-    
                 $data['veterinaire_suivi']=$this->utilisateurs_model->getVeterinaire_suivi($name_elevage);
     
                 $this->load->view('templates/header');
