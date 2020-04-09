@@ -12,7 +12,7 @@
 <body onload="cacher()">
 
 <div id="titre">
-    <h3 class="text-center mt-5">O'porctunité</h3>
+    <h3 class="text-center mt-5">Inscription</h3>
 </div>
 
 <div class="container">

@@ -10,7 +10,7 @@ class Fiches extends CI_Controller{
         $data['search']='false';
         $data['categoriesG']=$this->Categories_model->getCategorieG();
         $data['fiches']=$this->Fiches_model->getFiches();
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/header');
         $this->load->view('fiches/fiches_conseil_search',$data);
     }
 
@@ -21,8 +21,9 @@ class Fiches extends CI_Controller{
         $data['search']='false';
         $data['categoriesG']=$this->Categories_model->getCategorieG();
         $data['fiches']=$this->Fiches_model->getFiches_favoris($utilisateur);
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/header');
         $this->load->view('fiches/fiches_conseil_favoris',$data);
+        $this->load->view('templates/footer');
     }
 
     public function autocomplete(){
@@ -105,21 +106,21 @@ class Fiches extends CI_Controller{
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
             $data['titre'] ='Fiche conseil';
-            $this->load->view('templates/header',$data);
+            $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
+            $this->load->view('templates/footer');
            
-        }
-        else{
+        } else {
             $data['avis'] = $this->Fiches_model->get_avis($titreFiche);
             $data['maNote'] = $this->Fiches_model->get_ma_note($titreFiche, $utilisateur);
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titreFiche);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
             $data['titre'] ='Fiche conseil';
-            $this->load->view('templates/header',$data);
+            $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
+            $this->load->view('templates/footer');
         }
-       
     }
 
     public function delete_favoris(){
@@ -136,9 +137,9 @@ class Fiches extends CI_Controller{
         $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
         $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
         $data['titre'] ='Fiche conseil';
-        $this->load->view('templates/header',$data);
+        $this->load->view('templates/header');
         $this->load->view('fiches/fiches_conseils',$data);
-       
+        $this->load->view('templates/footer');
     }
 
     public function noter(){
@@ -159,10 +160,9 @@ class Fiches extends CI_Controller{
             $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['titre'] ='Fiche conseil';
-            $this->load->view('templates/header',$data);
+            $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
-        }
-        else{
+        } else {
             $this->Fiches_model->add_note($titreFiche, $utilisateur, $ajouterNote, $commentaire);
 
             $data['avis'] = $this->Fiches_model->get_avis($titreFiche);
@@ -171,7 +171,7 @@ class Fiches extends CI_Controller{
             $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['titre'] ='Fiche conseil';
-            $this->load->view('templates/header',$data);
+            $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
         }
     }
@@ -190,17 +190,15 @@ class Fiches extends CI_Controller{
 
         if($this->form_validation->run() === FALSE){
             $this->fiches();
-        }
-        else{
+        } else {
             if($categorie != 1){
                     $data['categoriesG']=$this->Categories_model->getCategorieG();
                     $data['fiches'] = $this->Fiches_model->get_fiches_search($categorie);
                     $data['search']='true';
                     $data['titre'] ='Les fiches';
-                    $this->load->view('templates/header', $data);
+                    $this->load->view('templates/header');
                     $this->load->view('fiches/fiches_conseil_search',$data);
-            }
-            else{
+            } else {
                     $this->fiches();
             }
         }
@@ -218,22 +216,23 @@ class Fiches extends CI_Controller{
         if($this->form_validation->run() === FALSE){
             $this->fiches_favoris();
         }
-        else{
+        else {
             if($categorie != 1){
                     $data['categoriesG']=$this->Categories_model->getCategorieG();
                     $data['fiches'] = $this->Fiches_model->get_fiches_search_favoris($categorie, $utilisateur);
                     $data['search']='true';
                     $data['titre'] ='Les fiches';
-                    $this->load->view('templates/header', $data);
+                    $this->load->view('templates/header');
                     $this->load->view('fiches/fiches_conseil_favoris',$data);
-            }
-            else{
+                    $this->load->view('templates/footer');
+            } else {
                     $this->fiches_favoris();
             }
         }
     }
 
     public function read(){
+
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->helper('url');
@@ -245,20 +244,20 @@ class Fiches extends CI_Controller{
 
         if($this->form_validation->run() === FALSE){
             $this->fiches();
-        }
-        else{
+        } else{
             $data['avis'] = $this->Fiches_model->get_avis($titre_fiche);
             $data['maNote'] = $this->Fiches_model->get_ma_note($titre_fiche, $utilisateur);
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titre_fiche);
             $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titre_fiche, $utilisateur);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titre_fiche);
             $data['titre'] ='Fiche conseil';
-            $this->load->view('templates/header',$data);
+            $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
+            $this->load->view('templates/footer');
         }
     }
 
-    public function add_fiche(){
+    public function add_fiche() {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->helper('url');
@@ -272,19 +271,16 @@ class Fiches extends CI_Controller{
 
         if($this->form_validation->run() === FALSE){
             $data['categoriesG']=$this->Categories_model->getCategorieG();
-            $this->load->view('templates/header',$data);
+            $this->load->view('templates/header');
             $this->load->view('fiches/fiches_add',$data);
+            $this->load->view('templates/footer');
         }
-        else{
+        else {
+            //Ajouter le code afin d'ajouter une nouvelle fiche conseil    
 
-            //Ajouter le code afin d'ajouter une nouvelle fiche conseil
-            
             $data['categoriesG']=$this->Categories_model->getCategorieG();
             $this->load->view('templates/header',$data);
             $this->load->view('fiches/fiches_add',$data);
         }
     }
-
-    
-
 }

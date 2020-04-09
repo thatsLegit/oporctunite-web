@@ -282,6 +282,10 @@
 
         public function profil(){
 
+            if(!$this->session->userdata('connecte')){
+                redirect('accueil');
+            }
+
             $name = $this->session->userdata('nom');
             $id = $this->session->userdata('idutilisateur');
 

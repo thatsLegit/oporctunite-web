@@ -1,6 +1,6 @@
 <style>
     #titre{
-        margin-top: 150px;
+        padding-top: 150px;
     }
 
     #inscription{
@@ -10,7 +10,7 @@
 </style>
 
 <div id="titre">
-    <h3 class="text-center mt-5">O'porctunité</h3>
+    <h3 class="text-center mt-5">Connexion</h3>
 </div>
 
 <div class="container">

@@ -150,11 +150,22 @@
 		border-radius: 5px;
 	}
 
+	#main{
+		margin-top:90px;
+        padding: 10px;
+	}
+
 	</style>
 </head>
 
-<div class="text-center" style="color:black;margin:25px;"><p class="h3">Mes résultats de tests</p></div>
-<div style="margin:25px;" class="container">
+<div class="container" id="main">
+	
+	<div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <h4 style="margin-bottom:30px;color:grey;">Résultats des tests</h4>   
+        </div>
+    </div>   
+
 	<div class="row">
 			<div class="col-md">
 				<canvas id="canvas"></canvas>

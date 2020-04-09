@@ -1,8 +1,6 @@
 <head>
     <style>
        body{
-            margin: 0;
-            padding: 0;
             background-image: url("<?php echo base_url(); ?>assets/img/pigtheme.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -11,6 +9,7 @@
         }
 
         #main {
+            margin-top:80px;
             padding: 10px;
             display: flex;
             justify-content: center;

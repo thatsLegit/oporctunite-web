@@ -118,7 +118,6 @@
     </style>
 </head>
 
-<body>
  <h4 class="text-center">Mes Favoris
             </h4>
 
@@ -246,6 +245,3 @@
                 }
             }
         </script>
-
-</body>
-</html>

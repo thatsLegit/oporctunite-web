@@ -72,8 +72,9 @@ $route['fiches'] = 'fiches/fiches';
 $route['fiches_favoris'] = 'fiches/fiches_favoris';
 $route['ajout_fiche'] = 'fiches/add_fiche';
 
-$route['default_controller'] = 'utilisateurs/login';
-$route['(:any)'] = 'pages/view/$1';
+$route['default_controller'] = 'utilisateurs/profil';
+$route['contact'] = 'pages/contact';
+$route['accueil'] = 'pages/accueil';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

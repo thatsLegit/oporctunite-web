@@ -29,10 +29,6 @@
             border-radius: 20px;
         }
 
-        label {
-            margin: 40px;
-        }
-
          h6 {
             color: black;
         }
@@ -59,13 +55,6 @@
             background-color: white;
             border: none;
             border-radius: 6px;
-        }
-
-        #container1 {
-            padding: 10px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
         }
         
         select {
@@ -108,78 +97,82 @@
             font-size: .75rem;
             border-radius: 5px;
         }
+        
+        #main {
+            margin-top:90px;
+            padding: 10px;   
+        }
 
-        #recherche {
-            margin-top: 5vh;
-            margin-bottom: 5vh;
-        }      
     </style>
 </head>
 
-<body>
-  <h4 class="text-center">Fiches conseils
-            </h4>
-  <div id="recherche" class="text-center">
-        <h6>Recherche par intitulé :</h6><br>  
-        <div class="something">
-            <input placeholder="Entrer le nom d'une fiche" name="search_data" id="search_data" type="text" onkeyup="ajaxSearch();">
-            
+<div class="container" id="main">
+
+    <div class="row">
+        <div class="col-sm">
+            <label for="search_data" style="color:black;">Rechercher par intitulé :</label>
+            <div>
+                <input placeholder="Entrer le nom d'une fiche" name="search_data" id="search_data" type="text" onkeyup="ajaxSearch();">       
+            </div>
         </div>
-    </div>
 
-    <?php
-    echo validation_errors();
+        <div class="col-sm">
+            <div>
+                <p style="color:black;"> OU </p>     
+            </div>
+        </div>
 
-    echo form_open('fiches/search');
-    ?>
-<div class="text-center"><h6>Recherche par categorie :</h6><br></div>
-        <div class="text-center" id="container1">
-            <select class="select" name="categ" id="categ">
-                <option value="1" hidden class="statut">Catégories</option>
+        <?php
+        echo validation_errors();
+        echo form_open('fiches/search');
+        ?>
+            <div class="col-sm">
+                <label for="categ" style="color:black;">Rechercher par categorie :</label>
+                <select class="select" name="categ" id="categ">
+                    <option value="1" hidden class="statut">Catégories</option>
 
-                <?php
-                if($search == "true"){
-                    foreach($fiches as $f){
-                        $lacateg = $f['nomCategorieG'];
-                    }
-
-                    foreach($categoriesG as $c){
-                        if(empty($fiches)){
-                            echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';
+                    <?php
+                    if($search == "true"){
+                        foreach($fiches as $f){
+                            $lacateg = $f['nomCategorieG'];
                         }
-                        else{
-                            if($c['nomCategorieG'] == $lacateg){
-                                echo '<option value = "'.$c['nomCategorieG'].'" selected>'.$c['nomCategorieG'].'</option>';
+
+                        foreach($categoriesG as $c){
+                            if(empty($fiches)){
+                                echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';
                             }
                             else{
-                                echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';
-                            }   
+                                if($c['nomCategorieG'] == $lacateg){
+                                    echo '<option value = "'.$c['nomCategorieG'].'" selected>'.$c['nomCategorieG'].'</option>';
+                                }
+                                else{
+                                    echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';
+                                }   
+                            }
                         }
                     }
-                }
-                else{
-                    foreach($categoriesG as $c){
-                        echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';
+                    else{
+                        foreach($categoriesG as $c){
+                            echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';
+                        }
                     }
-                }
-                    
-                ?>
+                        
+                    ?>
 
-            </select>
-            
-        </div>
+                </select>
+            </div>
 
-        <div class="col-md-12 text-center" id="search-button">
-            <button type="submit" class=" btn mybtn btn-success">Rechercher</button>
-        </div>
+            <div class="col-md-12 text-center" id="search-button">
+                <button type="submit" class=" btn mybtn btn-success">Rechercher</button>
+            </div>
 
-    </form>
+        </form>
+    </div>
 
     <div class="container" id="container-fiche">
 
         <div class="row"  id="autoSuggestionsList">
-        </div>
-                
+        </div>            
             
         <div class="row" id="ficheParCateg">
             <?php
@@ -195,7 +188,7 @@
                         echo validation_errors();
             
                         echo form_open('fiches/read');
-                              
+                            
                         echo '<div class="col" id="fiche">
                                 <input name="titre_fiche" id="titre_fiche" type="text" value="'.$f['titreFiche'].'" hidden>
                                 <h5>'.$f['titreFiche'].'</h5>
@@ -210,46 +203,50 @@
             ?>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <script type="text/javascript">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-        function ajaxSearch(){
-                var input_data = $('#search_data').val();
 
-                if (input_data.length === 0)
-                {
-                    $('#ficheParCateg').show();
-                    $('#autoSuggestionsList').hide();
-                }
-                else
-                {
-                    var post_data = {
-                        'search_data': input_data,
-                        '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
-                    };
+<script type="text/javascript">
 
-                    $.ajax({
-                        type: "POST",
-                        url: "<?php echo base_url(); ?>Fiches/autocomplete/",
-                        data: post_data,
-                        success: function (data) {
-                            // return success
-                            if (data.length > 0) {
-                                $('#ficheParCateg').hide();
-                                $('#autoSuggestionsList').show();                                
-                                $('#autoSuggestionsList').html(data);
-                            }
-                        }
-                    });
+    function ajaxSearch(){
+        var input_data = $('#search_data').val();
 
-                }
+        if (input_data.length === 0)
+        {
+            $('#ficheParCateg').show();
+            $('#autoSuggestionsList').hide();
         }
-        </script>
+        else
+        {
+            var post_data = {
+                'search_data': input_data,
+                '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>Fiches/autocomplete/",
+                data: post_data,
+                success: function (data) {
+                    // return success
+                    if (data.length > 0) {
+                        $('#ficheParCateg').hide();
+                        $('#autoSuggestionsList').show();                                
+                        $('#autoSuggestionsList').html(data);
+                    }
+                }
+            });
+
+        }
+    }
+    
+</script>
 
 </body>
 </html>

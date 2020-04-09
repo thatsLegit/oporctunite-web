@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Oporctunité</title>
+	<title>O'porc'tunité</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- bootswatch theme -->
 	<link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css"/>
@@ -12,14 +12,21 @@
 	<!-- Font Awesome CSS -->
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,900&display=swap" rel="stylesheet">
+
+	<style>
+		#mainNav{
+			padding-top:20px;
+			padding-bottom:20px;
+		}	
+	</style>
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+		<!-- Accueil/profil -->
+		<?php if($this->session->userdata('connecte')) : ?>
 		<a class="navbar-brand" href="<?php echo base_url(); ?>Utilisateurs/profil">O'porctunite</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+		<?php endif; ?>
 
 		<div class="collapse navbar-collapse" id="navbarColor02">
 			<ul class="navbar-nav mr-auto">
