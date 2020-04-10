@@ -11,7 +11,7 @@
         public function view(){
 
             if(!$this->session->userdata('connecte')){
-                redirect('utilisateur/login');
+                redirect('login');
             }
 
             //le veto n'a pas d'accès à ces vues

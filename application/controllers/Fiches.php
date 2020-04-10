@@ -6,34 +6,46 @@ class Fiches extends CI_Controller{
     }
     
     public function fiches(){
-        $this->load->helper('url_helper');
+
+        if(!$this->session->userdata('connecte')){
+            redirect('login');
+        }
+
         $data['search']='false';
         $data['categoriesG']=$this->Categories_model->getCategorieG();
         $data['fiches']=$this->Fiches_model->getFiches();
+
         $this->load->view('templates/header');
         $this->load->view('fiches/fiches_conseil_search',$data);
     }
 
     public function fiches_favoris(){
+
+        if(!$this->session->userdata('connecte')){
+            redirect('login');
+        }
+
         $utilisateur = $this->session->userdata('idutilisateur');
 
-        $this->load->helper('url_helper');
         $data['search']='false';
         $data['categoriesG']=$this->Categories_model->getCategorieG();
         $data['fiches']=$this->Fiches_model->getFiches_favoris($utilisateur);
+
         $this->load->view('templates/header');
         $this->load->view('fiches/fiches_conseil_favoris',$data);
         $this->load->view('templates/footer');
     }
 
     public function autocomplete(){
+
+        if(!$this->session->userdata('connecte')){
+            show_404();
+        }
+
         //recherche des fiches
-  
         // load model
         $this->load->model('Fiches_model');
-
         $search_data = $this->input->post('search_data');
-
         $result = $this->Fiches_model->get_autocomplete($search_data);
 
         if (!empty($result))
@@ -64,6 +76,10 @@ class Fiches extends CI_Controller{
     }
 
     public function ajaxReco(){
+
+        if(!$this->session->userdata('connecte')){
+            show_404();
+        }
         
         $this->load->model('Fiches_model');
         $label = $this->input->post('label');
@@ -89,11 +105,14 @@ class Fiches extends CI_Controller{
     }
 
     public function add_favoris(){
-        $this->load->model('Fiches_model');
 
+        if(!$this->session->userdata('connecte')){
+            show_404();
+        }
+
+        $this->load->model('Fiches_model');
         $titreFiche = $this->input->post('titre_fiche');
         $utilisateur = $this->session->userdata('idutilisateur');
-
         $fav = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
         
         if (empty($fav)){
@@ -106,6 +125,7 @@ class Fiches extends CI_Controller{
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
             $data['titre'] ='Fiche conseil';
+
             $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
             $this->load->view('templates/footer');
@@ -117,6 +137,7 @@ class Fiches extends CI_Controller{
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
             $data['titre'] ='Fiche conseil';
+
             $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
             $this->load->view('templates/footer');
@@ -124,11 +145,14 @@ class Fiches extends CI_Controller{
     }
 
     public function delete_favoris(){
-        $this->load->model('Fiches_model');
 
+        if(!$this->session->userdata('connecte')){
+            show_404();
+        }
+
+        $this->load->model('Fiches_model');
         $titreFiche = $this->input->post('titre_fiche');
         $utilisateur = $this->session->userdata('idutilisateur');
-            
         $this->Fiches_model->delete_favoris($titreFiche, $utilisateur);
 
         $data['avis'] = $this->Fiches_model->get_avis($titreFiche);
@@ -137,14 +161,19 @@ class Fiches extends CI_Controller{
         $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
         $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
         $data['titre'] ='Fiche conseil';
+
         $this->load->view('templates/header');
         $this->load->view('fiches/fiches_conseils',$data);
         $this->load->view('templates/footer');
     }
 
     public function noter(){
-        $this->load->model('Fiches_model');
 
+        if(!$this->session->userdata('connecte')){
+            show_404();
+        }
+
+        $this->load->model('Fiches_model');
         $titreFiche = $this->input->post('titre_fiche');
         $ajouterNote = $this->input->post('ajouterNote');
         $commentaire = $this->input->post('commentaire');
@@ -160,6 +189,7 @@ class Fiches extends CI_Controller{
             $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['titre'] ='Fiche conseil';
+
             $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
         } else {
@@ -171,18 +201,17 @@ class Fiches extends CI_Controller{
             $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titreFiche);
             $data['titre'] ='Fiche conseil';
+
             $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
         }
     }
 
-    public function dropFromFavorites($critères){
-        //enlève une fiche des favories
-    }
-
     public function search(){
-        $this->load->helper('form');
-        $this->load->library('form_validation');
+
+        if(!$this->session->userdata('connecte')){
+            show_404();
+        }
 
         $categorie = $this->input->post('categ');
         
@@ -196,6 +225,7 @@ class Fiches extends CI_Controller{
                     $data['fiches'] = $this->Fiches_model->get_fiches_search($categorie);
                     $data['search']='true';
                     $data['titre'] ='Les fiches';
+
                     $this->load->view('templates/header');
                     $this->load->view('fiches/fiches_conseil_search',$data);
             } else {
@@ -205,8 +235,10 @@ class Fiches extends CI_Controller{
     }
 
     public function search_favoris(){
-        $this->load->helper('form');
-        $this->load->library('form_validation');
+
+        if(!$this->session->userdata('connecte')){
+            show_404();
+        }
 
         $categorie = $this->input->post('categ');
         $utilisateur = $this->session->userdata('idutilisateur');
@@ -222,6 +254,7 @@ class Fiches extends CI_Controller{
                     $data['fiches'] = $this->Fiches_model->get_fiches_search_favoris($categorie, $utilisateur);
                     $data['search']='true';
                     $data['titre'] ='Les fiches';
+
                     $this->load->view('templates/header');
                     $this->load->view('fiches/fiches_conseil_favoris',$data);
                     $this->load->view('templates/footer');
@@ -233,9 +266,9 @@ class Fiches extends CI_Controller{
 
     public function read(){
 
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        $this->load->helper('url');
+        if(!$this->session->userdata('connecte')){
+            show_404();
+        }
 
         $titre_fiche = $this->input->post('titre_fiche');
         $utilisateur = $this->session->userdata('idutilisateur');
@@ -251,6 +284,7 @@ class Fiches extends CI_Controller{
             $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titre_fiche, $utilisateur);
             $data['fiche'] = $this->Fiches_model->get_fiches_nom($titre_fiche);
             $data['titre'] ='Fiche conseil';
+
             $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
             $this->load->view('templates/footer');
@@ -258,9 +292,10 @@ class Fiches extends CI_Controller{
     }
 
     public function add_fiche() {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        $this->load->helper('url');
+
+        if(!$this->session->userdata('connecte') ||$this->session->userdata('statut')!='admin'){
+            show_404();
+        }
 
         $titre_fiche = $this->input->post('titre');
         $categorie = $this->input->post('categ');
@@ -271,14 +306,15 @@ class Fiches extends CI_Controller{
 
         if($this->form_validation->run() === FALSE){
             $data['categoriesG']=$this->Categories_model->getCategorieG();
+
             $this->load->view('templates/header');
             $this->load->view('fiches/fiches_add',$data);
             $this->load->view('templates/footer');
         }
         else {
             //Ajouter le code afin d'ajouter une nouvelle fiche conseil    
-
             $data['categoriesG']=$this->Categories_model->getCategorieG();
+
             $this->load->view('templates/header',$data);
             $this->load->view('fiches/fiches_add',$data);
         }

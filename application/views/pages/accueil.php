@@ -42,12 +42,18 @@
           <li class="nav-item">
             <a style="color: green !important;" class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
+          <?php if(!$this->session->userdata('connecte')): ?>
           <li class="nav-item">
-            <a style="color: green !important; margin:5px;" class="btn btn-outline-success" href="<?php echo base_url(); ?>Utilisateurs/inscription">Inscription</a>
+            <a style="color: green !important; margin:5px;" class="btn btn-outline-success" href="<?php echo base_url(); ?>inscription">Inscription</a>
           </li>
           <li class="nav-item">
-            <a style="color: green !important; margin:5px;" class="btn btn-outline-success" href="<?php echo base_url(); ?>Utilisateurs/login">Connexion</a>
+            <a style="color: green !important; margin:5px;" class="btn btn-outline-success" href="<?php echo base_url(); ?>login">Connexion</a>
           </li>
+          <?php else : ?>
+            <li class="nav-item">
+            <a style="color: green !important; margin:5px;" class="btn btn-outline-success" href="<?php echo base_url(); ?>Utilisateurs/profil">Mon espace O'porctunité</a>
+          </li>
+          <?php endif; ?>
         </ul>
       </div>
     </div>

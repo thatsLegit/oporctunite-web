@@ -27,7 +27,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
 		<!-- Accueil/profil -->
 		<?php if($this->session->userdata('connecte')) : ?>
-		<a class="navbar-brand" href="<?php echo base_url(); ?>Utilisateurs/profil">O'porctunite</a>
+		<a class="navbar-brand" href="<?php echo base_url(); ?>accueil">O'porctunite</a>
 		<?php endif; ?>
 
 		<div class="collapse navbar-collapse" id="navbarColor02">

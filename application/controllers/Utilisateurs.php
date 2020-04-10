@@ -10,7 +10,7 @@
 
             //Si l'utilisateur est dejà co, le rediriger vers la page d'accueil
             if($this->session->userdata('connecte')){
-                redirect('profil');
+                redirect('utilisateurs/profil');
             }
 
             $this->config->set_item('language', 'french');
@@ -193,6 +193,12 @@
         
         
         public function login(){
+
+            //Si l'utilisateur est dejà co, le rediriger vers la page d'accueil
+            if($this->session->userdata('connecte')){
+                redirect('utilisateurs/profil');
+            }
+            
             $this->config->set_item('language', 'french');
 
             //validation rules
@@ -273,7 +279,7 @@
         public function profil(){
 
             if(!$this->session->userdata('connecte')){
-                redirect('accueil');
+                redirect('login');
             }
 
             $name = $this->session->userdata('nom');
@@ -302,6 +308,10 @@
 
         public function elevage_suivi(){
 
+            if(!$this->session->userdata('connecte') || $this->session->userdata('statut')!="elevage"){
+                redirect('login');
+            }
+
             $name_elevage = $this->session->userdata('nom');
             $data['veterinaire']=$this->utilisateurs_model->getVeterinaire();
             $data['veterinaire_suivi']=$this->utilisateurs_model->getVeterinaire_suivi($name_elevage);
@@ -314,6 +324,10 @@
         //pq id ?
         public function veterinaire_suivi(){
 
+            if(!$this->session->userdata('connecte') || $this->session->userdata('statut')!="veterinaire"){
+                redirect('login');
+            }
+
             $id_veterinaire = $this->session->userdata('idutilisateur');
             $data['elevage_suivi']=$this->utilisateurs_model->getElevage_suivi($id_veterinaire);
 
@@ -324,6 +338,10 @@
 
         public function admin_suivi(){
 
+            if(!$this->session->userdata('connecte') || $this->session->userdata('statut')!="admin"){
+                redirect('login');
+            }
+
             $data['elevage']=$this->utilisateurs_model->getElevage();
             $data['veterinaire']=$this->utilisateurs_model->getVeterinaire();
 
@@ -333,6 +351,10 @@
         }
 
         public function demander_suivi(){
+
+            if(!$this->session->userdata('connecte') || $this->session->userdata('statut')!="elevage"){
+                show_404();
+            }
 
             $name_elevage = $this->session->userdata('nom');
             $numVeterinaire = $this->input->post('numVeterinaire');
@@ -347,8 +369,9 @@
 
             if(empty($suivi)){
                 $this->utilisateurs_model->add_suivi($numElevage, $numVeterinaire);
-            }
-            else{
+
+            } else {
+
                 foreach($suivi as $s){
                     $etat = $s['etat'];
                 }
@@ -369,6 +392,10 @@
         }
 
         public function supprimer_suivi(){
+
+            if(!$this->session->userdata('connecte') || $this->session->userdata('statut')=="admin"){
+                show_404();
+            }
 
             if($this->session->userdata('statut')== "veterinaire"){
                 $name_veterinaire = $this->session->userdata('nom');
@@ -413,24 +440,28 @@
 
         public function accepter_suivi(){
 
-                $name_veterinaire = $this->session->userdata('nom');
-                $numElevage = $this->input->post('numEleveur');
+            if(!$this->session->userdata('connecte') || $this->session->userdata('statut')!="veterinaire"){
+                show_404();
+            }
 
-                $veterinaire = $this->utilisateurs_model->getNum_Veterinaire_name($name_veterinaire);
+            $name_veterinaire = $this->session->userdata('nom');
+            $numElevage = $this->input->post('numEleveur');
 
-                foreach($veterinaire as $v){
-                    $numVeterinaire = $v['numVeterinaire'];
-                }
+            $veterinaire = $this->utilisateurs_model->getNum_Veterinaire_name($name_veterinaire);
 
-                $this->utilisateurs_model->update_accepter_suivi($numElevage, $numVeterinaire);
+            foreach($veterinaire as $v){
+                $numVeterinaire = $v['numVeterinaire'];
+            }
 
-                $id_veterinaire = $this->session->userdata('idutilisateur');
+            $this->utilisateurs_model->update_accepter_suivi($numElevage, $numVeterinaire);
 
-                $data['elevage_suivi']=$this->utilisateurs_model->getElevage_suivi($id_veterinaire);
+            $id_veterinaire = $this->session->userdata('idutilisateur');
 
-                $this->load->view('templates/header');
-                $this->load->view('utilisateurs/veterinaire/suivi-veterinaire', $data);
-                $this->load->view('templates/footer');
+            $data['elevage_suivi']=$this->utilisateurs_model->getElevage_suivi($id_veterinaire);
+
+            $this->load->view('templates/header');
+            $this->load->view('utilisateurs/veterinaire/suivi-veterinaire', $data);
+            $this->load->view('templates/footer');
 
         }
     }
