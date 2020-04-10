@@ -2,13 +2,8 @@
 
     //pour la connexion, ajouter la fonction de changement de mdp
     //confirmation d'inscription par mail
-    //rajouter la photo dans les données de session + ttes autres infos pertinentes pour alleger le nb de requetes
-    //créer un compte admin et ses droits
-
+    //Empêcher la rafraichissement de la page d’inscription 
     //mettre la partie suivi dans un controller séparé
-    //contact et accueil dans le controller pages
-    //access control d'un user non connecté ?
-    //connexion après inscription : useless ?
     
     class Utilisateurs extends CI_Controller{
         public function inscription(){
@@ -199,7 +194,6 @@
         
         public function login(){
             $this->config->set_item('language', 'french');
-            $data['title'] = 'Se connecter';
 
             //validation rules
             $this->form_validation->set_rules('login', 'login', 'required');
@@ -207,7 +201,7 @@
 
             if($this->form_validation->run() === FALSE){
                 $this->load->view('templates/header-connexion-inscription');
-                $this->load->view('utilisateurs/login', $data);
+                $this->load->view('utilisateurs/login');
                 $this->load->view('templates/footer');
 
             } else {
@@ -257,10 +251,6 @@
 				}		
 			}
         }  
-
-        public function check_default($statut){
-           return $statut == '0' ? FALSE : TRUE;
-        }
 
         public function logout(){
             if(!$this->session->userdata('connecte')){

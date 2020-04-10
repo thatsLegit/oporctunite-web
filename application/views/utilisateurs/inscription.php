@@ -56,7 +56,7 @@
                 <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Vos coordonnées : </label></strong>
                 <div class="form-group">
                     <input type="text" name="ville" id="ville" class="form-control" aria-describedby="emailHelp" placeholder="Ville, commune, lieu-dit">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner ce champs.</span>
+                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner ce champ.</span>
                 </div>
 
                 <div class="form-group">

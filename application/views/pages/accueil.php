@@ -4,11 +4,11 @@
 <head>
 
   <meta charset="utf-8">
-  <title>O'porc'tunité</title>
+  <title>O'porctunité</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap core CSS -->
-  <link href="<?php echo base_url(); ?>assets/accueil/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap cdn -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <!-- Custom fonts for this template -->
   <link href="<?php echo base_url(); ?>assets/accueil/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -57,7 +57,7 @@
   <header class="masthead">
     <div class="container">
       <div class="intro-text">
-        <div class="intro-lead-in">Bienvenue sur O'porc'tunité</div>
+        <div class="intro-lead-in">Bienvenue sur O'porctunité</div>
         <a class="btn btn-success btn-xl text-uppercase js-scroll-trigger" href="#portfolio">En savoir plus</a>
       </div>
     </div>
@@ -122,7 +122,7 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <h2 class="section-heading text-uppercase">A propos</h2>
-          <h3 class="section-subheading text-muted">O'porc'tunité est le fruit d'une collaboration entre étudiants de tous horizons !</h3>
+          <h3 class="section-subheading text-muted">O'porctunité est le fruit d'une collaboration entre étudiants de tous horizons !</h3>
         </div>
       </div>
       <div class="row">
@@ -130,7 +130,7 @@
           <ul class="timeline">
             <li>
               <div class="timeline-image">
-                <img class="rounded-circle img-fluid" src="<?php echo base_url(); ?>assets/accueil/img/about/1.jpg" alt="">
+                <img class="rounded-circle img-fluid" src="<?php echo base_url(); ?>assets/accueil/img/about/1-small.jpg" alt="">
               </div>
               <div class="timeline-panel">
                 <div class="timeline-heading">
@@ -138,13 +138,13 @@
                   <h4 class="subheading">Les débuts...</h4>
                 </div>
                 <div class="timeline-body">
-                  <p class="text-muted">Laura Jegou présente son projet à Disrupt'Campus, un dispositif inter-universitaire permettant de regrouper des étudiants de formations très diverses dans le but de travailler sur un projet commun !</p>
+                  <p class="text-muted">Laura Jégou présente son projet à Disrupt'Campus, un dispositif inter-universitaire permettant de regrouper des étudiants de formations très diverses dans le but de travailler sur un projet commun !</p>
                 </div>
               </div>
             </li>
             <li class="timeline-inverted">
               <div class="timeline-image">
-                <img class="rounded-circle img-fluid" src="<?php echo base_url(); ?>assets/accueil/img/about/2.jpg" alt="">
+                <img class="rounded-circle img-fluid" src="<?php echo base_url(); ?>assets/accueil/img/about/2-small.jpg" alt="">
               </div>
               <div class="timeline-panel">
                 <div class="timeline-heading">
@@ -166,13 +166,13 @@
                   <h4 class="subheading">Le développement commence</h4>
                 </div>
                 <div class="timeline-body">
-                  <p class="text-muted">Le choix est fait de scinder les équipes en développement mobile et développement web, le site d'O'porc'tunité voit alors le jour.</p>
+                  <p class="text-muted">Le choix est fait de scinder les équipes en développement mobile et développement web, le site d'O'porctunité voit alors le jour.</p>
                 </div>
               </div>
             </li>
             <li class="timeline-inverted">
               <div class="timeline-image">
-                <img class="rounded-circle img-fluid" src="<?php echo base_url(); ?>assets/accueil/img/about/4.jpg" alt="">
+                <img class="rounded-circle img-fluid" src="<?php echo base_url(); ?>assets/accueil/img/about/4-small.jpg" alt="">
               </div>
               <div class="timeline-panel">
                 <div class="timeline-heading">
@@ -202,7 +202,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">L'équipe O'porc'tunité</h2>
+          <h2 class="section-heading text-uppercase">L'équipe O'porctunité</h2>
           <h3 class="section-subheading text-muted">L'équipe est constitué de développeurs, juristes et de vétérinaires bien sûr !</h3>
         </div>
       </div>
@@ -210,7 +210,7 @@
         <div class="col-sm-4">
           <div class="team-member">
             <img class="mx-auto rounded-circle" src="<?php echo base_url(); ?>assets/accueil/img/team/lauraJegou.jpg" alt="">
-            <h4>Laura Jegou</h4>
+            <h4>Laura Jégou</h4>
             <p class="text-muted">Responsable du projet, vétérinaire</p>
             <ul class="list-inline social-buttons">
               <li class="list-inline-item">
@@ -253,7 +253,7 @@
         <div class="col-sm-4">
           <div class="team-member">
             <img class="mx-auto rounded-circle" src="<?php echo base_url(); ?>assets/accueil/img/team/defaultImage.jpg" alt="">
-            <h4>David Chamberlain</h4>
+            <h4>David Chartelain</h4>
             <p class="text-muted">Développeur web</p>
             <ul class="list-inline social-buttons">
               <li class="list-inline-item">
@@ -373,7 +373,7 @@
         <div class="col-sm-4">
           <div class="team-member">
             <img class="mx-auto rounded-circle" src="<?php echo base_url(); ?>assets/accueil/img/team/defaultImage.jpg" alt="">
-            <h4>???</h4>
+            <h4>Marine Adreit</h4>
             <p class="text-muted">Juriste</p>
             <ul class="list-inline social-buttons">
               <li class="list-inline-item">
@@ -496,7 +496,7 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-4">
-          <span class="copyright">Copyright &copy; O'porc'tunité 2020</span>
+          <span class="copyright">Copyright &copy; O'porctunité 2020</span>
         </div>
         <div class="col-md-4">
           <ul class="list-inline social-buttons">
@@ -543,7 +543,7 @@
                 <h2 class="text-uppercase">Bilans graphiques</h2>
                 <p class="item-intro text-muted">Le compte eleveur vous permet d'acceder à des analyses graphiques basées sur vos résultats de tests.</p>
                 <img class="img-fluid d-block mx-auto" src="<?php echo base_url(); ?>assets/accueil/img/portfolio/bilans_graphiques-full.png" alt="">
-                <p>Accedez à des bilans détaillés par catégorie de vos tests réalisés sur l'application mobile O'porc'tunité.</p>
+                <p>Accedez à des bilans détaillés par catégorie de vos tests réalisés sur l'application mobile O'porctunité.</p>
                 <button class="btn btn-primary" data-dismiss="modal" type="button">
                   <i class="fas fa-times"></i>
                   Fermer</button>
@@ -572,7 +572,7 @@
                 <h2 class="text-uppercase">Fiches conseils</h2>
                 <p class="item-intro text-muted">Pour vous aider à améliorer le bien-être de vos animaux.</p>
                 <img class="img-fluid d-block mx-auto" src="<?php echo base_url(); ?>assets/accueil/img/portfolio/fiches-full.png" alt="">
-                <p>Les fiches conseils sont rédigées par Laura Jegou, administratrice d'O'porc'tunité, en thèse à l'Ecole Nationale vétérinaire de Toulouse.
+                <p>Les fiches conseils sont rédigées par Laura Jégou, administratrice d'O'porctunité, en thèse à l'Ecole Nationale vétérinaire de Toulouse.
                   Notez, commentez, mettez les fiches qui vous plaisent en favoris !
                 </p>
                 <button class="btn btn-primary" data-dismiss="modal" type="button">
