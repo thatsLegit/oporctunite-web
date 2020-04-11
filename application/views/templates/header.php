@@ -76,7 +76,7 @@
 					</a>
 				</li>
 				<?php endif; ?>
-				<?php if($this->session->userdata('connecte')) : ?>
+				<?php if($this->session->userdata('connecte') && base_url(uri_string())=='https://oporctunite.envt.fr/Utilisateurs/profil') : ?>
 				<li>
 					<a href="<?php echo base_url(); ?>utilisateurs/logout">
 						<button type="button" class="btn btn-outline-light">

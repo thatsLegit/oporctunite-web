@@ -96,7 +96,7 @@ class Fiches extends CI_Controller{
                             <div style="padding:auto;margin:auto;">
                                 <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
                                 <h5 class="text-center">'.$row->titreFiche.'</h5>
-                                <p class="text-center">'.$row->nomCategorieG.'</p>
+                                <p class="text-center" style="margin:30px 0px;">'.$row->nomCategorieG.'</p>
                                 <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
                             </div>
                         </div>
