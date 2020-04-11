@@ -32,7 +32,7 @@
 		<div class="collapse navbar-collapse" id="navbarColor02">
 			<!-- Accueil/profil -->
 			<?php if($this->session->userdata('connecte')) : ?>
-			<a class="navbar-brand" href="<?php echo base_url(); ?>accueil">O'porctunite</a>
+				<a class="navbar-brand" href="<?php echo base_url(); ?>accueil">O'porctunite</a>
 			<?php endif; ?>
 
 			<ul class="navbar-nav mr-auto">
@@ -76,7 +76,7 @@
 					</a>
 				</li>
 				<?php endif; ?>
-				<?php if($this->session->userdata('connecte') && base_url(uri_string())=='https://oporctunite.envt.fr/Utilisateurs/profil') : ?>
+				<?php if($this->session->userdata('connecte') && (base_url(uri_string())=='https://oporctunite.envt.fr/Utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr/utilisateurs/profil')) : ?>
 				<li>
 					<a href="<?php echo base_url(); ?>utilisateurs/logout">
 						<button type="button" class="btn btn-outline-light">

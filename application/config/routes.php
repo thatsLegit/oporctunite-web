@@ -62,8 +62,6 @@ $route['logout'] = 'utilisateurs/logout';
 
 $route['bilan'] = 'bilans/view';
 
-$route['profil'] = 'Utilisateurs/profil';
-
 $route['suivre'] = 'Utilisateurs/elevage_suivi';
 $route['suivis'] = 'Utilisateurs/veterinaire_suivi';
 $route['suivi_administrateur'] = 'Utilisateurs/admin_suivi';
