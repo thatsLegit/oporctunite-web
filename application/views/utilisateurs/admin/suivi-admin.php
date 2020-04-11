@@ -25,106 +25,97 @@
             width: 7vw;
         }
 
+        #main{
+            margin-top:120px;
+            padding: 10px;
+        }
+
     </style>
 </head>
 
-<body>
-    <div id="main" class="text-center">
-        <div id="menu-accueil">
-            <h2 class="title">Bienvenue 
-                <?php
-                    echo "<h5>".$this->session->userdata('nom')."</h5>";
-                ?>
-            </h2>
-        </div>
+<div id="main" class="container">
 
-        <div class="container">
-            <p>Vétérinaire possédant un compte O'porctunité :</p>
-            <br>          
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Cabinet</th>
-                        <th>Adresse</th>
-                        <th>Code Postal</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
-                        <th> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        foreach($veterinaire as $v){
+    <div class="container">
+        <h4>Vétérinaires possédant un compte O'porctunité :</h4>
+        <br>          
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Cabinet</th>
+                    <th>Adresse</th>
+                    <th>Code Postal</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                    foreach($veterinaire as $v){
 
-                                //echo validation_errors();
-            
-                                //echo form_open('Utilisateurs/bannir');
-
-                                    echo '<tr>
-                                        <td>'.$v['nomCabinet'].'</td>
-                                        <td>'.$v['adresse'].'</td>
-                                        <td>'.$v['codePostal'].'</td>
-                                        <td>'.$v['email'].'</td>
-                                        <td>'.$v['telephone'].'</td>
-                                        <input name="numVeterinaire" id="numVeterinaire" type="text" value="'.$v['numVeterinaire'].'" hidden>
-                                        <td><button id="button" type="submit" class="btn btn-danger">Bannir vétérinaire</button></td>
-                                    </tr>';
-                                //</form>';
-                        }
-
-                    ?>
-                </tbody>
-            </table>
-        </div>
-
-
-        <div class="container">
-            <p>Élevage possédant un compte O'porctunité :</p>
-            <br>          
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                    <th>Elevage</th>
-                        <th>Taille</th>
-                        <th>Adresse</th>
-                        <th>Code Postal</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
-                        <th> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        foreach($elevage as $e){
-
-                                //echo validation_errors();
-            
-                                //echo form_open('Utilisateurs/bannir');
-
-                                    echo '<tr>
-                                        <td>'.$e['nomElevage'].'</td>
-                                        <td>'.$e['tailleElevage'].'</td>
-                                        <td>'.$e['adresse'].'</td>
-                                        <td>'.$e['codePostal'].'</td>
-                                        <td>'.$e['email'].'</td>
-                                        <td>'.$e['telephone'].'</td>
-                                        <input name="numEleveur" id="numEleveur" type="text" value="'.$e['numEleveur'].'" hidden>
-                                        <td><button id="button" type="submit" class="btn btn-danger">Bannir élevage</button></td>
-                                    </tr>';
-                                //</form>';
-                        }
-
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                            //echo validation_errors();
         
+                            //echo form_open('Utilisateurs/bannir');
+
+                                echo '<tr>
+                                    <td>'.$v['nomCabinet'].'</td>
+                                    <td>'.$v['adresse'].'</td>
+                                    <td>'.$v['codePostal'].'</td>
+                                    <td>'.$v['email'].'</td>
+                                    <td>'.$v['telephone'].'</td>
+                                    <input name="numVeterinaire" id="numVeterinaire" type="text" value="'.$v['numVeterinaire'].'" hidden>
+                                    <td><button id="button" type="submit" class="btn btn-danger">Bannir vétérinaire</button></td>
+                                </tr>';
+                            //</form>';
+                    }
+                ?>
+            </tbody>
+        </table>
     </div>
 
-    <script>
-    alert("La fonctionnalité afin de bannir un utilisateur est en cours de développement")
-    </script>
 
-</body>
+    <div class="container" style="margin-top:30px;">
+        <h4>Élevages possédant un compte O'porctunité :</h4>
+        <br>          
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th>Elevage</th>
+                    <th>Taille</th>
+                    <th>Adresse</th>
+                    <th>Code Postal</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                    foreach($elevage as $e){
 
-</html>
+                            //echo validation_errors();
+        
+                            //echo form_open('Utilisateurs/bannir');
+
+                                echo '<tr>
+                                    <td>'.$e['nomElevage'].'</td>
+                                    <td>'.$e['tailleElevage'].'</td>
+                                    <td>'.$e['adresse'].'</td>
+                                    <td>'.$e['codePostal'].'</td>
+                                    <td>'.$e['email'].'</td>
+                                    <td>'.$e['telephone'].'</td>
+                                    <input name="numEleveur" id="numEleveur" type="text" value="'.$e['numEleveur'].'" hidden>
+                                    <td><button id="button" type="submit" class="btn btn-danger">Bannir élevage</button></td>
+                                </tr>';
+                            //</form>';
+                    }
+                ?>
+            </tbody>
+        </table>
+    </div>  
+</div>
+
+
+<script>
+    alert("La fonctionnalité 'bannir un utilisateur' est en cours de développement")
+</script>

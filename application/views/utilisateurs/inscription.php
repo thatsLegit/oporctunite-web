@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="form-group">
-                    <strong><label style="color:rgb(0,177,77);font-size:1.5em">Choisissez une photo de profil</label> (optionnel)</strong>
+                    <strong><label style="color:rgb(0,177,77);font-size:1.5em">Choisissez une photo de profil*</label> <i>*Optionnel</i></strong>
                     <input type="file" onchange="handleFiles(files,preview);getoutput(this)" name="userfile" id="photo" size="20">
                     <span class="d-inline-block bg-danger" style="font-size:1em;">Attention : formats acceptés : png, jpg, gif.</span>
                     <div><label for="photo"><div id="preview" style="width:200px;"></div></label></div>
@@ -249,7 +249,7 @@
                 </div>
 
                 <div class="form-group">
-                    <strong><label style="color:rgb(0,177,77);font-size:1.5em">Choisissez une photo de profil</label> (optionnel)</strong>
+                    <strong><label style="color:rgb(0,177,77);font-size:1.5em">Choisissez une photo de profil*</label> <i>*Optionnel</i></strong>
                     <input type="file" onchange="handleFiles(files,preview2);getoutput(this)" name="userfile" id="photo2" size="20">
                     <span class="d-inline-block bg-danger" style="font-size:1em;">Attention : formats acceptés : png, jpg, gif.</span>
                     <div><label for="photo2"><div id="preview2" style="width:200px;"></div></label></div>
@@ -369,3 +369,9 @@ function changer() {
     }
 }
 </script>
+
+<script src="<?php echo base_url();?>assets/js/inscription.js"></script>
+
+</div>
+</body>
+</html>

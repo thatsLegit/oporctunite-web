@@ -17,6 +17,7 @@ class Fiches extends CI_Controller{
 
         $this->load->view('templates/header');
         $this->load->view('fiches/fiches_conseil_search',$data);
+        $this->load->view('templates/footer');
     }
 
     public function fiches_favoris(){
@@ -53,28 +54,27 @@ class Fiches extends CI_Controller{
             foreach ($result as $row):
 
                 echo validation_errors();
-    
                 echo form_open('fiches/read');
 
-                echo '<div class="col" id="fiche">
-                        <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
-                        <h5>'.$row->titreFiche.'</h5>
-                        <p>'.$row->nomCategorieG.'</p>
-                        <div id="fiche-bas">
-                            <button type="submit" id="fiche-button" value="'.$row->titreFiche.'">En savoir plus</button>
+                echo '  <div class="col" id="fiche">
+                            <div style="padding:auto;margin:auto;">
+                                <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
+                                <h5 class="text-center">'.$row->titreFiche.'</h5>
+                                <p class="text-center">'.$row->nomCategorieG.'</p>
+                                <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
+                            </div>
                         </div>
-                    </div>
-                    </form>';
+                </form>';
             endforeach;
-        }
-        else
-        {
+        } else {
             echo '<div class="col" id="fiche">
                     <h5> <em> Aucune fiche n\'a été trouvé </em> <h5>
                     </div>';
         }
+
     }
 
+    //même chose que la fonction du dessus mais pour le bilan, y'a un modèle différent
     public function ajaxReco(){
 
         if(!$this->session->userdata('connecte')){
@@ -86,20 +86,21 @@ class Fiches extends CI_Controller{
         $result = $this->Fiches_model->get_ajaxReco($label);
 
         if (!empty($result)){
-                foreach ($result as $row):
+
+            foreach ($result as $row):
 
                 echo validation_errors();
                 echo form_open('fiches/read');
 
-                echo '<div class="col" id="fiche">
-                        <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
-                        <h5>'.$row->titreFiche.'</h5>
-                        <p>'.$row->nomCategorieG.'</p>
-                        <div id="fiche-bas">
-                            <button type="submit" id="fiche-button" value="'.$row->titreFiche.'">En savoir plus</button>
+                echo '  <div class="col" id="fiche">
+                            <div style="padding:auto;margin:auto;">
+                                <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
+                                <h5 class="text-center">'.$row->titreFiche.'</h5>
+                                <p class="text-center">'.$row->nomCategorieG.'</p>
+                                <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
+                            </div>
                         </div>
-                    </div>
-                    </form>';
+                </form>';
             endforeach;
         }
     }
@@ -192,6 +193,7 @@ class Fiches extends CI_Controller{
 
             $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
+            $this->load->view('templates/footer');
         } else {
             $this->Fiches_model->add_note($titreFiche, $utilisateur, $ajouterNote, $commentaire);
 
@@ -204,6 +206,7 @@ class Fiches extends CI_Controller{
 
             $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
+            $this->load->view('templates/footer');
         }
     }
 
@@ -228,6 +231,7 @@ class Fiches extends CI_Controller{
 
                     $this->load->view('templates/header');
                     $this->load->view('fiches/fiches_conseil_search',$data);
+                    $this->load->view('templates/footer');
             } else {
                     $this->fiches();
             }
@@ -247,8 +251,8 @@ class Fiches extends CI_Controller{
 
         if($this->form_validation->run() === FALSE){
             $this->fiches_favoris();
-        }
-        else {
+        } else {
+
             if($categorie != 1){
                     $data['categoriesG']=$this->Categories_model->getCategorieG();
                     $data['fiches'] = $this->Fiches_model->get_fiches_search_favoris($categorie, $utilisateur);
@@ -277,7 +281,7 @@ class Fiches extends CI_Controller{
 
         if($this->form_validation->run() === FALSE){
             $this->fiches();
-        } else{
+        } else {
             $data['avis'] = $this->Fiches_model->get_avis($titre_fiche);
             $data['maNote'] = $this->Fiches_model->get_ma_note($titre_fiche, $utilisateur);
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titre_fiche);
@@ -315,8 +319,9 @@ class Fiches extends CI_Controller{
             //Ajouter le code afin d'ajouter une nouvelle fiche conseil    
             $data['categoriesG']=$this->Categories_model->getCategorieG();
 
-            $this->load->view('templates/header',$data);
+            $this->load->view('templates/header');
             $this->load->view('fiches/fiches_add',$data);
+            $this->load->view('templates/footer');
         }
     }
 }

@@ -20,7 +20,7 @@
 			font-family: "Montserrat",Arial, Helvetica, sans-serif;
 		}
 
-		h2, h5, p{
+		p{
 			color: #818181;
 		}
 
@@ -126,8 +126,8 @@
 
 	#fiche{
 		margin: 20px;
-		width: 20vw;
-		height: 25vh;
+        width: 180px;
+        height: 200px;
 		background-color: white;
 		color: black;
 		text-align: center;
@@ -136,19 +136,24 @@
 	}
 
 	#fiche h5{
-		padding-top: 15px;
-	}
+        padding:auto;
+    }
 
-	#fiche p{
-		font-size: .85rem;
-	}
+    #fiche p{
+        padding:auto;
+    }
 
-	#fiche button{
-		width: 8vw;
-		height: 5vh;
+	#fiche button {
+		width: 80px;
+		height: 40px;
 		font-size: .75rem;
 		border-radius: 5px;
-	}
+    }
+
+	#fiche button:hover {
+        background-color:#86cd23;
+        transition: 0.5s;
+    }
 
 	#main{
 		margin-top:90px;
@@ -160,19 +165,17 @@
 
 <div class="container" id="main">
 	
-	<div class="row justify-content-md-center">
-        <div class="col-md-auto">
-            <h4 style="margin-bottom:30px;color:grey;">Résultats des tests</h4>   
-        </div>
-    </div>   
+	<center style="color:black;margin-top:75px;"><h4>Résultats des tests</h4></center>
 
-	<div class="row">
-			<div class="col-md">
-				<canvas id="canvas"></canvas>
-			</div>
-			<div class="col-md">
-				<canvas id="canvas2"></canvas>
-			</div>
+	<div class="row justify-content-md-center">
+		<div class="col-md-auto">
+			<canvas id="canvas"></canvas>
+		</div>
+	</div>
+
+	<div class="row justify-content-md-center">
+		<div class="col-md-auto">
+			<canvas id="canvas2"></canvas>
 		</div>
 	</div>
 
@@ -326,6 +329,7 @@
 
 	<center style="color:black;margin-top:75px;"><h4>Historique des tests</h4></center>
 	<div class="row">
+		<div class="col">	
 		<div class="graph">
 			<ul class="months">
 			<li><p>Jan</p></li>
@@ -353,6 +357,7 @@
 			<ul class="squares">
 			<!-- added via javascript -->
 			</ul>
+		</div>
 		</div>
 	</div>
 </div>

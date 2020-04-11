@@ -31,7 +31,6 @@
                 if($this->form_validation->run() === FALSE){
                     $this->load->view('templates/header');
                     $this->load->view('utilisateurs/inscription');
-                    $this->load->view('templates/footer');
                 } else {
                     //encrypting password
                     $enc_password = md5($this->input->post('password'));
@@ -86,7 +85,6 @@
                 if($this->form_validation->run() === FALSE){
                     $this->load->view('templates/header-connexion-inscription');
                     $this->load->view('utilisateurs/inscription');
-                    $this->load->view('templates/footer');
 
                 } else {
                     //encrypting password

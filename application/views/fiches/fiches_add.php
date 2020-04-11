@@ -53,7 +53,8 @@
         }
 
         #main{
-            margin-top: 75px;
+            margin-top:90px;
+            padding: 10px;
         }
 
         #titre{
@@ -73,55 +74,49 @@
     </style>
 </head>
 
-<body>
-    <h4 class="text-center">Ajouter une fiche conseil</h4>
+<div class="container" id="main">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div class="form mt-5">
 
+                <?php
+                    //echo validation_errors();
+                    //$attributes = array('name' => 'login_data');
+                    //echo form_open('fiches/add_fiche' , $attributes);
+                ?>
+                    <div class="form-group">
+                        
+                    <select class="select" name="categ" id="categ">
+                        <option value="1" hidden class="statut">Catégories</option>
+                        <?php
+                            foreach($categoriesG as $c){  
+                                        echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';    
+                            }   
+                        ?>
+                    </select>
+                    </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5 mx-auto">
-                <div class="form mt-5">
+                    <div class="form-group col-md-12">
+                        <input type="text" name="titre" id="titre" class="form-control" placeholder="Titre de la fiche"/>
+                    </div>
 
-                    <?php
-                        //echo validation_errors();
-                        //$attributes = array('name' => 'login_data');
-                        //echo form_open('fiches/add_fiche' , $attributes);
-                    ?>
-                        <div class="form-group">
-                            
-                        <select class="select" name="categ" id="categ">
-                            <option value="1" hidden class="statut">Catégories</option>
-                            <?php
-                                foreach($categoriesG as $c){  
-                                            echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';    
-                                }   
-                            ?>
-                        </select>
-                        </div>
+                    <div class="form-group col-md-12">
+                        <input type="file" name="fiche" id="fiche" class="form-control"/>
+                        <p class="d-inline-block" style="font-size:1em;">Seuls le format .pdf est autorisé jusqu'à une taille maximale de 2 Mo.</p>
+                    </div>
 
-                        <div class="form-group col-md-12">
-                            <input type="text" name="titre" id="titre" class="form-control" placeholder="Titre de la fiche"/>
-                        </div>
+                    <div class="col-md-12 text-center ">
+                        <input type="submit" id=button-add class="btn btn-block mybtn btn-success" value="Upload">               
+                    </div>
 
-                        <div class="form-group col-md-12">
-                            <input type="file" name="fiche" id="fiche" class="form-control"/>
-                            <p class="d-inline-block" style="font-size:1em;">Seuls le format .pdf est autorisé jusqu'à une taille maximale de 2 Mo.</p>
-                        </div>
+                </form>
 
-                        <div class="col-md-12 text-center ">
-                            <input type="submit" id=button-add class="btn btn-block mybtn btn-success" value="Upload">               
-                        </div>
-
-                    </form>
-
-                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        alert("La fonctionnalité afin d'ajouter des fiches conseils est en cours de développement")
-    </script>
 
-</body>
-</html>
+<script>
+    alert("La fonctionnalité afin d'ajouter des fiches conseils est en cours de développement")
+</script>

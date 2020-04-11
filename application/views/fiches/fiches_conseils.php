@@ -115,7 +115,8 @@
 
         #fiche{
             margin: 20px;
-            width: 20vw;
+            width: 200px;
+            height: auto;
             background-color: white;
             color: black;
             text-align: center;
@@ -124,11 +125,11 @@
         }
 
         #fiche h5{
-            padding-top: 15px;
+            padding: auto;
         }
 
         #fiche p{
-            font-size: .85rem;
+            padding:auto;
         }
 
         #commentaire-container{
@@ -136,15 +137,16 @@
             margin-left: 7vw;
         }
 
-        #espaceCommentaire{
-            margin-top: 2.5vh;
-            text-align: center;
+        #main {
+            margin-top:90px;
+            padding: 10px;   
         }
         
     </style>
 </head>
 
-   <div id="main">
+<div class="container" id="main">
+   <div class="container">
         <div class="container-fluid">
             <h4 class="text-center">
                 <?php
@@ -262,7 +264,8 @@
                         <div class='starrr' id='star2'></div>
                         <div>&nbsp;
                             <span class='your-choice-was2' style='display: none;'>
-        Votre note est de <span class='choice2'></span>.
+                                Votre note est de 
+                                <span class='choice2'></span>.
                             </span>
                         </div>
                     </div>
@@ -318,40 +321,36 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        
     </div>
 
-    <div id="espaceCommentaire">
+    <?php 
+        echo '<h3 style="text-align:center;margin-top:50px">Commentaires ( '.sizeof($avis).' )</h3>';
+    ?>
 
-        <?php 
-            echo '<h3>Commentaire ( '.sizeof($avis).' )</h3>';
-        ?>
-    
-        <div class="row" id="commentaire-container">
-            <?php
+    <div class="row">
+        <?php
 
-                if(sizeof($avis)==0){
-                    echo '<div class="col" id="fiche">
-                            <h5> <em> Aucun commentaire trouvé </em></h5>
-                        </div>';
-                }
-                else{
+            if(sizeof($avis)==0){
+                echo '<div class="col" id="fiche">
+                        <h5> <em> Soyez le premier à publier un commentaire ! </em></h5>
+                    </div>';
+            } else {
 
-                    foreach($avis as $a){ 
-                        $note = $a['noteAvis']; 
-                        echo '<div class="col-3" id="fiche">
+                foreach($avis as $a){ 
+                    $note = $a['noteAvis']; 
+                    echo '<div class="col-3" id="fiche">
+                            <div style="padding:auto;margin:auto;">
                                 <h5>'.$a['type_utilisateur'].'</h5>
                                 <h6>Note : '.$a['noteAvis'].' /5</h6>';
                                 echo(makeRating($note));
                                 echo '<p> Commentaire : </p>
                                 <p>'.$a['commentaireAvis'].'</p>
-                            </div>';                
-                    }
-                }            
-            ?>
-        </div>
+                            </div>
+                        </div>';                
+                }
+            }            
+        ?>
     </div>
 
 
@@ -392,10 +391,5 @@
 
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
+</div>
 

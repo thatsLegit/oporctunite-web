@@ -26,9 +26,12 @@
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top" style="color:green;"><img src="<?php echo base_url(); ?>assets/accueil/img/logo.png">Porc'tunité</a>
       <div class="collapse navbar-collapse" id="navbarResponsive">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top" style="color:green;"><img src="<?php echo base_url(); ?>assets/accueil/img/logo.png">Porc'tunité</a>
         <ul class="navbar-nav text-uppercase ml-auto">
           <li class="nav-item">
             <a style="color: green !important;" class="nav-link js-scroll-trigger" href="#portfolio">Le site</a>
@@ -79,7 +82,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4 col-sm-6 portfolio-item">
+        <div class="col-md-4 col-sm-6 col-xs-12 portfolio-item">
           <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
             <div class="portfolio-hover">
               <div class="portfolio-hover-content">
@@ -92,7 +95,7 @@
             <h4>Bilans de bien-être</h4>
           </div>
         </div>
-        <div class="col-md-4 col-sm-6 portfolio-item">
+        <div class="col-md-4 col-sm-6 col-xs-12 portfolio-item">
           <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
             <div class="portfolio-hover">
               <div class="portfolio-hover-content">
@@ -105,7 +108,7 @@
             <h4>Fiches conseils</h4>
           </div>
         </div>
-        <div class="col-md-4 col-sm-6 portfolio-item">
+        <div class="col-md-4 col-sm-6 col-xs-12 portfolio-item">
           <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
             <div class="portfolio-hover">
               <div class="portfolio-hover-content">

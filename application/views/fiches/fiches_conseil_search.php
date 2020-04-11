@@ -29,7 +29,7 @@
             border-radius: 20px;
         }
 
-         h6 {
+        h6 {
             color: black;
         }
 
@@ -65,7 +65,8 @@
         }
 
         #main {
-            margin-top: 75px;
+            margin-top:90px;
+            padding: 10px; 
         }
 
         #container-fiche {
@@ -74,8 +75,8 @@
 
         #fiche {
             margin: 20px;
-            width: 20vw;
-            height: 25vh;
+            width: 180px;
+            height: 200px;
             background-color: white;
             color: black;
             text-align: center;
@@ -83,19 +84,24 @@
             border: solid black 1.5px;
         }
 
-        #fiche h5 {
-            padding-top: 15px;
+        #fiche h5{
+            padding:auto;
         }
 
-        #fiche p {
-            font-size: .85rem;
+        #fiche p{
+            padding:auto;
         }
 
         #fiche button {
-            width: 8vw;
-            height: 5vh;
+            width: 80px;
+            height: 40px;
             font-size: .75rem;
             border-radius: 5px;
+        }
+
+        #fiche button:hover {
+            background-color:#86cd23;
+            transition: 0.5s;
         }
         
         #main {
@@ -107,7 +113,6 @@
 </head>
 
 <div class="container" id="main">
-
     <div class="row">
         <div class="col-sm">
             <label for="search_data" style="color:black;">Rechercher par intitulé :</label>
@@ -140,12 +145,10 @@
                         foreach($categoriesG as $c){
                             if(empty($fiches)){
                                 echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';
-                            }
-                            else{
+                            } else {
                                 if($c['nomCategorieG'] == $lacateg){
                                     echo '<option value = "'.$c['nomCategorieG'].'" selected>'.$c['nomCategorieG'].'</option>';
-                                }
-                                else{
+                                } else { 
                                     echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';
                                 }   
                             }
@@ -182,35 +185,27 @@
                     echo '<div class="col" id="fiche">
                             <h5> <em> Aucune fiche a été trouvé </em></h5>
                             </div>';
-                }
-                else {
+                } else {
                     foreach($fiches as $f){
                         echo validation_errors();
-            
                         echo form_open('fiches/read');
                             
-                        echo '<div class="col" id="fiche">
-                                <input name="titre_fiche" id="titre_fiche" type="text" value="'.$f['titreFiche'].'" hidden>
-                                <h5>'.$f['titreFiche'].'</h5>
-                                <p>'.$f['nomCategorieG'].'</p>
-                                <button type="submit" id="fiche-button" value="'.$f['titreFiche'].'">En savoir plus</button>
-                            </div>';
+                        echo '  <div class="col" id="fiche">
+                                    <div style="padding:auto;margin:auto;">
+                                        <input name="titre_fiche" id="titre_fiche" type="text" value="'.$f['titreFiche'].'" hidden>
+                                        <h5 class="text-center">'.$f['titreFiche'].'</h5>
+                                        <p class="text-center">'.$f['nomCategorieG'].'</p>
+                                        <button type="submit" id="fiche-button" value="'.$f['titreFiche'].'"><b style="padding:1px;">En savoir plus</b></button>
+                                    </div>
+                                </div>';
             
                         echo '</form>';
-            
                     }
                 }            
             ?>
         </div>
     </div>
 </div>
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
 
 <script type="text/javascript">
 
@@ -247,6 +242,3 @@
     }
     
 </script>
-
-</body>
-</html>

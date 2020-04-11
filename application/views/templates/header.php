@@ -25,12 +25,16 @@
 
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-		<!-- Accueil/profil -->
-		<?php if($this->session->userdata('connecte')) : ?>
-		<a class="navbar-brand" href="<?php echo base_url(); ?>accueil">O'porctunite</a>
-		<?php endif; ?>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+  	</button>
 
 		<div class="collapse navbar-collapse" id="navbarColor02">
+			<!-- Accueil/profil -->
+			<?php if($this->session->userdata('connecte')) : ?>
+			<a class="navbar-brand" href="<?php echo base_url(); ?>accueil">O'porctunite</a>
+			<?php endif; ?>
+
 			<ul class="navbar-nav mr-auto">
 				
 					<!-- Zones all membre -->
@@ -85,6 +89,5 @@
 		</div>
 	</nav>
 
-	<div class="container rounded text-white">
 
 
