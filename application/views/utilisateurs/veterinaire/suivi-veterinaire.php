@@ -28,10 +28,6 @@
             margin-bottom: 10vh;
         }
 
-        #button{
-            width: 7vw;
-        }
-
         .container{
             margin-bottom: 10vh;
         }
@@ -90,7 +86,7 @@
                                     echo form_open('Utilisateurs/accepter_suivi');
 
                                         echo '<input name="numEleveur" id="numEleveur" type="text" value="'.$e['numEleveur'].'" hidden>
-                                        <td><button id="button" type="submit" class="btn btn-success">Accepter</button></td>
+                                        <td><button type="submit" class="btn btn-success">Accepter</button></td>
                                     </form>';
 
                                     echo validation_errors();
@@ -98,7 +94,7 @@
                                     echo form_open('Utilisateurs/supprimer_suivi');
 
                                     echo '<input name="numEleveur" id="numEleveur" type="text" value="'.$e['numEleveur'].'" hidden>
-                                    <td><button id="button" type="submit" class="btn btn-danger">Refuser</button></td>
+                                    <td><button type="submit" class="btn btn-danger">Refuser</button></td>
                                     </form>
                                 </tr>';
                         }            
@@ -130,9 +126,7 @@
         <?php
             if($accepter == 0){
                 echo'<p> Aucun suivi d\'élevage a été accepté </p>';
-            }
-            else{
-
+            } else {
         ?> 
 
         <table class="table table-hover">
@@ -151,30 +145,26 @@
                 <?php 
                     foreach($elevage_suivi as $e){
 
-                        if($e['etat']=="Accepter"){
+                        if($e['etat']=="Accepter"){  
 
-                            
+                            echo '<tr>
+                                    <td>'.$e['nomElevage'].'</td>
+                                    <td>'.$e['tailleElevage'].'</td>
+                                    <td>'.$e['adresse'].'</td>
+                                    <td>'.$e['codePostal'].'</td>
+                                    <td>'.$e['email'].'</td>
+                                    <td>'.$e['telephone'].'</td>
+                                    <td>'.$e['etat'].'</td>';
 
-                                echo '<tr>
-                                        <td>'.$e['nomElevage'].'</td>
-                                        <td>'.$e['tailleElevage'].'</td>
-                                        <td>'.$e['adresse'].'</td>
-                                        <td>'.$e['codePostal'].'</td>
-                                        <td>'.$e['email'].'</td>
-                                        <td>'.$e['telephone'].'</td>
-                                        <td>'.$e['etat'].'</td>';
+                                    echo validation_errors();
+    
+                                    echo form_open('Utilisateurs/supprimer_suivi');
 
-                                        echo validation_errors();
-        
-                                        echo form_open('Utilisateurs/supprimer_suivi');
-
-                                        echo '<input name="numEleveur" id="numEleveur" type="text" value="'.$e['numEleveur'].'" hidden>
-                                        <td><button id="button" type="submit" class="btn btn-warning">Annuler</button></td>
-                                        </form>
-                                    </tr>';
-                        }
-
-                            
+                                    echo '<input name="numEleveur" id="numEleveur" type="text" value="'.$e['numEleveur'].'" hidden>
+                                    <td><button type="submit" class="btn btn-warning">Annuler</button></td>
+                                    </form>
+                                </tr>';
+                        }              
                     }
                 ?>
             </tbody>

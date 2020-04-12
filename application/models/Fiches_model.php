@@ -14,11 +14,20 @@ class Fiches_model extends CI_Model{
        return $this->db->get('fiche', 10)->result();
    }
 
-   public function get_ajaxReco($label){
+   public function get_ajaxCat($cat){
         $this->db->select('titreFiche, nomCategorieG');
-        $this->db->where('nomCategorieG', $label);
+        $this->db->where('nomCategorieG', $cat);
         return $this->db->get('fiche', 10)->result();
    }
+
+   public function get_ajax_favoris($categorie, $utilisateur){
+        $this->db->select('*');
+        $this->db->from('fiche');
+        $this->db->where('nomCategorieG', $categorie);
+        $this->db->join('mettrefavoris', 'mettrefavoris.titreFiche = fiche.titreFiche');
+        $this->db->where('mettrefavoris.idutilisateur', $utilisateur);
+        return $this->db->get()->result();
+    }
 
    public function get_favoris_titre($titreFiche, $utilisateur){
         $this->db->select('*');
@@ -77,28 +86,6 @@ class Fiches_model extends CI_Model{
        $query=$this->db->query($sql);
        return $query->result_array();
    }
-
-   public function get_fiches_search($categorie){
-
-       $this->db->select('*');
-       $this->db->from('fiche');
-       $this->db->where('nomCategorieG', $categorie);
-       $query = $this->db->get();
-
-       return $query->result_array();
-   }
-
-   public function get_fiches_search_favoris($categorie, $utilisateur){
-
-    $this->db->select('*');
-    $this->db->from('fiche');
-    $this->db->where('nomCategorieG', $categorie);
-    $this->db->join('mettrefavoris', 'mettrefavoris.titreFiche = fiche.titreFiche');
-    $this->db->where('mettrefavoris.idutilisateur', $utilisateur);
-    $query = $this->db->get();
-
-    return $query->result_array();
-}
 
    public function get_fiches_nom($titre_fiche){
 

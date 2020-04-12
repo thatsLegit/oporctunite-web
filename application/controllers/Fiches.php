@@ -11,7 +11,6 @@ class Fiches extends CI_Controller{
             redirect('login');
         }
 
-        $data['search']='false';
         $data['categoriesG']=$this->Categories_model->getCategorieG();
         $data['fiches']=$this->Fiches_model->getFiches();
 
@@ -28,7 +27,6 @@ class Fiches extends CI_Controller{
 
         $utilisateur = $this->session->userdata('idutilisateur');
 
-        $data['search']='false';
         $data['categoriesG']=$this->Categories_model->getCategorieG();
         $data['fiches']=$this->Fiches_model->getFiches_favoris($utilisateur);
 
@@ -49,22 +47,18 @@ class Fiches extends CI_Controller{
         $search_data = $this->input->post('search_data');
         $result = $this->Fiches_model->get_autocomplete($search_data);
 
-        if (!empty($result))
-        {
+        if (!empty($result)){
             foreach ($result as $row):
-
-                echo validation_errors();
-                echo form_open('fiches/read');
-
-                echo '  <div class="col" id="fiche">
+                echo '  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
                             <div style="padding:auto;margin:auto;">
-                                <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
-                                <h5 class="text-center">'.$row->titreFiche.'</h5>
-                                <p class="text-center">'.$row->nomCategorieG.'</p>
-                                <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
+                                <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
+                                    <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
+                                    <h5 class="text-center">'.$row->titreFiche.'</h5>
+                                    <p class="text-center">'.$row->nomCategorieG.'</p>
+                                    <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
+                                </form>
                             </div>
-                        </div>
-                </form>';
+                        </div>';
             endforeach;
         } else {
             echo '<div class="col" id="fiche">
@@ -82,26 +76,83 @@ class Fiches extends CI_Controller{
         }
         
         $this->load->model('Fiches_model');
-        $label = $this->input->post('label');
-        $result = $this->Fiches_model->get_ajaxReco($label);
+        $cat = $this->input->post('category');
+        $result = $this->Fiches_model->get_ajaxCat($cat);
 
         if (!empty($result)){
-
             foreach ($result as $row):
-
-                echo validation_errors();
-                echo form_open('fiches/read');
-
-                echo '  <div class="col" id="fiche">
+                echo '  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
                             <div style="padding:auto;margin:auto;">
-                                <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
-                                <h5 class="text-center">'.$row->titreFiche.'</h5>
-                                <p class="text-center" style="margin:30px 0px;">'.$row->nomCategorieG.'</p>
-                                <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
+                                <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
+                                    <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
+                                    <h5 class="text-center">'.$row->titreFiche.'</h5>
+                                    <p class="text-center" style="margin:30px 0px;">'.$row->nomCategorieG.'</p>
+                                    <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
+                                </form>
                             </div>
-                        </div>
-                </form>';
+                        </div>';
             endforeach;
+        }
+    }
+
+    //requete pour le filtre par catégories des fiches
+    public function ajaxCatFiches(){
+
+        if(!$this->session->userdata('connecte')){
+            show_404();
+        }
+        
+        $this->load->model('Fiches_model');
+        $cat = $this->input->post('cat');
+        $result = $this->Fiches_model->get_ajaxCat($cat);
+
+        if (!empty($result)){
+            foreach ($result as $row):
+                echo '  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
+                            <div style="padding:auto;margin:auto;">
+                                <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
+                                    <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
+                                    <h5 class="text-center">'.$row->titreFiche.'</h5>
+                                    <p class="text-center">'.$row->nomCategorieG.'</p>
+                                    <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
+                                </form> 
+                            </div>
+                        </div>';
+            endforeach;
+        } else {
+            echo '<div class="col" id="fiche">
+            <h5> <em> Aucune fiche n\'a été trouvé </em></h5>
+            </div>';
+        }
+    }
+
+    public function ajaxCatFavoris(){
+
+        if(!$this->session->userdata('connecte')){
+            show_404();
+        }
+        
+        $this->load->model('Fiches_model');
+        $cat = $this->input->post('cat');
+        $result = $this->Fiches_model->get_ajax_favoris($cat, $this->session->userdata('idutilisateur'));
+
+        if (!empty($result)){
+            foreach ($result as $row):
+                echo '  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
+                            <div style="padding:auto;margin:auto;">
+                                <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
+                                    <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
+                                    <h5 class="text-center">'.$row->titreFiche.'</h5>
+                                    <p class="text-center">'.$row->nomCategorieG.'</p>
+                                    <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
+                                </form>
+                            </div>
+                        </div>';
+            endforeach;
+        } else {
+            echo '<div class="col" id="fiche">
+            <h5> <em> Aucune fiche n\'a été trouvé </em></h5>
+            </div>';
         }
     }
 
@@ -207,64 +258,6 @@ class Fiches extends CI_Controller{
             $this->load->view('templates/header');
             $this->load->view('fiches/fiches_conseils',$data);
             $this->load->view('templates/footer');
-        }
-    }
-
-    public function search(){
-
-        if(!$this->session->userdata('connecte')){
-            show_404();
-        }
-
-        $categorie = $this->input->post('categ');
-        
-        $this->form_validation->set_rules('categ', 'Catégorie', 'required');
-
-        if($this->form_validation->run() === FALSE){
-            $this->fiches();
-        } else {
-            if($categorie != 1){
-                    $data['categoriesG']=$this->Categories_model->getCategorieG();
-                    $data['fiches'] = $this->Fiches_model->get_fiches_search($categorie);
-                    $data['search']='true';
-                    $data['titre'] ='Les fiches';
-
-                    $this->load->view('templates/header');
-                    $this->load->view('fiches/fiches_conseil_search',$data);
-                    $this->load->view('templates/footer');
-            } else {
-                    $this->fiches();
-            }
-        }
-    }
-
-    public function search_favoris(){
-
-        if(!$this->session->userdata('connecte')){
-            show_404();
-        }
-
-        $categorie = $this->input->post('categ');
-        $utilisateur = $this->session->userdata('idutilisateur');
-        
-        $this->form_validation->set_rules('categ', 'Catégorie', 'required');
-
-        if($this->form_validation->run() === FALSE){
-            $this->fiches_favoris();
-        } else {
-
-            if($categorie != 1){
-                    $data['categoriesG']=$this->Categories_model->getCategorieG();
-                    $data['fiches'] = $this->Fiches_model->get_fiches_search_favoris($categorie, $utilisateur);
-                    $data['search']='true';
-                    $data['titre'] ='Les fiches';
-
-                    $this->load->view('templates/header');
-                    $this->load->view('fiches/fiches_conseil_favoris',$data);
-                    $this->load->view('templates/footer');
-            } else {
-                    $this->fiches_favoris();
-            }
         }
     }
 

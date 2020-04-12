@@ -935,36 +935,33 @@
 	//ajax fiches
 	(function(){
 		var tailleData = configPCat.data.datasets[0].data.length;
-		var labels = new Array();
+		var categories = new Array();
 		for (var i=0;i<tailleData;i++){
 			if (configGCat.data.datasets[0].data[i] < configGCat.data.datasets[1].data[i]){
-				labels.push(configGCat.data.labels[i]);
+				categories.push(configGCat.data.labels[i]);
 			}
 		}
-		if(labels.length==0){
+		if(categories.length==0){
 			$('#recommandations').html("<p>Il semblerait que nous n'ayons pas de fiches à vous recommander, votre elevage est dejà au top. Vos animaux ont de la chance !</p>");
+		} else {
+			categories.forEach(category => rechercheFiches(category));
 		}
-		labels.forEach(label => rechercheFiches(label));
-
-		function rechercheFiches(label){
+		
+		function rechercheFiches(category){
 			var post_data = {
-                'label': label,
+                'category': category,
             };
 			$.ajax({
 				type: "POST",
 				url: '<?php echo base_url(); ?>Fiches/ajaxReco/',
 				data: post_data,
 				success: function (data) {
-					// return success
-					if (data.length > 0) {                         
-						$('#recommandations').append(data);
-					}
+					// return success                       
+					$('#recommandations').append(data);
 				}
 			});
 		}
 	})();
-
-	
 	
 </script>
 

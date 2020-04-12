@@ -21,10 +21,6 @@
             margin-bottom: 10vh;
         }
 
-        #button{
-            width: 7vw;
-        }
-
         #main{
             margin-top:120px;
             padding: 10px;
@@ -64,7 +60,7 @@
                                     <td>'.$v['email'].'</td>
                                     <td>'.$v['telephone'].'</td>
                                     <input name="numVeterinaire" id="numVeterinaire" type="text" value="'.$v['numVeterinaire'].'" hidden>
-                                    <td><button id="button" type="submit" class="btn btn-danger">Bannir vétérinaire</button></td>
+                                    <td><button type="submit" class="btn btn-danger">Bannir vétérinaire</button></td>
                                 </tr>';
                             //</form>';
                     }
@@ -105,7 +101,7 @@
                                     <td>'.$e['email'].'</td>
                                     <td>'.$e['telephone'].'</td>
                                     <input name="numEleveur" id="numEleveur" type="text" value="'.$e['numEleveur'].'" hidden>
-                                    <td><button id="button" type="submit" class="btn btn-danger">Bannir élevage</button></td>
+                                    <td><button type="submit" class="btn btn-danger">Bannir élevage</button></td>
                                 </tr>';
                             //</form>';
                     }

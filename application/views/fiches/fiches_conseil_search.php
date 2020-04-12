@@ -1,4 +1,5 @@
 <head>
+</script>
     <style>
         ::selection{ background-color: #E13300; color: white; }
         ::moz-selection{ background-color: #E13300; color: white; }
@@ -114,111 +115,106 @@
 
 <div class="container" id="main">
     <div class="row">
-        <div class="col-sm">
-            <label for="search_data" style="color:black;">Rechercher par intitulé :</label>
+        <div class="col">
+            <button onclick="refreshing1()" type="button" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="left" title="Rafraichir">
+                <svg class="bi bi-arrow-clockwise" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 017.103-3.16.5.5 0 10.454-.892A6 6 0 1013.455 5.5a.5.5 0 00-.91.417 5 5 0 11-9.375.789z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M8.147.146a.5.5 0 01.707 0l2.5 2.5a.5.5 0 010 .708l-2.5 2.5a.5.5 0 11-.707-.708L10.293 3 8.147.854a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                </svg>
+            </button>
+
+            <label for="search_data" style="color:black;">Recherche par mot-clé :</label>
             <div>
-                <input placeholder="Entrer le nom d'une fiche" name="search_data" id="search_data" type="text" onkeyup="ajaxSearch();">       
+                <input name="search_data" id="search_data" type="text" onkeyup="ajaxKeyWord();">       
             </div>
         </div>
 
-        <div class="col-sm">
-            <div>
-                <p style="color:black;"> OU </p>     
-            </div>
+        <div class="col-lg-2 col-md-12 col-sm-6 col-xs-3">
+            <svg class="bi bi-arrow-left-right" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 11l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M2 11a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 11zm3.854-9.354a.5.5 0 010 .708L3.207 5l2.647 2.646a.5.5 0 11-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M2.5 5a.5.5 0 01.5-.5h10.5a.5.5 0 010 1H3a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+            </svg>
         </div>
 
-        <?php
-        echo validation_errors();
-        echo form_open('fiches/search');
-        ?>
-            <div class="col-sm">
-                <label for="categ" style="color:black;">Rechercher par categorie :</label>
-                <select class="select" name="categ" id="categ">
-                    <option value="1" hidden class="statut">Catégories</option>
+        <div class="col">
+            <button onclick="refreshing2()" type="button" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="left" title="Rafraichir">
+                <svg class="bi bi-arrow-clockwise" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 017.103-3.16.5.5 0 10.454-.892A6 6 0 1013.455 5.5a.5.5 0 00-.91.417 5 5 0 11-9.375.789z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M8.147.146a.5.5 0 01.707 0l2.5 2.5a.5.5 0 010 .708l-2.5 2.5a.5.5 0 11-.707-.708L10.293 3 8.147.854a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                </svg>
+            </button>
 
-                    <?php
-                    if($search == "true"){
-                        foreach($fiches as $f){
-                            $lacateg = $f['nomCategorieG'];
-                        }
-
-                        foreach($categoriesG as $c){
-                            if(empty($fiches)){
-                                echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';
-                            } else {
-                                if($c['nomCategorieG'] == $lacateg){
-                                    echo '<option value = "'.$c['nomCategorieG'].'" selected>'.$c['nomCategorieG'].'</option>';
-                                } else { 
-                                    echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';
-                                }   
-                            }
-                        }
+            <label class="col-md-12 col-lg-auto col-xl-auto" for="categ" style="color:black;">Recherche par categorie :</label>
+            <select class="select" name="categ" id="categ" onchange="ajaxCateg()">
+                <option value="1" hidden class="statut">Catégories</option>
+                <?php
+                    foreach($categoriesG as $c){
+                        echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';
                     }
-                    else{
-                        foreach($categoriesG as $c){
-                            echo '<option value = "'.$c['nomCategorieG'].'">'.$c['nomCategorieG'].'</option>';
-                        }
-                    }
-                        
-                    ?>
-
-                </select>
-            </div>
-
-            <div class="col-md-12 text-center" id="search-button">
-                <button type="submit" class=" btn mybtn btn-success">Rechercher</button>
-            </div>
-
-        </form>
+                ?>
+            </select>
+        </div>
     </div>
 
-    <div class="container" id="container-fiche">
+    <div class="container" id="container-fiche"> 
+
+        <div class="row"  id="defaultList">
+            <?php      
+                foreach($fiches as $fiche) :
+                    echo '  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
+                                <div style="padding:auto;margin:auto;">
+                                    <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
+                                        <input name="titre_fiche" type="text" value="'.$fiche['titreFiche'].'" hidden>
+                                        <h5 class="text-center">'.$fiche['titreFiche'].'</h5>
+                                        <p class="text-center">'.$fiche['nomCategorieG'].'</p>
+                                        <button type="submit" id="fiche-button" value="'.$fiche['titreFiche'].'"><b style="padding:1px;">En savoir plus</b></button>
+                                    </form>
+                                </div>
+                            </div>';
+                endforeach;
+            ?> 
+        </div>  
 
         <div class="row"  id="autoSuggestionsList">
         </div>            
             
         <div class="row" id="ficheParCateg">
-            <?php
-                $i =0;
-
-                if(sizeof($fiches)==0){
-                    echo '<div class="col" id="fiche">
-                            <h5> <em> Aucune fiche a été trouvé </em></h5>
-                            </div>';
-                } else {
-                    foreach($fiches as $f){
-                        echo validation_errors();
-                        echo form_open('fiches/read');
-                            
-                        echo '  <div class="col" id="fiche">
-                                    <div style="padding:auto;margin:auto;">
-                                        <input name="titre_fiche" id="titre_fiche" type="text" value="'.$f['titreFiche'].'" hidden>
-                                        <h5 class="text-center">'.$f['titreFiche'].'</h5>
-                                        <p class="text-center">'.$f['nomCategorieG'].'</p>
-                                        <button type="submit" id="fiche-button" value="'.$f['titreFiche'].'"><b style="padding:1px;">En savoir plus</b></button>
-                                    </div>
-                                </div>';
-            
-                        echo '</form>';
-                    }
-                }            
-            ?>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
 
-    function ajaxSearch(){
+    (() => {
+    $('[data-toggle="tooltip"]').tooltip()
+    })();
+
+    function refreshing1(){
+        var text = $('#search_data').val();
+        if(text.length != 0){
+            $('#search_data').val('')
+            $('#autoSuggestionsList').hide();
+            $('#defaultList').show();
+        }
+    }
+
+    function refreshing2(){
+        var selected = document.getElementById('categ').options[document.getElementById('categ').selectedIndex];
+        $('#categ').val('1');
+        $('#ficheParCateg').empty();
+        $('#ficheParCateg').hide();
+        $('#defaultList').show();
+    }
+
+    function ajaxKeyWord(){
         var input_data = $('#search_data').val();
 
-        if (input_data.length === 0)
-        {
-            $('#ficheParCateg').show();
+        if (input_data.length === 0) {
+            $('#ficheParCateg').hide();
             $('#autoSuggestionsList').hide();
-        }
-        else
-        {
+            $('#defaultList').show();
+        } else {
             var post_data = {
                 'search_data': input_data,
                 '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
@@ -228,17 +224,32 @@
                 type: "POST",
                 url: "<?php echo base_url(); ?>Fiches/autocomplete/",
                 data: post_data,
-                success: function (data) {
-                    // return success
-                    if (data.length > 0) {
-                        $('#ficheParCateg').hide();
-                        $('#autoSuggestionsList').show();                                
-                        $('#autoSuggestionsList').html(data);
-                    }
-                }
+                success: (data => {
+                    $('#ficheParCateg').hide();
+                    $('#defaultList').hide();
+                    $('#autoSuggestionsList').show();                                
+                    $('#autoSuggestionsList').html(data);
+                })
             });
-
         }
+    }
+
+    function ajaxCateg(){
+        var cat = document.getElementById('categ').options[document.getElementById('categ').selectedIndex].value;
+        var post_data = {
+                'cat': cat,
+            };
+        $.ajax({
+            type: "POST",
+            url: '<?php echo base_url(); ?>Fiches/ajaxCatFiches/',
+            data: post_data,
+            success: (data => {
+                $('#defaultList').hide();
+                $('#autoSuggestionsList').hide();
+                $('#ficheParCateg').show();                                
+                $('#ficheParCateg').html(data);
+            })
+        });
     }
     
 </script>
