@@ -58,13 +58,24 @@
                     $this->session->set_flashdata('elevage_created', 
                     'Bienvenue sur Oporctunité '.$this->input->post('nomElevage'));
 
+                    //getUtilisateurByID
+                    $Utilisateur = $this->utilisateurs_model->getUtilisateur($Id);
+
                     //init session
 					$utilisateur_data = array(
                         'idutilisateur' => $Id,
                         'statut' => 'elevage',
                         'nom' => $this->utilisateurs_model->getUserName($Id, 'elevage'),
-						'connecte' => true
-					);
+						'email' => $Utilisateur->email,
+                        'telephone' => $Utilisateur->telephone,
+                        'ville' => $Utilisateur->ville,
+                        'codePostal' => $Utilisateur->codePostal,
+                        'adresse' => $Utilisateur->adresse,
+                        'utilisateurPhoto' => $Utilisateur->utilisateurPhoto,
+                        'dateInscription' => $Utilisateur->dateInscription,
+                        'connecte' => true
+                    );
+
                     $this->session->set_userdata($utilisateur_data);
 
                     //Enfin, rediriger vers la page de connexion ?
@@ -114,13 +125,24 @@
                     $this->session->set_flashdata('veterinaire_created', 
                     'Bienvenue sur Oporctunité '.$this->input->post('nomCabinet'));
 
+                    //getUtilisateurByID
+                    $Utilisateur = $this->utilisateurs_model->getUtilisateur($Id);
+
                     //init session
 					$utilisateur_data = array(
                         'idutilisateur' => $Id,
                         'statut' => 'veterinaire',
                         'nom' => $this->utilisateurs_model->getUserName($Id, 'veterinaire'),
-						'connecte' => true
-					);
+						'email' => $Utilisateur->email,
+                        'telephone' => $Utilisateur->telephone,
+                        'ville' => $Utilisateur->ville,
+                        'codePostal' => $Utilisateur->codePostal,
+                        'adresse' => $Utilisateur->adresse,
+                        'utilisateurPhoto' => $Utilisateur->utilisateurPhoto,
+                        'dateInscription' => $Utilisateur->dateInscription,
+                        'connecte' => true
+                    );
+                    
                     $this->session->set_userdata($utilisateur_data);
 
                     //Enfin, rediriger vers la page de connexion ?
