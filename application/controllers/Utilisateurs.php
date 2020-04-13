@@ -110,9 +110,9 @@
                     //upload images config
                     $config['upload_path'] = './assets/img/photos';
                     $config['allowed_types'] = 'gif|jpg|png';
-                    $config['max_size'] = '2048';
-                    $config['max_width'] = '3000';
-                    $config['max_height'] = '3000';
+                    $config['max_size'] = '5120';
+                    $config['max_width'] = '4000';
+                    $config['max_height'] = '4000';
                     $config['file_name'] = $name;
 
                     //ajouter le nom à la bd

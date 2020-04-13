@@ -103,9 +103,9 @@
                         <label class="custom-control-label text-secondary mt-2" for="cgu">J'accepte les <a href="#" data-toggle="modal" data-target="#myModal">conditions générales d'Oporctunité</a></label>
                         <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez accepter les CGU.</span>
                     </div>
-                    </div><br>
+                    </div>
 
-                    <div class="g-recaptcha" data-sitekey="6LfkHOkUAAAAAE4GVIhhHfrawB97CGB9fWT4NgAh"></div>
+                    <div class="g-recaptcha" data-sitekey="6LfkHOkUAAAAAE4GVIhhHfrawB97CGB9fWT4NgAh"></div><br>
 
                     <div class="col-md-12 text-center ">
                         <button type="submit" class=" btn btn-block mybtn btn-success">S'inscrire</button>
@@ -264,7 +264,9 @@
                         <label class="custom-control-label text-secondary mt-2" for="cgu2">J'accepte les <a href="#" data-toggle="modal" data-target="#myModal2">conditions générales d'Oporctunité</a></label>
                         <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez accepter les CGU.</span>
                     </div>
-                    </div><br>
+                    </div>
+
+                    <div class="g-recaptcha" data-sitekey="6LfkHOkUAAAAAE4GVIhhHfrawB97CGB9fWT4NgAh"></div><br>
 
                     <div class="col-md-12 text-center ">
                         <button type="submit" class=" btn btn-block mybtn btn-success">S'inscrire</button>
