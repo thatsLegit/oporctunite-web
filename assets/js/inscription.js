@@ -286,7 +286,34 @@ checkEleveur['password2'] = function(id) {
         }, false);
     }
     //onsubmit
-    formulaire.addEventListener('submit', function(e) {   
+    formulaire.addEventListener('submit', function(e) {  
+        
+        //captcha check :
+        if (grecaptcha === undefined) {
+            alert('Recaptcha not defined'); 
+            return; 
+        }
+        var response = grecaptcha.getResponse();
+        if (!response) {
+            alert('Coud not get recaptcha response'); 
+            return; 
+        }
+    
+        var ajax = new XMLHttpRequest();
+
+        ajax.onreadystatechange = function() {
+            if (this.status === 200 && this.readyState === 4) {
+                var reponse = this.responseText;
+                if (reponse!='ok'){
+                    e.preventDefault();
+                }
+            }
+        }
+        ajax.open('POST', 'https://oporctunite.envt.fr/Utilisateurs/Vrecaptcha', true);
+        ajax.send('recaptcha='+response);
+
+
+        //form validation :
         var result = true;
         for (var i in checkEleveur) {
             result = checkEleveur[i](i) && result;

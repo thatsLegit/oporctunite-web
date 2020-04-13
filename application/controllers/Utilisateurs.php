@@ -129,6 +129,38 @@
             }            
         }
 
+        public function Vrecaptcha(){
+            if (empty($_POST['recaptcha'])) {
+                exit('Please set recaptcha variable');
+            }
+            // validate recaptcha
+            $response = $_POST['recaptcha'];
+            $post = http_build_query(
+                 array (
+                     'response' => $response,
+                     'secret' => '6LfkHOkUAAAAAK27qbRJs6J8VjKyhQqjmu8y3R22',
+                     'remoteip' => $_SERVER['REMOTE_ADDR']
+                 )
+            );
+            $opts = array('http' => 
+                array (
+                    'method' => 'POST',
+                    'header' => 'application/x-www-form-urlencoded',
+                    'content' => $post
+                )
+            );
+            $context = stream_context_create($opts);
+            $serverResponse = @file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
+            if (!$serverResponse) {
+                exit('Failed to validate Recaptcha');
+            }
+            $result = json_decode($serverResponse);
+            if (!$result -> success) {
+                exit('Invalid Recaptcha');
+            }
+            return 'ok';
+        }
+
         // Check if numEleveur exists
 		public function check_numEleveur_exists($numEleveur){
 			$this->form_validation->set_message('check_numEleveur_exists', 'Un compte avec cet identifiant professionel existe dejà !');

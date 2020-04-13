@@ -6,8 +6,9 @@
     #inscription{
         color: white;
     }
-
 </style>
+
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>
 
 <body onload="cacher()">
 
@@ -35,78 +36,80 @@
                 <?php $data = array('id' => "formulaire"); ?>
                 <?php echo form_open_multipart('utilisateurs/inscription', $data); ?>
 
-                <input type="hidden" name="type_utilisateur" value="elevage">
+                    <input type="hidden" name="type_utilisateur" value="elevage">
 
-                <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Votre elevage : </label></strong>
-                <div class="form-group">
-                    <input type="text" name="numEleveur" id="numEleveur" class="form-control" aria-describedby="emailHelp" placeholder="identifiant eleveur">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">L'identifiant professional doit comporter 7 caractères commencant par FR.</span>
-                </div>
-                
-                <div class="form-group">
-                    <input type="text" name="nomElevage" id="nomElevage" class="form-control" aria-describedby="emailHelp" placeholder="Nom de l'elevage">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Le nom doit comporter au moins 2 caractères.</span>
-                </div>
+                    <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Votre elevage : </label></strong>
+                    <div class="form-group">
+                        <input type="text" name="numEleveur" id="numEleveur" class="form-control" aria-describedby="emailHelp" placeholder="identifiant eleveur">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">L'identifiant professional doit comporter 7 caractères commencant par FR.</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" name="nomElevage" id="nomElevage" class="form-control" aria-describedby="emailHelp" placeholder="Nom de l'elevage">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Le nom doit comporter au moins 2 caractères.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="text" name="tailleElevage" id="tailleElevage" class="form-control" aria-describedby="emailHelp" placeholder="Taille de votre elevage">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer une taille d'élevage valide.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="text" name="tailleElevage" id="tailleElevage" class="form-control" aria-describedby="emailHelp" placeholder="Taille de votre elevage">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer une taille d'élevage valide.</span>
+                    </div>
 
-                <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Vos coordonnées : </label></strong>
-                <div class="form-group">
-                    <input type="text" name="ville" id="ville" class="form-control" aria-describedby="emailHelp" placeholder="Ville, commune, lieu-dit">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner ce champ.</span>
-                </div>
+                    <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Vos coordonnées : </label></strong>
+                    <div class="form-group">
+                        <input type="text" name="ville" id="ville" class="form-control" aria-describedby="emailHelp" placeholder="Ville, commune, lieu-dit">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner ce champ.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="text" name="adresse" id="adresse" class="form-control" aria-describedby="emailHelp" placeholder="Adresse">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner votre adresse complète.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="text" name="adresse" id="adresse" class="form-control" aria-describedby="emailHelp" placeholder="Adresse">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner votre adresse complète.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="text" name="codePostal" id="codePostal" class="form-control" aria-describedby="emailHelp" placeholder="Code postal">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer un code postal valide.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="text" name="codePostal" id="codePostal" class="form-control" aria-describedby="emailHelp" placeholder="Code postal">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer un code postal valide.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="tel" name="telephone" id="telephone" class="form-control" aria-describedby="emailHelp" placeholder="Telephone">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer un numéro de téléphone valide.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="tel" name="telephone" id="telephone" class="form-control" aria-describedby="emailHelp" placeholder="Telephone">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer un numéro de téléphone valide.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="email">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer une email valide.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="email">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer une email valide.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="password" name="password" id="password" class="form-control" aria-describedby="emailHelp" placeholder="Mot de passe">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Le mot de passe doit comporter au moins 8 caractères.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="password" name="password" id="password" class="form-control" aria-describedby="emailHelp" placeholder="Mot de passe">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Le mot de passe doit comporter au moins 8 caractères.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="password" name="password2" id="password2" class="form-control" aria-describedby="emailHelp" placeholder="Confirmez le mot de passe">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Le mots de passe ne correspondent pas.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="password" name="password2" id="password2" class="form-control" aria-describedby="emailHelp" placeholder="Confirmez le mot de passe">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Le mots de passe ne correspondent pas.</span>
+                    </div>
 
-                <div class="form-group">
-                    <strong><label style="color:rgb(0,177,77);font-size:1.5em">Choisissez une photo de profil*</label> <i>*Optionnel</i></strong>
-                    <input type="file" onchange="handleFiles(files,preview);getoutput(this)" name="userfile" id="photo" size="20">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Attention : formats acceptés : png, jpg, gif.</span>
-                    <div><label for="photo"><div id="preview" style="width:200px;"></div></label></div>
-                </div>
+                    <div class="form-group">
+                        <strong><label style="color:rgb(0,177,77);font-size:1.5em">Choisissez une photo de profil*</label> <i>*Optionnel</i></strong>
+                        <input type="file" onchange="handleFiles(files,preview);getoutput(this)" name="userfile" id="photo" size="20">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Attention : formats acceptés : png, jpg, gif.</span>
+                        <div><label for="photo"><div id="preview" style="width:200px;"></div></label></div>
+                    </div>
 
-                <div class="form-group">
-                <div class="custom-control custom-checkbox" style="color:black">
-                    <input type="checkbox" class="custom-control-input" id="cgu">
-                    <label class="custom-control-label text-secondary mt-2" for="cgu">J'accepte les <a href="#" data-toggle="modal" data-target="#myModal">conditions générales d'Oporctunité</a></label>
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez accepter les CGU.</span>
-                </div>
-                </div><br>
+                    <div class="form-group">
+                    <div class="custom-control custom-checkbox" style="color:black">
+                        <input type="checkbox" class="custom-control-input" id="cgu">
+                        <label class="custom-control-label text-secondary mt-2" for="cgu">J'accepte les <a href="#" data-toggle="modal" data-target="#myModal">conditions générales d'Oporctunité</a></label>
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez accepter les CGU.</span>
+                    </div>
+                    </div><br>
 
-                <div class="col-md-12 text-center ">
-                    <button type="submit" class=" btn btn-block mybtn btn-success">S'inscrire</button>
-                </div>
+                    <div class="g-recaptcha" data-sitekey="6LfkHOkUAAAAAE4GVIhhHfrawB97CGB9fWT4NgAh"></div>
+
+                    <div class="col-md-12 text-center ">
+                        <button type="submit" class=" btn btn-block mybtn btn-success">S'inscrire</button>
+                    </div>
                 </form>
 
                 <div class="mt-2 mb-4 text-center"><a href="<?php echo base_url(); ?>login" id="inscription" class="text-center">Se connecter</a></div>
@@ -199,73 +202,73 @@
                 <?php $data = array('id' => "formulaire2"); ?>
                 <?php echo form_open_multipart('utilisateurs/inscription', $data); ?>
 
-                <input type="hidden" name="type_utilisateur" value="veterinaire">
+                    <input type="hidden" name="type_utilisateur" value="veterinaire">
 
-                <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Votre cabinet : </label></strong>
-                <div class="form-group">
-                    <input type="text" name="numVeterinaire" id="numVeterinaire" class="form-control" aria-describedby="emailHelp" placeholder="identifiant vétérinaire">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">L'identifiant professional doit comporter 5 chiffres.</span>
-                </div>
-                
-                <div class="form-group">
-                    <input type="text" name="nomCabinet" id="nomCabinet" class="form-control" aria-describedby="emailHelp" placeholder="Nom du cabinet">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Le nom doit comporter au moins 2 caractères.</span>
-                </div>
+                    <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Votre cabinet : </label></strong>
+                    <div class="form-group">
+                        <input type="text" name="numVeterinaire" id="numVeterinaire" class="form-control" aria-describedby="emailHelp" placeholder="identifiant vétérinaire">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">L'identifiant professional doit comporter 5 chiffres.</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" name="nomCabinet" id="nomCabinet" class="form-control" aria-describedby="emailHelp" placeholder="Nom du cabinet">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Le nom doit comporter au moins 2 caractères.</span>
+                    </div>
 
-                <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Vos coordonnées : </label></strong>
-                <div class="form-group">
-                    <input type="text" name="ville" id="ville2" class="form-control" aria-describedby="emailHelp" placeholder="Ville, commune, lieu-dit">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner ce champs.</span>
-                </div>
+                    <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Vos coordonnées : </label></strong>
+                    <div class="form-group">
+                        <input type="text" name="ville" id="ville2" class="form-control" aria-describedby="emailHelp" placeholder="Ville, commune, lieu-dit">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner ce champs.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="text" name="adresse" id="adresse2" class="form-control"aria-describedby="emailHelp" placeholder="Adresse">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner votre adresse.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="text" name="adresse" id="adresse2" class="form-control"aria-describedby="emailHelp" placeholder="Adresse">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez renseigner votre adresse.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="text" name="codePostal" id="codePostal2" class="form-control"aria-describedby="emailHelp" placeholder="Code postal">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer un code postal valide.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="text" name="codePostal" id="codePostal2" class="form-control"aria-describedby="emailHelp" placeholder="Code postal">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer un code postal valide.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="tel" name="telephone" id="telephone2" class="form-control" aria-describedby="emailHelp" placeholder="Telephone">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer un numéro de téléphone valide.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="tel" name="telephone" id="telephone2" class="form-control" aria-describedby="emailHelp" placeholder="Telephone">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer un numéro de téléphone valide.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="email" name="email" id="email2" class="form-control"ria-describedby="emailHelp" placeholder="email">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer une email valide.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="email" name="email" id="email2" class="form-control"ria-describedby="emailHelp" placeholder="email">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez entrer une email valide.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="password" name="password" id="password3" class="form-control" aria-describedby="emailHelp" placeholder="Mot de passe">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Le mot de passe doit comporter au moins 8 caractères.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="password" name="password" id="password3" class="form-control" aria-describedby="emailHelp" placeholder="Mot de passe">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Le mot de passe doit comporter au moins 8 caractères.</span>
+                    </div>
 
-                <div class="form-group">
-                    <input type="password" name="password2" id="password4" class="form-control" aria-describedby="emailHelp" placeholder="Confirmez le mot de passe">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Le mots de passe ne correspondent pas.</span>
-                </div>
+                    <div class="form-group">
+                        <input type="password" name="password2" id="password4" class="form-control" aria-describedby="emailHelp" placeholder="Confirmez le mot de passe">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Le mots de passe ne correspondent pas.</span>
+                    </div>
 
-                <div class="form-group">
-                    <strong><label style="color:rgb(0,177,77);font-size:1.5em">Choisissez une photo de profil*</label> <i>*Optionnel</i></strong>
-                    <input type="file" onchange="handleFiles(files,preview2);getoutput(this)" name="userfile" id="photo2" size="20">
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Attention : formats acceptés : png, jpg, gif.</span>
-                    <div><label for="photo2"><div id="preview2" style="width:200px;"></div></label></div>
-                </div>
+                    <div class="form-group">
+                        <strong><label style="color:rgb(0,177,77);font-size:1.5em">Choisissez une photo de profil*</label> <i>*Optionnel</i></strong>
+                        <input type="file" onchange="handleFiles(files,preview2);getoutput(this)" name="userfile" id="photo2" size="20">
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Attention : formats acceptés : png, jpg, gif.</span>
+                        <div><label for="photo2"><div id="preview2" style="width:200px;"></div></label></div>
+                    </div>
 
-                <div class="form-group">
-                <div class="custom-control custom-checkbox" style="color:black">
-                    <input type="checkbox" class="custom-control-input" id="cgu2">
-                    <label class="custom-control-label text-secondary mt-2" for="cgu2">J'accepte les <a href="#" data-toggle="modal" data-target="#myModal2">conditions générales d'Oporctunité</a></label>
-                    <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez accepter les CGU.</span>
-                </div>
-                </div><br>
+                    <div class="form-group">
+                    <div class="custom-control custom-checkbox" style="color:black">
+                        <input type="checkbox" class="custom-control-input" id="cgu2">
+                        <label class="custom-control-label text-secondary mt-2" for="cgu2">J'accepte les <a href="#" data-toggle="modal" data-target="#myModal2">conditions générales d'Oporctunité</a></label>
+                        <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez accepter les CGU.</span>
+                    </div>
+                    </div><br>
 
-                <div class="col-md-12 text-center ">
-                    <button type="submit" class=" btn btn-block mybtn btn-success">S'inscrire</button>
-                </div>
+                    <div class="col-md-12 text-center ">
+                        <button type="submit" class=" btn btn-block mybtn btn-success">S'inscrire</button>
+                    </div>
                 </form>
 
                 <div class="mt-2 mb-4 text-center"><a href="<?php echo base_url(); ?>login" id="inscription" class="text-center">Se connecter</a></div>
