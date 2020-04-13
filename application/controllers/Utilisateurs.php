@@ -277,7 +277,7 @@
         public function profil(){
 
             if(!$this->session->userdata('connecte')){
-                redirect('login');
+                redirect('accueil');
             }
 
             $name = $this->session->userdata('nom');

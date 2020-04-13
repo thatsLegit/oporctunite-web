@@ -276,6 +276,7 @@ class Fiches extends CI_Controller{
             $this->fiches();
         } else {
             $data['avis'] = $this->Fiches_model->get_avis($titre_fiche);
+            $data['anyNote'] = $this->Fiches_model->get_any_note($titre_fiche);
             $data['maNote'] = $this->Fiches_model->get_ma_note($titre_fiche, $utilisateur);
             $data['moyenne'] = $this->Fiches_model->get_note_moyenne($titre_fiche);
             $data['fiche_fav'] = $this->Fiches_model->get_favoris_titre($titre_fiche, $utilisateur);
@@ -290,7 +291,7 @@ class Fiches extends CI_Controller{
 
     public function add_fiche() {
 
-        if(!$this->session->userdata('connecte') ||$this->session->userdata('statut')!='admin'){
+        if(!$this->session->userdata('connecte') || $this->session->userdata('statut')!='admin'){
             show_404();
         }
 
