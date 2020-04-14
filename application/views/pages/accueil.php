@@ -7,6 +7,9 @@
   <title>O'porctunité</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <!-- Recaptcha -->
+  <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+
   <!-- Bootstrap cdn -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -489,7 +492,9 @@
                 </div>
               </div>
               <div class="clearfix"></div>
+              <span id="alertCaptcha" class="d-none" style="font-size:1em;">Veuillez valider le Captcha.</span><br>
               <div class="col-lg-12 text-center">
+              <div class="g-recaptcha" data-sitekey="6LfkHOkUAAAAAE4GVIhhHfrawB97CGB9fWT4NgAh"></div>
                 <div id="success"></div>
                 <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Envoyer</button>
               </div>
@@ -711,6 +716,35 @@
 
   <!-- Custom scripts for this template -->
   <script src="<?php echo base_url(); ?>assets/accueil/js/agency.min.js"></script>
+
+  <!-- captcha ajax script -->
+  <script>
+    sendMessageButton.addEventListener('click', function(e) {  
+        
+        var response = grecaptcha.getResponse();
+        if (!response) {
+          document.getElementById('alertCaptcha').className = 'd-inline-block bg-danger';
+          e.preventDefault();
+          return; 
+        }
+    
+        var ajax = new XMLHttpRequest();
+
+        ajax.onreadystatechange = function() {
+            if (this.status === 200 && this.readyState === 4) {
+                var reponse = this.responseText;
+                if (reponse!='ok'){
+                  document.getElementById('alertCaptcha').className = 'd-inline-block bg-danger';
+                  e.preventDefault();
+                  return; 
+                }
+            }
+        }
+        ajax.open('POST', 'https://oporctunite.envt.fr/Utilisateurs/Vrecaptcha', true);
+        ajax.send('recaptcha='+response);
+
+      }, false);
+  </script>
 
 </body>
 

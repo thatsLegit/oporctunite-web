@@ -153,7 +153,7 @@
 
         public function Vrecaptcha(){
             if (empty($_POST['recaptcha'])) {
-                exit('Please set recaptcha variable');
+                return("captcha failure");
             }
             // validate recaptcha
             $response = $_POST['recaptcha'];
@@ -174,11 +174,11 @@
             $context = stream_context_create($opts);
             $serverResponse = @file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
             if (!$serverResponse) {
-                exit('Failed to validate Recaptcha');
+                return("captcha failed");
             }
             $result = json_decode($serverResponse);
             if (!$result -> success) {
-                exit('Invalid Recaptcha');
+                return("Invalid Recaptcha");
             }
             return 'ok';
         }

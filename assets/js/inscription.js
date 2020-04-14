@@ -289,13 +289,10 @@ checkEleveur['password2'] = function(id) {
     formulaire.addEventListener('submit', function(e) {  
         
         //captcha check :
-        if (grecaptcha === undefined) {
-            alert('Recaptcha not defined'); 
-            return; 
-        }
         var response = grecaptcha.getResponse();
         if (!response) {
-            alert('Coud not get recaptcha response'); 
+            document.getElementById('alertCaptcha').className = 'd-inline-block bg-danger';
+            e.preventDefault();
             return; 
         }
     
@@ -305,7 +302,9 @@ checkEleveur['password2'] = function(id) {
             if (this.status === 200 && this.readyState === 4) {
                 var reponse = this.responseText;
                 if (reponse!='ok'){
+                    document.getElementById('alertCaptcha').className = 'd-inline-block bg-danger';
                     e.preventDefault();
+                    return; 
                 }
             }
         }

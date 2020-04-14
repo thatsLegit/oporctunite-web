@@ -105,7 +105,8 @@
                     </div>
                     </div>
 
-                    <div class="g-recaptcha" data-sitekey="6LfkHOkUAAAAAE4GVIhhHfrawB97CGB9fWT4NgAh"></div><br>
+                    <div class="g-recaptcha" data-sitekey="6LfkHOkUAAAAAE4GVIhhHfrawB97CGB9fWT4NgAh"></div>
+                    <span id="alertCaptcha" class="d-none" style="font-size:1em;">Veuillez valider le Captcha.</span><br>
 
                     <div class="col-md-12 text-center ">
                         <button type="submit" class=" btn btn-block mybtn btn-success">S'inscrire</button>
@@ -266,7 +267,8 @@
                     </div>
                     </div>
 
-                    <div class="g-recaptcha" data-sitekey="6LfkHOkUAAAAAE4GVIhhHfrawB97CGB9fWT4NgAh"></div><br>
+                    <div class="g-recaptcha" data-sitekey="6LfkHOkUAAAAAE4GVIhhHfrawB97CGB9fWT4NgAh"></div>
+                    <span id="alertCaptcha" class="d-none" style="font-size:1em;">Veuillez valider le Captcha.</span><br>
 
                     <div class="col-md-12 text-center ">
                         <button type="submit" class=" btn btn-block mybtn btn-success">S'inscrire</button>
