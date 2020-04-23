@@ -292,13 +292,13 @@
                     $this->session->set_userdata($utilisateur_data);
 
                     if($utilisateur_data['statut'] == "elevage"){
-                        redirect('utilisateurs/profil');
+                        redirect('');
                     }
                     elseif($utilisateur_data['statut'] == "veterinaire"){
-                        redirect('utilisateurs/profil');
+                        redirect('');
                     }
                     elseif($utilisateur_data['statut'] == "admin"){
-                        redirect('utilisateurs/profil');
+                        redirect('');
                     }
                     else{
                         show_404();
