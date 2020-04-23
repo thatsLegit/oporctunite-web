@@ -63,14 +63,14 @@
             }           
         }
 
-        public function login($tel, $email, $password){ 
+        public function login($login, $password){ 
             //select idutilisateur
             //from utilisateur
             //where email = $email
             //or tel = $tel
             //and password = $password;
             $result = $this->db->where("password='".$password."' 
-                                AND (email='".$email."' OR telephone='".$tel."')")
+                                AND (email='".$login."' OR telephone='".$login."')")
                                 ->get('utilisateur');
             if($result->num_rows() == 1){
                 return $result->row(0)->idutilisateur;
@@ -276,8 +276,7 @@
                 'etat'  => 'Refuser'
             );
         
-            $this->db->replace('suivre', $data);
-        
+            $this->db->replace('suivre', $data);     
         }
 
         public function update_accepter_suivi($numElevage, $numVeterinaire){
@@ -289,7 +288,8 @@
             );
         
             $this->db->replace('suivre', $data);
-        
         }
+
     }
+
 ?>

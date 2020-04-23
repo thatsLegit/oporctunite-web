@@ -5,6 +5,8 @@
 	<meta charset="utf-8">
 	<title>O'porctunité</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- bootswatch theme -->
 	<link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css"/>
 	<!-- Bootstrap cdn -->

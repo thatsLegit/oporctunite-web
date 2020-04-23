@@ -71,7 +71,7 @@ check['login'] = function(id) {
     var login = document.getElementById(id),
         tooltipStyle = getTooltip(login);
         
-    if (/[0-9]{10}/.test(login.value) || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(login.value)) {
+    if (/^\d{10}$/.test(login.value) || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(login.value)) {
         tooltipStyle.className = 'd-none';
         return true;
     } else {
@@ -93,27 +93,13 @@ check['password'] = function(id) {
     }
 };
 
-check['select'] = function(id) {
-    var select = document.getElementById(id),
-        selected = select.options[select.selectedIndex].value,
-        tooltipStyle = getTooltip(select);
-
-    if (selected == "veterinaire" || selected == "elevage" || selected == "admin") {
-        tooltipStyle.className = 'd-none';
-        return true;
-    } else {
-        tooltipStyle.className = 'd-inline-block bg-danger';
-        return false;
-    }
-};
-
 (function() {
 
     var formulaire = document.getElementById('formulaireConnexion'),
     inputs = document.getElementById("formulaireConnexion").querySelectorAll('input');
-    //onkeyup
+    //oninput
     for (var i = 0 ; i < 2 ; i++) {
-        inputs[i].addEventListener('keyup', function(e) {
+        inputs[i].addEventListener('input', function(e) {
             check[e.target.id](e.target.id);
         }, false);
     }

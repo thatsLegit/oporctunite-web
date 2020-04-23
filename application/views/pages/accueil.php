@@ -57,7 +57,7 @@
           </li>
           <?php else : ?>
             <li class="nav-item">
-            <a style="color: green !important; margin:5px;" class="btn btn-outline-success" href="<?php echo base_url(); ?>Utilisateurs/profil">Mon espace O'porctunité</a>
+            <a style="color: green !important; margin:5px;" class="btn btn-outline-success" href="<?php echo base_url(); ?>">Mon espace O'porctunité</a>
           </li>
           <?php endif; ?>
         </ul>

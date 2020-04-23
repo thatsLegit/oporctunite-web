@@ -64,7 +64,7 @@
     <div class="menu" id="menu-accueil">
         <h2 class="title">Bienvenue !</h2>
         <div id="container-profil">
-            <img name="imageProfil" id="imageProfil" src="<?php echo '../assets/img/photos/'.$this->session->userdata['utilisateurPhoto']?>" alt="Image de Profil">
+            <img name="imageProfil" id="imageProfil" src="<?php echo base_url().'/assets/img/photos/'.$this->session->userdata['utilisateurPhoto']?>" alt="Image de Profil">
         </div>
         <div id="container-profil">
             <label class="">Nom :</label><br>

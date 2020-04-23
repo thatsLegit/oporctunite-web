@@ -281,7 +281,7 @@ checkEleveur['password2'] = function(id) {
     inputs = document.getElementById("formulaire").querySelectorAll('input');
     //onkeyup
     for (var i = 0 ; i < inputs.length ; i++) {
-        inputs[i].addEventListener('keyup', function(e) {
+        inputs[i].addEventListener('input', function(e) {
             checkEleveur[e.target.id](e.target.id);
         }, false);
     }
@@ -348,7 +348,7 @@ checkEleveur['password2'] = function(id) {
         }, false);
     }
     //onsubmit
-    formulaire2.addEventListener('submit', function(e) {   
+    formulaire2.addEventListener('input', function(e) {   
         var result = true;
         for (var i in checkVeterinaire) {
             result = checkVeterinaire[i](i) && result;

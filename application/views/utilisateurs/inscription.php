@@ -10,7 +10,6 @@
 
 <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 
-<body onload="cacher()">
 
 <div id="titre">
     <h3 class="text-center mt-5">Inscription</h3>
@@ -174,7 +173,7 @@
                                 •	Fourniture de services : l’accès à certains espaces tels que l’espace d’amélioration des fiches conseils, etc.
                                 Conformément à la Loi « Informatique et Libertés du 6 janvier 1978 modifiée en 2004, vous bénéficiez d’un droit d’accès, d’opposition, de rectification et de suppression des données qui vous concernent. Vous pouvez exercer ce droit à tout moment en adressant un courrier électronique, accompagné d’une photocopie de votre pièce d’identité ou de votre passeport, à l’adresse suivante : ADRESSE LAURA
                                 Pour plus d’informations sur le traitement de vos données à caractère personnel, nous vous invitons à consulter notre Politique Données Personnelles accessible ici.</p><br>
-                                 
+                                
                                 <h5>6. MODIFICATION DU SITE ET DES CONDITIONS D’UTILISATION</h5>
                                 <p>Nous pouvons être amenés à modifier les contenus et informations inclus dans ce Site ainsi que les présentes Conditions d’Utilisation, notamment afin de respecter toute nouvelle législation et/ou réglementation applicable et/ou afin d’améliorer le Site. Toute modification sera intégrée dans les présentes Conditions d’Utilisation.</p><br>
                                 <h5>7. HEBERGEMENT</h5>
@@ -337,7 +336,7 @@
                                 •	Fourniture de services : l’accès à certains espaces tels que l’espace d’amélioration des fiches conseils, etc.
                                 Conformément à la Loi « Informatique et Libertés du 6 janvier 1978 modifiée en 2004, vous bénéficiez d’un droit d’accès, d’opposition, de rectification et de suppression des données qui vous concernent. Vous pouvez exercer ce droit à tout moment en adressant un courrier électronique, accompagné d’une photocopie de votre pièce d’identité ou de votre passeport, à l’adresse suivante : ADRESSE LAURA
                                 Pour plus d’informations sur le traitement de vos données à caractère personnel, nous vous invitons à consulter notre Politique Données Personnelles accessible ici.</p><br>
-                                 
+                                
                                 <h5>6. MODIFICATION DU SITE ET DES CONDITIONS D’UTILISATION</h5>
                                 <p>Nous pouvons être amenés à modifier les contenus et informations inclus dans ce Site ainsi que les présentes Conditions d’Utilisation, notamment afin de respecter toute nouvelle législation et/ou réglementation applicable et/ou afin d’améliorer le Site. Toute modification sera intégrée dans les présentes Conditions d’Utilisation.</p><br>
                                 <h5>7. HEBERGEMENT</h5>
@@ -357,28 +356,24 @@
     </div>
 </div>
 
+<script type="text/javascript"> 
+    $(document).ready(() => {
+            $('#elevage').show();
+            $('#veterinaire').hide();
+        }
+    );
 
-<script> 
-function cacher() {
-    document.getElementById("elevage").style.display = "block";
-    document.getElementById("veterinaire").style.display = "none";
-}
-
-function changer() {
-    if (document.getElementById("selectchange").selectedIndex == 0) {
-        document.getElementById("formulaire").reset();
-        document.getElementById("elevage").style.display = "block";
-        document.getElementById("veterinaire").style.display = "none";
-    } else if (document.getElementById("selectchange").selectedIndex == 1) {
-        document.getElementById("formulaire2").reset();
-        document.getElementById("elevage").style.display = "none";
-        document.getElementById("veterinaire").style.display = "block";
+    function changer() {
+        if (document.getElementById("selectchange").selectedIndex == 0) {
+            document.getElementById("formulaire").reset();
+            $('#elevage').show();
+            $('#veterinaire').hide();
+        } else if (document.getElementById("selectchange").selectedIndex == 1) {
+            document.getElementById("formulaire2").reset();
+            $('#elevage').hide();
+            $('#veterinaire').show();
+        }
     }
-}
 </script>
 
 <script src="<?php echo base_url();?>assets/js/inscription.js"></script>
-
-</div>
-</body>
-</html>

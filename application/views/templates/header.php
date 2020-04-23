@@ -5,6 +5,8 @@
 	<meta charset="utf-8">
 	<title>O'porc'tunité</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- bootswatch theme -->
 	<link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css"/>
 	<!-- Bootstrap cdn -->
@@ -76,7 +78,7 @@
 					</a>
 				</li>
 				<?php endif; ?>
-				<?php if($this->session->userdata('connecte') && (base_url(uri_string())=='https://oporctunite.envt.fr/Utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr/utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr' || base_url(uri_string())=='https://oporctunite.envt.fr/')) : ?>
+				<?php if($this->session->userdata('connecte') && (base_url(uri_string())=='https://oporctunite.envt.fr/Utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr/utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr' || base_url(uri_string())=='https://oporctunite.envt.fr/' || base_url(uri_string())=='http://localhost/oporctunite/')) : ?>
 				<li>
 					<a href="<?php echo base_url(); ?>utilisateurs/logout">
 						<button type="button" class="btn btn-outline-light">

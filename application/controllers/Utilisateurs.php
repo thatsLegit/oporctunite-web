@@ -1,6 +1,6 @@
 <?php
 
-    //pour la connexion, ajouter la fonction de changement de mdp
+    //pour la connexion, ajouter la fonction d'oubli de mdp
     //confirmation d'inscription par mail
     //Empêcher la rafraichissement de la page d’inscription 
     //mettre la partie suivi dans un controller séparé
@@ -8,9 +8,8 @@
     class Utilisateurs extends CI_Controller{
         public function inscription(){
 
-            //Si l'utilisateur est dejà co, le rediriger vers la page d'accueil
             if($this->session->userdata('connecte')){
-                redirect('utilisateurs/profil');
+                redirect('');
             }
 
             $this->config->set_item('language', 'french');
@@ -31,6 +30,7 @@
                 if($this->form_validation->run() === FALSE){
                     $this->load->view('templates/header');
                     $this->load->view('utilisateurs/inscription');
+                    $this->load->view('templates/footer');
                 } else {
                     //encrypting password
                     $enc_password = md5($this->input->post('password'));
@@ -96,6 +96,7 @@
                 if($this->form_validation->run() === FALSE){
                     $this->load->view('templates/header-connexion-inscription');
                     $this->load->view('utilisateurs/inscription');
+                    $this->load->view('templates/footer');
 
                 } else {
                     //encrypting password
@@ -248,7 +249,7 @@
 
             //Si l'utilisateur est dejà co, le rediriger vers la page d'accueil
             if($this->session->userdata('connecte')){
-                redirect('utilisateurs/profil');
+                redirect('');
             }
             
             $this->config->set_item('language', 'french');
@@ -264,10 +265,9 @@
 
             } else {
                 //Avant connexion
-                $email = $this->input->post('login');
-                $tel = $this->input->post('login');
+                $login = $this->input->post('login');
                 $password = md5($this->input->post('password'));
-                $idUtilisateur = $this->utilisateurs_model->login($tel, $email, $password);
+                $idUtilisateur = $this->utilisateurs_model->login($login, $password);
 
                 //Après connexion
                 // Create session
