@@ -98,7 +98,7 @@
 	<!-- navbar logo retour page d'accueil -->
 	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="<?php echo base_url(); ?>accueil" style="color:green;"><img src="<?php echo base_url(); ?>assets/accueil/img/logo.png">Porc'tunité</a>
+			<a class="navbar-brand js-scroll-trigger" href="<?php echo base_url(); ?>accueil" style="color:green;"><img src="<?php echo base_url(); ?>assets/accueil/img/logo.png">Porctunité</a>
 		</div>
 	</nav>
 

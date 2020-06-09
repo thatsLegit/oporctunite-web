@@ -3,8 +3,8 @@
 
 <head>	
 	<!-- css graphique historique -->
-	<link crossorigin="anonymous" media="all" integrity="sha512-FG+rXqMOivrAjdEQE7tO4BwM1poGmg70hJFTlNSxjX87grtrZ6UnPR8NkzwUHlQEGviu9XuRYeO8zH9YwvZhdg==" rel="stylesheet" href="https://github.githubassets.com/assets/frameworks-146fab5ea30e8afac08dd11013bb4ee0.css" />
-	<link crossorigin="anonymous" media="all" integrity="sha512-vMKRtbQ9h8VmzccMNdmnlBnTLM9zZar8f9BKU3A5UNRZgr3o2+zXRScLx7V1nd9HupewEuevhEx2D3yuqNpkXw==" rel="stylesheet" href="https://github.githubassets.com/assets/github-bcc291b5b43d87c566cdc70c35d9a794.css" />
+	<link crossorigin="anonymous" media="all" integrity="sha512-BmnGTzITfSCD9SKlVfngZdzNq8Fa33lRq00rF1eRsg4zcCH3VtX8QtS6687+5GdeaVj1LzKyLj6+oXJLcswj6w==" rel="stylesheet" href="https://github.githubassets.com/assets/frameworks-0669c64f32137d2083f522a555f9e065.css" />
+ 	<link crossorigin="anonymous" media="all" integrity="sha512-HLwpPbjGriZxrqP35jpzSDUnScRZWkUrw9j49/HFXvQ4a6KfUA9gbcbCe/WLt3UaTYM+mnP4MtvwCmlvDuisdQ==" rel="stylesheet" href="https://github.githubassets.com/assets/github-1cbc293db8c6ae2671aea3f7e63a7348.css" />
 	<!-- scripts graphiques résultats -->
 	<script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
     <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
@@ -212,24 +212,15 @@
 						<div class="table-responsive">
 							<table class="table">
 								<tr>
-									<th colspan="2" class="text-center">Nourriture convenable</th>
+									<th colspan="2" class="text-center">Bonne alimentation</th>
 								<tr>
 									<tr>
-										<td>Expression sociale du comportement</td>
-										<td>Comportement social (positif ou négatif)</td>
+										<td>Absence de faim prolongée</td>
+										<td>Etat corporel</td>
 									</tr>
 									<tr>
-										<td rowspan="3">Expression des autres comportements</td>
-										<tr><td>Stereotypies</td></tr>
-										<tr><td>Exploration individuelle</td></tr>
-									</tr>
-									<tr>
-										<td>Bonne relation homme-animal</td>
-										<td>La peur des hommes</td>
-									</tr>
-									<tr>
-										<td>Evaluation qualitative du comportement</td>
-										<td>Emotions positives</td>
+										<td>Absence de soif</td>
+										<td>Apport en eau</td>
 									</tr>
 								</tr>
 							</table>
@@ -253,12 +244,15 @@
 
 
 	<!-- Graphique historique-->
+	<div class="mt-4 position-relative">
+	<div class="js-yearly-contributions">
+	<div class="position-relative">
 	<h2 class="f4 text-normal mb-2">
       144 tests réalisés
         au cours de la dernière année
     </h2>
-	<div class="row">
-		<div class="col">	
+	<div class="border border-gray-dark py-2 graph-before-activity-overview">
+    	<div class="js-calendar-graph mx-3 d-flex flex-column flex-items-end flex-xl-items-center overflow-hidden pt-1 is-graph-loading graph-canvas calendar-graph height-full text-center">
 			<svg width="828" height="128" class="js-calendar-graph-svg">
 				<g transform="translate(10, 20)">
 					<g transform="translate(0, 0)">
@@ -759,54 +753,55 @@
 					<text text-anchor="start" class="wday" dx="-10" dy="81" style="display: none;">Sam</text>
 				</g>
 			</svg>
-
-			</div>
-      <div class="contrib-footer clearfix mt-1 mx-3 px-3 pb-1">
-        <div class="float-left text-gray">
-          <a href="#" data-toggle="modal" data-target="#modalHistorique">Comprendre mon historique des tests</a>.
-        </div>
-        <div class="contrib-legend text-gray">
-          Moins
-          <ul class="legend">
-            <li style="background-color: #ebedf0"></li>
-              <li style="background-color: #c6e48b"></li>
-              <li style="background-color: #7bc96f"></li>
-              <li style="background-color: #239a3b"></li>
-              <li style="background-color: #196127"></li>
-          </ul>
-          Plus
-        </div>
-      </div>
-
-    </div>
 		</div>
+
+		<div class="contrib-footer clearfix mt-1 mx-3 px-3 pb-1">
+			<div class="float-left text-gray">
+			<a href="#" data-toggle="modal" data-target="#modalHistorique">Comprendre mon historique des tests</a>.
+			</div>
+			<div class="contrib-legend text-gray" title="A summary of pull requests, issues opened, and commits to the default and gh-pages branches.">
+				Moins
+				<ul class="legend">
+				<li style="background-color: #ebedf0"></li>
+					<li style="background-color: #c6e48b"></li>
+					<li style="background-color: #7bc96f"></li>
+					<li style="background-color: #239a3b"></li>
+					<li style="background-color: #196127"></li>
+				</ul>
+				Plus
+			</div>
+		</div>	
+	</div>
+	
+	</div>
+	</div>
 	</div>
 
 	<!-- The Modal -->
-	<div class="modal" id="modalHistorique">
-		<div class="modal-dialog">
-			<div class="modal-content">
+    <div class="modal" id="modalHistorique">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title" style="color:black">Comptabilisation des tests</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" style="color:black">Comptabilisation des tests</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
 
-				<!-- Modal body -->
-				<div class="modal-body" style="padding: 5px; color:black">
-					<div class="table-responsive">
-					</div>
-				</div>
+                <!-- Modal body -->
+                <div class="modal-body" style="padding: 5px; color:black">
+                    <div class="table-responsive">
+                    </div>
+                </div>
 
-				<!-- Modal footer -->
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 

@@ -34,7 +34,7 @@
   </button>
     <div class="container">
       <div class="collapse navbar-collapse" id="navbarResponsive">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top" style="color:green;"><img src="<?php echo base_url(); ?>assets/accueil/img/logo.png">Porc'tunité</a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top" style="color:green;"><img src="<?php echo base_url(); ?>assets/accueil/img/logo.png">Porctunité</a>
         <ul class="navbar-nav text-uppercase ml-auto">
           <li class="nav-item">
             <a style="color: green !important;" class="nav-link js-scroll-trigger" href="#portfolio">Le site</a>
