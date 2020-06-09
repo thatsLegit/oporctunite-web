@@ -80,48 +80,30 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h2 class="section-heading text-uppercase">Vous retrouverez sur le site ...</h2>
-          <h3 class="section-subheading text-muted">De nombreuses fonctionnalités permettant de suivre le bien-être de vos animaux</h3>
+          <h2 class="section-heading-portfolio">O’porctunité, une application pour aider les éleveurs(ses) à garantir le respect du bien-être des truies</h2>
+          <p class="section-subheading-portfolio">O’porctunité vous permettra de réaliser des <strong style="font-size:23px;">auto-évaluations</strong> de bien-être sur vos truies. Une <strong style="font-size:23px;">analyse des données</strong> sera faite vous fournissant des graphiques radars dans l’objectif de vous <strong style="font-size:23px;">améliorer</strong>. Pour vous <strong style="font-size:23px;">accompagner</strong> dans votre suivi, nous vous recommanderons certaines fiches à lire, succinctes pour vous faire <strong style="font-size:23px;">gagner du temps</strong> en vous résumant l’essentiel pour vous garantir la <strong style="font-size:23px;">réussite</strong> de votre élevage.</p>
         </div>
       </div>
       <div class="row">
         <div class="col-md-4 col-sm-6 col-xs-12 portfolio-item">
-          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid" src="<?php echo base_url(); ?>assets/accueil/img/portfolio/bilans_graphiques-full.png" alt="">
-          </a>
-          <div class="portfolio-caption">
-            <h4>Bilans de bien-être</h4>
+          <img class="img-fluid" src="<?php echo base_url(); ?>assets/accueil/img/portfolio/image1_modified.png" alt="">
+          <div class="portfolio-caption" style="max-width: 220px;">
+            <h5>Pour l’éleveur(se)</h5>
+            <p>Un accompagnement pour un gain de productivité et respect des obligations légales</p>
           </div>
         </div>
         <div class="col-md-4 col-sm-6 col-xs-12 portfolio-item">
-          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid" src="<?php echo base_url(); ?>assets/accueil/img/portfolio/fiches-full.png" alt="">
-          </a>
-          <div class="portfolio-caption">
-            <h4>Fiches conseils</h4>
+          <img class="img-fluid" src="<?php echo base_url(); ?>assets/accueil/img/portfolio/image2_modified.png" alt="">
+          <div class="portfolio-caption" style="max-width: 200px;">
+            <h5>Pour le vétérinaire</h5>
+            <p>Une meilleure valorisation et une facilité de suivi de ses élevages</p>
           </div>
         </div>
         <div class="col-md-4 col-sm-6 col-xs-12 portfolio-item">
-          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content">
-                <i class="fas fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img class="img-fluid" src="<?php echo base_url(); ?>assets/accueil/img/portfolio/recommandations-thumbnail.png" alt="">
-          </a>
-          <div class="portfolio-caption">
-            <h4>Recommandations personnalisées</h4>
+          <img class="img-fluid" src="<?php echo base_url(); ?>assets/accueil/img/portfolio/image3.png" alt="">
+          <div class="portfolio-caption" style="max-width: 260px;">
+            <h5>Pour l’élevage</h5>
+            <p>Des conditions de bien-être qui vont favoriser la réussite de l’élevage</p>
           </div>
         </div>
       </div>
@@ -218,7 +200,7 @@
           <h3 class="section-subheading text-muted">L'équipe est constitué de développeurs, juristes et de vétérinaires bien sûr !</h3>
         </div>
       </div>
-      <div class="row">
+      <div class="row"> 
         <div class="col-sm-4">
           <div class="team-member">
             <img class="mx-auto rounded-circle" src="<?php echo base_url(); ?>assets/accueil/img/team/lauraJegou.jpg" alt="">
@@ -243,11 +225,14 @@
             </ul>
           </div>
         </div>
+      </div>
+      <div class="metier"></div>
+      <div class="row">
         <div class="col-sm-4">
           <div class="team-member">
             <img class="mx-auto rounded-circle" src="<?php echo base_url(); ?>assets/accueil/img/team/ilyaStepanov.jpg" alt="">
             <h4>Ilya Stepanov</h4>
-            <p class="text-muted">Développeur web</p>
+            <p class="text-muted">Développeur web et mobile</p>
             <ul class="list-inline social-buttons">
               <li class="list-inline-item">
                 <a href="https://www.facebook.com/ilia.stpnv">
@@ -264,7 +249,7 @@
         </div>
         <div class="col-sm-4">
           <div class="team-member">
-            <img class="mx-auto rounded-circle" src="<?php echo base_url(); ?>assets/accueil/img/team/defaultImage.jpg" alt="">
+            <img class="mx-auto rounded-circle" src="<?php echo base_url(); ?>assets/accueil/img/team/davidChartelain.png" alt="">
             <h4>David Chartelain</h4>
             <p class="text-muted">Développeur web</p>
             <ul class="list-inline social-buttons">
@@ -382,9 +367,12 @@
             </ul>
           </div>
         </div>
+      </div>
+      <div class="metier"></div>
+      <div class="row">
         <div class="col-sm-4">
           <div class="team-member">
-            <img class="mx-auto rounded-circle" src="<?php echo base_url(); ?>assets/accueil/img/team/defaultImage.jpg" alt="">
+            <img class="mx-auto rounded-circle" src="<?php echo base_url(); ?>assets/accueil/img/team/marineAdreit.jpg" alt="">
             <h4>Marine Adreit</h4>
             <p class="text-muted">Juriste</p>
             <ul class="list-inline social-buttons">
@@ -408,7 +396,7 @@
         </div>
         <div class="col-sm-4">
           <div class="team-member">
-            <img class="mx-auto rounded-circle" src="<?php echo base_url(); ?>assets/accueil/img/team/defaultImage.jpg" alt="">
+            <img class="mx-auto rounded-circle" src="<?php echo base_url(); ?>assets/accueil/img/team/melineDallalba.jpg" alt="">
             <h4>Méline Dall'Alba</h4>
             <p class="text-muted">Juriste</p>
             <ul class="list-inline social-buttons">
@@ -538,96 +526,6 @@
     </div>
   </footer>
 
-  <!-- Portfolio Modals -->
-
-  <!-- Modal 1 -->
-  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-            <div class="rl"></div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="modal-body">
-                <!-- Project Details Go Here -->
-                <h2 class="text-uppercase">Bilans graphiques</h2>
-                <p class="item-intro text-muted">Le compte eleveur vous permet d'acceder à des analyses graphiques basées sur vos résultats de tests.</p>
-                <img class="img-fluid d-block mx-auto" src="<?php echo base_url(); ?>assets/accueil/img/portfolio/bilans_graphiques-full.png" alt="">
-                <p>Accedez à des bilans détaillés par catégorie de vos tests réalisés sur l'application mobile O'porctunité.</p>
-                <button class="btn btn-primary" data-dismiss="modal" type="button">
-                  <i class="fas fa-times"></i>
-                  Fermer</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2 -->
-  <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-            <div class="rl"></div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="modal-body">
-                <!-- Project Details Go Here -->
-                <h2 class="text-uppercase">Fiches conseils</h2>
-                <p class="item-intro text-muted">Pour vous aider à améliorer le bien-être de vos animaux.</p>
-                <img class="img-fluid d-block mx-auto" src="<?php echo base_url(); ?>assets/accueil/img/portfolio/fiches-full.png" alt="">
-                <p>Les fiches conseils sont rédigées par Laura Jégou, administratrice d'O'porctunité, en thèse à l'Ecole Nationale vétérinaire de Toulouse.
-                  Notez, commentez, mettez les fiches qui vous plaisent en favoris !
-                </p>
-                <button class="btn btn-primary" data-dismiss="modal" type="button">
-                  <i class="fas fa-times"></i>
-                  Fermer</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 3 -->
-  <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-            <div class="rl"></div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <div class="modal-body">
-                <!-- Project Details Go Here -->
-                <h2 class="text-uppercase">Recommandations personnalisées</h2>
-                <p class="item-intro text-muted">Nos algorithmes determinent pour vous les fiches les plus pertinentes</p>
-                <img class="img-fluid d-block mx-auto" src="<?php echo base_url(); ?>assets/accueil/img/portfolio/recommandations-thumbnail.png" alt="">
-                <p>Nul besoin de rechercher vous mêmes les fiches, nos algorithmes le font pour vous en se basant sur vos résultats aux tests, en complément de l'analyse graphique !</p>
-                <button class="btn btn-primary" data-dismiss="modal" type="button">
-                  <i class="fas fa-times"></i>
-                  Fermer</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- The Modal -->
   <div class="modal" id="modalCGU">
