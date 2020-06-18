@@ -12,3 +12,6 @@ Quand vous clonez le projet, mettez vous sur la branche test : <br>
 
 Puis après vos modifs,  <br>
 **git push origin test**
+
+
+PS: Pour modifier en local, pensez à changer la valeur de base_url dans application/config/config.php et de liè votre base de donnée dans application/config/database.php
