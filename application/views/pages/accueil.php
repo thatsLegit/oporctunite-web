@@ -73,6 +73,10 @@
         <a class="btn btn-success btn-xl text-uppercase js-scroll-trigger" href="#portfolio">En savoir plus</a>
       </div>
     </div>
+    <div class="cookie-banner" style="display: none">
+      <p>Nous utilisons des cookies sur notre site web. Vous pouvez prendre connaissance de leurs usages avec notre <a href=’insert link’>politique de cookies.</a></p>
+      <button class="close">&times;</button>
+    </div>
   </header>
 
   <!-- Portfolio Grid -->
@@ -614,6 +618,8 @@
 
   <!-- Custom scripts for this template -->
   <script src="<?php echo base_url(); ?>assets/accueil/js/agency.min.js"></script>
+
+  <script src="<?php echo base_url(); ?>assets/accueil/js/cookies_banner.js"></script>
 
   <!-- captcha ajax script -->
   <script>

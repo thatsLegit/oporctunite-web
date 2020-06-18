@@ -73,6 +73,7 @@ h6 {
 }
 
 
+
 @media (min-width: 768px) {
   section {
     padding: 150px 0;
@@ -576,4 +577,30 @@ ul.social-buttons li a {
 
 ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
   background-color: #fed136;
+}
+
+.cookie-banner {
+  position: fixed;
+  bottom: 40px;
+  left: 10%;
+  right: 10%;
+  width: 80%;
+  z-index: 99999;
+  padding: 5px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #212529d4;
+  border-radius: 5px;
+  color: #fefefe;
+}
+
+.cookie-banner > p {
+  margin-bottom: unset;
+}
+.cookie-banner > .close {
+  border: none;
+  color: #fed136;
+  border-radius: 2px;
+  cursor: pointer;
 }
