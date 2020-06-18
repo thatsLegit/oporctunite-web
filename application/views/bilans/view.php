@@ -814,7 +814,7 @@
 	var configGCat = {
 		type: 'radar',
 		data: {
-			labels: ['Bonne santé', 'Comportement approprié', 'Hébergement approprié', 'Nourriture convenable'],
+			labels: ['Bonne santé', 'Comportement approprié', 'Hébergement approprié', 'Bonne alimentation'],
 			datasets: [{
 				label: 'Mes données',
 				backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),

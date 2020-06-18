@@ -74,8 +74,14 @@
       </div>
     </div>
     <div class="cookie-banner" style="display: none">
-      <p>Nous utilisons des cookies sur notre site web. Vous pouvez prendre connaissance de leurs usages avec notre <a href=’insert link’>politique de cookies.</a></p>
+      <p>Nous utilisons des cookies sur notre site web. Vous pouvez prendre connaissance de leurs usages avec notre <a onclick="openPoliqueCookies()">politique de cookies.</a></p>
       <button class="close">&times;</button>
+    </div>
+    <div id="poliqueCookies" class="overlay">
+      <a href="javascript:void(0)" class="closePoliqueCookies" onclick="closePoliqueCookies()">&times;</a>
+      <div class="overlay-content">
+        <iframe src="<?php echo base_url(); ?>assets/pdf/confidentialite.pdf" width="600" height="780" style="border: none;"></iframe>
+      </div>
     </div>
   </header>
 
