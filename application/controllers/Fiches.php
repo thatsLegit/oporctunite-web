@@ -139,7 +139,7 @@ class Fiches extends CI_Controller{
         if (!empty($result)){
             foreach ($result as $row):
                 echo '  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
-                            <div style="padding:auto;margin:auto;">
+                            <div style="padding:auto;margin:auto">
                                 <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
                                     <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
                                     <h5 class="text-center">'.$row->titreFiche.'</h5>

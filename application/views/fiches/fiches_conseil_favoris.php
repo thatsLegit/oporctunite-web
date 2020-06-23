@@ -3,7 +3,6 @@
         ::selection{ background-color: #E13300; color: white; }
         ::moz-selection{ background-color: #E13300; color: white; }
         ::webkit-selection{ background-color: #E13300; color: white; }
-
         body {
             margin: 0;
             padding: 0;
@@ -13,13 +12,11 @@
             background-size: cover;
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
-
         a {
             color: #003399;
             background-color: transparent;
             font-weight: normal;
         }
-
         /* start (custom style) */
         input[type=text] {
             width: 350px;
@@ -28,21 +25,17 @@
             box-sizing: border-box;
             border-radius: 20px;
         }
-
         label {
             margin: 40px;
         }
-
-        h4{
+        h4 {
             color: grey;
             margin-top: 20px;
             margin-bottom: 50px;
         }
-
-        h6{
+        h6 {
             color: black;
         }
-
         .mybtn {
             border: none;
             border-radius: 50px;
@@ -51,7 +44,6 @@
             font-size: 20px;
             margin-bottom: 10px;
         }
-
         .zone_text {
             color: #87C165;
             width: 300px;
@@ -62,31 +54,26 @@
             border-radius: 6px;
 
         }
-
         #container1 {
             padding: 10px;
             display: flex;
             flex-direction: row;
             justify-content: space-around;
         }
-        
-        select{
+        select {
             width: 300px;
             border-radius: 5px;
             height: 50px;
             margin-bottom: 50px;
         }
-
-        #main{
+        #main {
             margin-top:90px;
             padding: 10px; 
         }
-
-        #container-fiche{
+        #container-fiche {
             margin-top: 50px;
         }
-
-        #fiche{
+        #fiche {
             margin: 20px;
             width: 180px;
             height: 200px;
@@ -96,31 +83,22 @@
             border-radius: 5px;
             border: solid black 1.5px;
         }
-
-        #fiche h5{
+        #fiche h5 {
             padding:auto;
         }
-
-        #fiche p{
+        #fiche p {
             padding:auto;
         }
-
         #fiche button {
             width: 80px;
             height: 40px;
             font-size: .75rem;
             border-radius: 5px;
         }
-
         #fiche button:hover {
             background-color:#86cd23;
             transition: 0.5s;
-        }
-
-        #recherche{
-            margin-top: 5vh;
-            margin-bottom: 5vh;
-        }    
+        } 
     </style>
 </head>
 
