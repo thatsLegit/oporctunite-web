@@ -64,11 +64,6 @@
         }
 
         public function login($login, $password){ 
-            //select idutilisateur
-            //from utilisateur
-            //where email = $email
-            //or tel = $tel
-            //and password = $password;
             $result = $this->db->where("password='".$password."' 
                                 AND (email='".$login."' OR telephone='".$login."')")
                                 ->get('utilisateur');
@@ -80,7 +75,6 @@
         }
 
         //Pour l'inscription
-
         public function add_image($imageId, $name){
             $data = array('utilisateurPhoto'=>$name);
             $this->db->where('idutilisateur',$imageId);
@@ -94,7 +88,6 @@
         }
 
         //A la connexion
-
         public function getUtilisateur($idUtilisateur){
             return $this->db->where('idutilisateur', $idUtilisateur)
                                 ->get('utilisateur')->row(0);
@@ -115,6 +108,7 @@
             }
         }
 
+        // Checks inscription
         public function check_numEleveur_exists($numEleveur){
 			$query = $this->db->get_where('elevage', array('numEleveur' => $numEleveur));
 			if(empty($query->row_array())){
@@ -142,7 +136,6 @@
 			}
 		}
 
-		// Check email exists
 		public function check_email_exists($email){
 			$query = $this->db->get_where('utilisateur', array('email' => $email));
 			if(empty($query->row_array())){
@@ -152,7 +145,6 @@
 			}
         }
         
-        // Check telephone exists
 		public function check_telephone_exists($telephone){
 			$query = $this->db->get_where('utilisateur', array('telephone' => $telephone));
 			if(empty($query->row_array())){
@@ -171,123 +163,57 @@
 			}
         }
 
+        //Admin: supprimer utilisateur
+        public function suppr_utilisateur($nom, $type){
+            if($type == 'elevage'){
+                $sql = 'DELETE u FROM utilisateur u INNER JOIN elevage e ON u.idutilisateur = e.idutilisateur WHERE nomElevage = ?';
+            } else {
+                $sql = 'DELETE u FROM utilisateur u INNER JOIN veterinaire v ON u.idutilisateur = v.idutilisateur WHERE nomCabinet = ?';
+            }
+
+            $this->db->query($sql, array($nom));
+        }   
+
+        //Utilisé dans la page de profil
         public function getTailleElevage($name_elevage){
             $this->db->select('tailleElevage');
             $this->db->from('elevage');
             $this->db->where('elevage.nomElevage', $name_elevage);
             $query = $this->db->get();
-
             return $query->result_array();
         }
 
-        public function getNum_Elevage_name($name_elevage){
+        //Utilisé dans les suivis
+        public function getNumElevage_by_name($name_elevage){
             $this->db->select('numEleveur');
             $this->db->from('elevage');
             $this->db->where('elevage.nomElevage', $name_elevage);
             $query = $this->db->get();
-
             return $query->result_array();
         }
 
-        public function getNum_Veterinaire_name($name_veterinaire){
+        public function getNumVeterinaire_by_name($name_veterinaire){
             $this->db->select('numVeterinaire');
             $this->db->from('veterinaire');
             $this->db->where('veterinaire.nomCabinet', $name_veterinaire);
             $query = $this->db->get();
-
             return $query->result_array();
         }
 
-        public function getVeterinaire(){
+        public function getTousVeterinaires(){
             $this->db->select('*');
             $this->db->from('veterinaire');
             $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur' ); 
             $query = $this->db->get();
-
             return $query->result_array();
         }
 
-        public function getElevage(){
+        public function getTousElevages(){
             $this->db->select('*');
             $this->db->from('elevage');
             $this->db->join('utilisateur', 'elevage.idutilisateur = utilisateur.idutilisateur' ); 
             $query = $this->db->get();
-
             return $query->result_array();
-        }
-
-        //Pour le suivi
-        public function getVeterinaire_suivi($name_elevage){
-            $this->db->select('*');
-            $this->db->from('suivre');
-            $this->db->where('elevage.nomElevage', $name_elevage);
-            $this->db->join('elevage', 'elevage.numEleveur = suivre.numEleveur' ); 
-            $query = $this->db->get();
-
-            return $query->result_array();
-        }
-
-        public function getElevage_suivi($id_veterinaire){
-            $this->db->select('*');
-            $this->db->from('suivre');
-            $this->db->where('veterinaire.idutilisateur', $id_veterinaire);
-            $this->db->join('veterinaire', 'veterinaire.numVeterinaire = suivre.numVeterinaire' );
-            $this->db->join('elevage', 'elevage.numEleveur = suivre.numEleveur' );
-            $this->db->join('utilisateur', 'utilisateur.idutilisateur = elevage.idutilisateur' ); 
-            $query = $this->db->get();
-
-            return $query->result_array();
-        }
-
-        public function get_suivi($numElevage, $numVeterinaire){
-            $this->db->select('*');
-            $this->db->from('suivre');
-            $this->db->where('numEleveur', $numElevage);
-            $this->db->where('numVeterinaire', $numVeterinaire);
-            $query = $this->db->get();
-
-            return $query->result_array();
-        }
-
-        public function add_suivi($numElevage, $numVeterinaire){
-
-            $data = array(
-                'numEleveur' => $numElevage,
-                'numVeterinaire' => $numVeterinaire,
-                'etat' => "En Cours"
-            );
-        
-            $this->db->insert('suivre', $data);
-        }
-
-        public function delete_suivi($numElevage, $numVeterinaire){
-
-            $this->db->where('numEleveur', $numElevage);
-            $this->db->where('numVeterinaire', $numVeterinaire);
-            $this->db->delete('suivre');
-        
-        }
-
-        public function update_refuser_suivi($numElevage, $numVeterinaire){
-
-            $data = array(
-                'numEleveur' => $numElevage,
-                'numVeterinaire'  => $numVeterinaire,
-                'etat'  => 'Refuser'
-            );
-        
-            $this->db->replace('suivre', $data);     
-        }
-
-        public function update_accepter_suivi($numElevage, $numVeterinaire){
-
-            $data = array(
-                'numEleveur' => $numElevage,
-                'numVeterinaire'  => $numVeterinaire,
-                'etat'  => 'Accepter'
-            );
-        
-            $this->db->replace('suivre', $data);
         }
 
     }

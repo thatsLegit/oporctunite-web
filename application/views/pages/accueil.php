@@ -80,7 +80,7 @@
     <div id="poliqueCookies" class="overlay">
       <a href="javascript:void(0)" class="closePoliqueCookies" onclick="closePoliqueCookies()">&times;</a>
       <div class="overlay-content">
-        <iframe src="<?php echo base_url(); ?>assets/pdf/confidentialite.pdf" width="600" height="780" style="border: none;"></iframe>
+        <iframe src="<?php echo base_url(); ?>assets/CookiePdf/confidentialite.pdf" width="600" height="780" style="border: none;"></iframe>
       </div>
     </div>
   </header>
@@ -549,7 +549,6 @@
             </div>
 
             <!-- Modal body -->
-            <div class="modal-body" style="padding: 5px; color:black">
             <div class="modal-body" style="padding: 5px; color:black">
                 <p>Nous vous souhaitons la bienvenue sur ce site destiné aux éleveurs porcins qui souhaiteraient comparer le bien-être animal de leurs élevages, accéder à des fiches conseils spécialisées, effectuer des statistiques etc. Le site est disponible à l’adresse suivante : https://oporctunite.envt.fr. 
                 Nous vous invitons à lire attentivement les présentes Conditions d’Utilisation qui régissent la navigation sur ce Site. En utilisant le Site vous accepterez sans réserve les présentes Conditions d’Utilisation.

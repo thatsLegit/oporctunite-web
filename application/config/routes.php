@@ -60,19 +60,22 @@ $route['inscription'] = 'utilisateurs/inscription';
 $route['login'] = 'utilisateurs/login';
 $route['logout'] = 'utilisateurs/logout';
 
+$route['contact'] = 'pages/contact';
+$route['accueil'] = 'pages/accueil';
+
 $route['bilan'] = 'bilans/view';
 
-$route['suivre'] = 'Utilisateurs/elevage_suivi';
-$route['suivis'] = 'Utilisateurs/veterinaire_suivi';
-$route['suivi_administrateur'] = 'Utilisateurs/admin_suivi';
+$route['suivre'] = 'suivis/elevages_suivis';
+$route['suivis'] = 'suivis/veterinaire_suivi';
 
 $route['fiches'] = 'fiches/fiches';
 $route['fiches_favoris'] = 'fiches/fiches_favoris';
-$route['ajout_fiche'] = 'fiches/add_fiche';
+
+$route['admin/utilisateurs'] = 'utilisateurs/admin_suivi';
+$route['admin/fiches'] = 'fiches/add_fiche';
+$route['admin/commentaires'] = 'fiches/moderation_commentaires';
 
 $route['default_controller'] = 'utilisateurs/profil';
-$route['contact'] = 'pages/contact';
-$route['accueil'] = 'pages/accueil';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

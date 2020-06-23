@@ -16,7 +16,4 @@ class Pages extends CI_Controller{
 	public function accueil(){
 		$this->load->view('pages/accueil');
 	}
-
-	public function donneesPerso(){
-	}
 }

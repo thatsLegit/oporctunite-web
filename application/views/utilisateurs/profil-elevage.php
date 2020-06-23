@@ -1,13 +1,12 @@
 <head>
     <style>
-        body{
+        body {
             background-image: url("<?php echo base_url(); ?>assets/img/pigtheme.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
-
         #main {
             margin-top:90px;
             padding: 10px;
@@ -15,32 +14,27 @@
             justify-content: center;
             align-content: center;    
         }
-
-        .menu{
+        .menu {
             background-color: rgba(255,255,255,0.8);
             padding: 20px;
             width: 550px;
             border-radius: 15px;
-        }
-        
-        .title{
+        }     
+        .title {
             font-size: 1.7em;
             font-weight: 700 !important;
             color: #818181;
         }
-
-        h2{
+        h2 {
             padding: 25px;
             margin-top: 25px;
             margin-bottom: 50px;
         }
-
-        label{
+        label {
             color: #818181;
             margin-top: 5
-        }
-        
-        .zone_text{
+        }    
+        .zone_text {
             color: #87C165;
             padding: 13px;
             width: 200px;
@@ -48,12 +42,10 @@
             font-size: 1em;
             font-weight: 700 !important;
         }
-
-        #container-profil{
+        #container-profil {
             margin-top: 4vh;
         }
-
-        #imageProfil{
+        #imageProfil {
             height: 125px;
             width: auto;
             margin-top: -3vh;

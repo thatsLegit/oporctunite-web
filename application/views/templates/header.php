@@ -37,48 +37,48 @@
 				<a class="navbar-brand" href="<?php echo base_url(); ?>accueil">O'porctunite</a>
 			<?php endif; ?>
 
-			<ul class="navbar-nav mr-auto">
-				
-					<!-- Zones all membre -->
-					<?php if($this->session->userdata('connecte')) : ?>
-						<li><a class="nav-link" href="<?php echo base_url(); ?>Utilisateurs/profil">Mon profil</a></li>
-						<li><a class="nav-link" href="<?php echo base_url(); ?>fiches">Fiches conseils</a></li>
-						<li><a class="nav-link" href="<?php echo base_url(); ?>fiches_favoris">Fiches favoris</a></li>
-						<!-- Zones elevage -->
-						<?php if($this->session->userdata('statut')=='elevage') : ?>
+			<ul class="navbar-nav mr-auto">		
+				<!-- Zone membre -->		
+				<?php if($this->session->userdata('connecte') && $this->session->userdata('statut') != 'admin') : ?>
+					<!-- Zone all membre -->
+					<li><a class="nav-link" href="<?php echo base_url(); ?>Utilisateurs/profil">Mon profil</a></li>
+					<li><a class="nav-link" href="<?php echo base_url(); ?>fiches">Fiches conseils</a></li>
+					<li><a class="nav-link" href="<?php echo base_url(); ?>fiches_favoris">Fiches favoris</a></li>
+						<!-- Zone elevage -->
+						<?php if($this->session->userdata('statut') == 'elevage') : ?>
 						<li><a  class="nav-link" href="<?php echo base_url(); ?>suivre">Trouver un vétérinaire</a></li>
 						<li><a  class="nav-link" href="<?php echo base_url(); ?>bilan">Mon bilan</a></li>
 						<?php endif; ?>
-						<!-- Zones Veto -->
-						<?php if($this->session->userdata('statut')=='veterinaire') : ?>
+						<!-- Zone Veto -->
+						<?php if($this->session->userdata('statut') == 'veterinaire') : ?>
 						<li><a  class="nav-link" href="<?php echo base_url(); ?>suivis">Mes eleveurs</a></li>
 						<?php endif; ?>
-						<?php if($this->session->userdata('statut')=='admin') : ?>
-						<li><a  class="nav-link" href="<?php echo base_url(); ?>suivi_administrateur">Les utilisateurs</a></li>
-						<li><a  class="nav-link" href="<?php echo base_url(); ?>ajout_fiche">Ajouter Fiches</a></li>
-						<?php endif; ?>
-					<?php endif; ?>
-				<li><a class="nav-link" href="<?php echo base_url(); ?>contact">Contacts</a></li>
+					<!-- Zone all membre -->
+					<li><a class="nav-link" href="<?php echo base_url(); ?>contact">Contacts</a></li>
+				<?php endif; ?>
+				<!-- Zone Admin -->
+				<?php if($this->session->userdata('connecte') && $this->session->userdata('statut') == 'admin') : ?>
+					<li><a class="nav-link" href="<?php echo base_url(); ?>admin/utilisateurs">Utilisateurs</a></li>
+					<li><a class="nav-link" href="<?php echo base_url(); ?>admin/fiches">Fiches</a></li>
+					<li><a class="nav-link" href="<?php echo base_url(); ?>admin/commentaires">Commentaires</a></li>
+					<li><a class="nav-link" href="<?php echo base_url(); ?>fiches">Recherche de fiches</a></li>
+					<li><a class="nav-link" href="<?php echo base_url(); ?>fiches_favoris">Fiches favoris</a></li>
+				<?php endif; ?>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">	
-				<?php if(!$this->session->userdata('connecte')) : ?>
+				<!-- Bouton deco zone membre -->
+				<?php if($this->session->userdata('connecte') && $this->session->userdata('statut') != 'admin' && (base_url(uri_string())=='https://oporctunite.envt.fr/Utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr/utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr' || base_url(uri_string())=='https://oporctunite.envt.fr/')) : ?>
 				<li>
-					<a href="<?php echo base_url(); ?>inscription">
-						<button type="button" class="btn btn-default btn-custom">
-							<span class="btntext glyphicon-class">S'inscrire</span>
+					<a href="<?php echo base_url(); ?>utilisateurs/logout">
+						<button type="button" class="btn btn-outline-light">
+							<span class="btntext glyphicon-class">Se deconnecter</span>
 						</button>
 					</a>
-				</li>
-				<li>
-					<a href="<?php echo base_url(); ?>login">
-						<button type="button" class="btn btn-default btn-custom">
-							<span class="btntext glyphicon-class">Se connecter</span>
-						</button>
-					</a>
-				</li>
-				<?php endif; ?>
-				<?php if($this->session->userdata('connecte') && (base_url(uri_string())=='https://oporctunite.envt.fr/Utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr/utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr' || base_url(uri_string())=='https://oporctunite.envt.fr/' || base_url(uri_string())=='http://localhost/oporctunite/')) : ?>
+				</li>	
+				<?php endif; ?>	
+				<!-- Bouton deco zone admin -->
+				<?php if($this->session->userdata('connecte') && $this->session->userdata('statut') == 'admin') : ?>
 				<li>
 					<a href="<?php echo base_url(); ?>utilisateurs/logout">
 						<button type="button" class="btn btn-outline-light">

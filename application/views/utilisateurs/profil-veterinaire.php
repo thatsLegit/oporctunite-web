@@ -1,45 +1,40 @@
 <head>
     <style>
-       body{
+        body {
             background-image: url("<?php echo base_url(); ?>assets/img/pigtheme.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
-
         #main {
             margin-top:90px;
             padding: 10px;
             display: flex;
             justify-content: center;
             align-content: center;    
-        }
-        
-        .menu{
+        }     
+        .menu {
             background-color: rgba(255,255,255,0.8);
             padding: 20px;
             width: 550px;
             border-radius: 15px;
         }
-        .title{
+        .title {
             font-size: 1.7em;
             font-weight: 700 !important;
             color: #818181;
         }
-
-        h2{
+        h2 {
             padding: 25px;
             margin-top: 25px;
             margin-bottom: 50px;
         }
-
-        label{
+        label {
             color: #818181;
             margin-top: 5
-        }
-        
-        .zone_text{
+        }      
+        .zone_text {
             color: #87C165;
             padding: 13px;
             width: 200px;
@@ -47,12 +42,10 @@
              font-size: 1em;
             font-weight: 700 !important;
         }
-
-        #container-profil{
+        #container-profil {
             margin-top: 4vh;
         }
-
-        #imageProfil{
+        #imageProfil {
             height: 125px;
             width: auto;
             margin-top: -3vh;
@@ -60,14 +53,14 @@
     </style>
 </head>
 
-<div id="main" class="container">
+<div id="main" class="text-center">
     <div class="menu" id="menu-accueil">
         <h2 class="title">Bienvenue !</h2>
         <div id="container-profil">
             <img name="imageProfil" id="imageProfil" src="<?php echo base_url().'/assets/img/photos/'.$this->session->userdata['utilisateurPhoto']?>" alt="Image de Profil">
         </div>
         <div id="container-profil">
-            <label class="">Nom :</label><br>
+            <label>Nom :</label><br>
             <label class="zone_text">
                 <?php 
                     if($this->session->userdata('connecte')) :
@@ -77,7 +70,7 @@
             </label>
         </div>
         <div id="container-profil">
-            <label class="">Adresse du cabinet :</label><br>
+            <label>Adresse du cabinet :</label><br>
             <label class="zone_text">
                 <?php 
                     echo $this->session->userdata['adresse'];
@@ -88,10 +81,14 @@
                 ?>
             </label>
         </div>
-            <div id="container-profil">
-            <label class="">Nombre d'elevage suivis :</label><br>
+        <div>
+            <label>Nombre d'elevage suivis :</label><br>
             <label class="zone_text">
-                
+                <?php 
+                    foreach ($nbSuivis as $nb) : 
+                        echo $nb['nbSuivis'];
+                    endforeach;
+                ?>
             </label>
         </div>
     </div>
