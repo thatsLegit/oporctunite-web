@@ -58,7 +58,8 @@
 				<?php endif; ?>
 				<!-- Zone Admin -->
 				<?php if($this->session->userdata('connecte') && $this->session->userdata('statut') == 'admin') : ?>
-					<li><a class="nav-link" href="<?php echo base_url(); ?>admin/utilisateurs">Utilisateurs</a></li>
+					<li><a class="nav-link" href="<?php echo base_url(); ?>admin/elevages">Elevages</a></li>
+					<li><a class="nav-link" href="<?php echo base_url(); ?>admin/veterinaires">Veterinaires</a></li>
 					<li><a class="nav-link" href="<?php echo base_url(); ?>admin/fiches">Fiches</a></li>
 					<li><a class="nav-link" href="<?php echo base_url(); ?>admin/commentaires">Commentaires</a></li>
 					<li><a class="nav-link" href="<?php echo base_url(); ?>fiches">Recherche de fiches</a></li>

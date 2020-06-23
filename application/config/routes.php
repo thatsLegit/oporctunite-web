@@ -71,7 +71,10 @@ $route['suivis'] = 'suivis/veterinaire_suivi';
 $route['fiches'] = 'fiches/fiches';
 $route['fiches_favoris'] = 'fiches/fiches_favoris';
 
-$route['admin/utilisateurs'] = 'utilisateurs/admin_suivi';
+$route['admin/veterinaires'] = 'utilisateurs/admin_suivi_veterinaires';
+$route['admin/veterinaires/(:num)'] = 'utilisateurs/admin_suivi_veterinaires/$1';
+$route['admin/elevages'] = 'utilisateurs/admin_suivi_elevages';
+$route['admin/elevages/(:num)'] = 'utilisateurs/admin_suivi_elevages/$1';
 $route['admin/fiches'] = 'fiches/add_fiche';
 $route['admin/commentaires'] = 'fiches/moderation_commentaires';
 

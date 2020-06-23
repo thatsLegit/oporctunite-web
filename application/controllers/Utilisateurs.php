@@ -349,22 +349,71 @@
                 $this->load->view('utilisateurs/profil-veterinaire', $data);
                 $this->load->view('templates/footer');
             }
+            elseif($this->session->userdata('statut') == "admin"){
+                redirect('admin/elevages');
+            }
             else {
                 show_404();
             }
         }
 
-        //Page utilisateurs admin
-        public function admin_suivi(){
+        //Page admin elevages
+        public function admin_suivi_elevages($offset = 0){
             if(!$this->session->userdata('connecte') || $this->session->userdata('statut') != "admin"){
                 redirect('login');
             }
 
-            $data['elevage'] = $this->utilisateurs_model->getTousElevages();
-            $data['veterinaire'] = $this->utilisateurs_model->getTousVeterinaires();
+            //pagination
+            $this->load->library('pagination');
 
+            //configs
+            $config['base_url'] = base_url().'admin/elevages';
+            $config['total_rows'] = $this->db->count_all('elevage'); 
+            $config['per_page'] = 3;
+            $config['uri_segment'] = 3;
+
+            // Produces: class="pagination-link"
+            $config['attributes'] = array('class' => 'pagination-link');
+
+            $this->pagination->initialize($config);
+
+            //Querying models
+            $data['elevage'] = $this->utilisateurs_model->getTousElevages($config['per_page'], 
+            $offset);
+
+            //Finally loading views
             $this->load->view('templates/header');
-            $this->load->view('utilisateurs/admin', $data);
+            $this->load->view('utilisateurs/admin/elevages', $data);
+            $this->load->view('templates/footer');
+        }
+
+        //Page admin veterinaires
+        public function admin_suivi_veterinaires($offset = 0){
+            if(!$this->session->userdata('connecte') || $this->session->userdata('statut') != "admin"){
+                redirect('login');
+            }
+
+            //pagination
+            $this->load->library('pagination');
+
+            //configs
+            $config['base_url'] = base_url().'admin/veterinaires';
+            $config['total_rows'] = $this->db->count_all('veterinaire'); 
+            $config['per_page'] = 3;
+            $config['uri_segment'] = 3;
+
+            // Produces: class="pagination-link"
+            $config['attributes'] = array('class' => 'pagination-link');
+
+            $this->pagination->initialize($config);
+
+            //Querying models
+            $data['veterinaire'] = $this->utilisateurs_model->getTousVeterinaires($config['per_page'], 
+            $offset);
+
+            //Finally loading views
+            $this->load->view('templates/header');
+            $this->load->view('utilisateurs/admin/veterinaires', $data);
             $this->load->view('templates/footer');
         }
 
@@ -373,14 +422,15 @@
                 show_404();
             }
 
-            $this->utilisateurs_model->suppr_utilisateur($this->input->post('nom'), $this->input->post('type'));
-
-            $data['elevage'] = $this->utilisateurs_model->getTousElevages();
-            $data['veterinaire'] = $this->utilisateurs_model->getTousVeterinaires();
-
-            $this->load->view('templates/header');
-            $this->load->view('utilisateurs/admin', $data);
-            $this->load->view('templates/footer');
+            $type = $this->input->post('type');
+            
+            if($type == 'veterinaire'){
+                $this->utilisateurs_model->suppr_utilisateur($this->input->post('nom'), $type);
+                redirect('admin/veterinaires');
+            } else {
+                $this->utilisateurs_model->suppr_utilisateur($this->input->post('nom'), $type);
+                redirect('admin/elevages');
+            }    
         }
 
         public function rechercher_utilisateur_par_nom(){

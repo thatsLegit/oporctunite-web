@@ -200,7 +200,11 @@
             return $query->result_array();
         }
 
-        public function getTousVeterinaires(){
+        public function getTousVeterinaires($limit=FALSE, $offset=FALSE){
+            if($limit){
+                $this->db->limit($limit, $offset);
+            }
+            
             $this->db->select('*');
             $this->db->from('veterinaire');
             $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur' ); 
@@ -208,7 +212,11 @@
             return $query->result_array();
         }
 
-        public function getTousElevages(){
+        public function getTousElevages($limit=FALSE, $offset=FALSE){
+            if($limit){
+                $this->db->limit($limit, $offset);
+            }
+
             $this->db->select('*');
             $this->db->from('elevage');
             $this->db->join('utilisateur', 'elevage.idutilisateur = utilisateur.idutilisateur' ); 

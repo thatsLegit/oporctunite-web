@@ -21,6 +21,22 @@
             margin-top:120px;
             padding: 10px;
         }
+        .pagination-links{
+            margin:30px 0;
+        }
+        .pagination-links strong{
+            padding: 8px 13px;
+            margin:5px;
+            background: #f4f4f4;
+            border: 1px #ccc solid;
+        }
+        /*the one your on is not a link*/
+        a.pagination-link{
+            padding: 8px 13px;
+            margin:5px;
+            background: #f4f4f4;
+            border: 1px #ccc solid;
+        }
     </style>
 </head>
 
@@ -58,7 +74,10 @@
                 ?>
             </tbody>
         </table>
-    </div>
+        <div class="pagination-links">
+            <?php echo $this->pagination->create_links(); ?>
+        </div>
+    </div> 
 
 
     <div class="container" style="margin-top:30px;">
@@ -96,6 +115,9 @@
                 ?>
             </tbody>
         </table>
+        <div class="pagination-links">
+            <?php echo $this->pagination->create_links(); ?>
+        </div>
     </div>  
 
     <!-- The Modal -->
