@@ -9,7 +9,6 @@ class Fiches_model extends CI_Model{
    public function get_autocomplete($search_data){
        $this->db->select('titreFiche, nomCategorieG');
        $this->db->like('titreFiche', $search_data);
-
        return $this->db->get('fiche', 10)->result();
    }
 

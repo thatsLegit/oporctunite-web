@@ -7,11 +7,7 @@
             padding: 0;
             font-family: "Montserrat",Arial, Helvetica, sans-serif;
         }
-        #main {
-            margin-top:100px;
-            padding: 10px;
-        }
-        h2, h5, p {
+        h2, h5 {
             color: #818181;
         }
         #menu-accueil {
@@ -21,102 +17,191 @@
             margin-top: 10vh;
             margin-bottom: 10vh;
         }
+        #main {
+            margin-top:120px;
+            padding: 10px;
+        }
+    </style>
+    <style>
+        input[type=text] {
+            padding: 5px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border-radius: 20px;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+        }
+        .barre-de-recherche {
+            margin: 10px 0px 50px 0px
+        }
     </style>
 </head>
 
 <div class="container" id='main'>
-    <div class="row">
-        <div class="col-12">
-            <h4 style="margin:30px 0px;">Vétérinaires possédant un compte O'porctunité :</h4>   
-        </div>
-    </div>   
 
     <div class="row">
         <div class="col-12">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Cabinet</th>
-                            <th>Adresse</th>
-                            <th>Code Postal</th>
-                            <th>Email</th>
-                            <th>Téléphone</th>
-                            <th>Etat de la demande</th>
-                            <th> </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                            foreach($veterinaire as $v){
-                                if(empty($veterinaire_suivi)){
-                                    echo validation_errors();
-                                    echo form_open('suivis/demander_suivi');
-                                        echo '<tr>
-                                            <td>'.$v['nomCabinet'].'</td>
-                                            <td>'.$v['adresse'].'</td>
-                                            <td>'.$v['codePostal'].'</td>
-                                            <td>'.$v['email'].'</td>
-                                            <td>'.$v['telephone'].'</td>
-                                            <td> &nbsp </td>
-                                            <input name="numVeterinaire" id="numVeterinaire" type="text" value="'.$v['numVeterinaire'].'" hidden>
-                                            <td><button id="button" type="submit" class="btn btn-success">Demander le suivi</button></td>
-                                        </tr>
-                                    </form>';
-                                } else {
-                                    foreach($veterinaire_suivi as $v_s){
-                                        if($v['numVeterinaire'] == $v_s['numVeterinaire']){
-                                            if($v_s['etat'] == "En Cours"){
-                                                echo validation_errors();
-                                                echo form_open('suivis/annuler_suivi');
-                                                    echo '<tr>
-                                                        <td>'.$v['nomCabinet'].'</td>
-                                                        <td>'.$v['adresse'].'</td>
-                                                        <td>'.$v['codePostal'].'</td>
-                                                        <td>'.$v['email'].'</td>
-                                                        <td>'.$v['telephone'].'</td>
-                                                        <td>'.$v_s['etat'].'</td>
-                                                        <input name="numVeterinaire" id="numVeterinaire" type="text" value="'.$v['numVeterinaire'].'" hidden>
-                                                        <td><button type="submit" class="btn btn-warning">Annuler demande</button></td>
-                                                    </tr>
-                                                </form>';
-                                            } elseif($v_s['etat'] == "Accepté"){
-                                                echo validation_errors();
-                                                echo form_open('suivis/ne_plus_suivre');
-                                                    echo '<tr>
-                                                        <td>'.$v['nomCabinet'].'</td>
-                                                        <td>'.$v['adresse'].'</td>
-                                                        <td>'.$v['codePostal'].'</td>
-                                                        <td>'.$v['email'].'</td>
-                                                        <td>'.$v['telephone'].'</td>
-                                                        <td>'.$v_s['etat'].'</td>
-                                                        <input name="numVeterinaire" id="numVeterinaire" type="text" value="'.$v['numVeterinaire'].'" hidden>
-                                                        <td><button type="submit" class="btn btn-danger">Ne plus suivre</button></td>
-                                                    </tr>
-                                                </form>';
-                                            } elseif($v_s['etat'] == "Refusé" || $v_s['etat'] == "Annulé"){
-                                                echo validation_errors();
-                                                echo form_open('suivis/demander_suivi');
-                                                    echo '<tr>
-                                                        <td>'.$v['nomCabinet'].'</td>
-                                                        <td>'.$v['adresse'].'</td>
-                                                        <td>'.$v['codePostal'].'</td>
-                                                        <td>'.$v['email'].'</td>
-                                                        <td>'.$v['telephone'].'</td>
-                                                        <td>'.$v_s['etat'].'</td>
-                                                        <input name="numVeterinaire" id="numVeterinaire" type="text" value="'.$v['numVeterinaire'].'" hidden>
-                                                        <td><button id="button" type="submit" class="btn btn-success">Demander le suivi</button></td>
-                                                    </tr>
-                                                </form>';
-                                            }  
-                                        }      
-                                    }
-                                }
-                            }
-                        ?>
-                    </tbody>
-                </table>
+            <h4 style="margin:30px 0px;">Mon suivi vétérinaire</h4>   
+        </div>
+    </div> 
+    <?php if(empty($suivi_veterinaire)){
+        echo '
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        Vôtre élevage n\'est pour l\'instant pas suivi.<br> 
+                        Vous pouvez facilement trouver vôtre vétérinaire porcin sur O\'porctunité dans nôtre outil de recherche!
+                    </p> 
+                    <a href="#barre-de-recherche"><button type="button"></button></a>
+                </div>
             </div>
+            ';
+    } else {
+        echo '
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Cabinet</th>
+                                    <th>Code Postal</th>
+                                    <th>Etat de la demande</th>
+                                    <th> &nbsp </th>
+                                </tr>
+                            </thead>
+                            <tbody>';
+                                foreach($suivi_veterinaire as $suivi){
+                                    echo '
+                                        <tr>
+                                            <td>'.$v['nomCabinet'].'</td>
+                                            <td>'.$v['codePostal'].'</td>
+                                            <td> &nbsp </td>
+                                            <td>
+                                                <button id="button" type="submit" class="btn btn-success">Plus d\informations</button>
+                                            </td>
+                                        </tr>
+                                        ';
+                                }
+                            echo '</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            ';
+    }?>
+
+    <div class="row">
+        <div class="col-12">
+            <h4 style="margin:30px 0px;">Mes demandes de suivi</h4>   
         </div>
     </div>
+    <?php if(empty($demandes_suivi)){
+        echo '
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        Aucune demande de suivi en cours.
+                    </p> 
+                </div>
+            </div>
+            ';
+    } else {
+        echo '
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Cabinet</th>
+                                    <th>Code Postal</th>
+                                    <th>Etat de la demande</th>
+                                    <th> &nbsp </th>
+                                </tr>
+                            </thead>
+                            <tbody>';
+                                foreach($demandes_suivi as $demande){
+                                    echo validation_errors();
+                                    echo form_open('suivis/annuler_supprimer_suivi');
+                                        echo '
+                                            <tr>
+                                                <td>'.$v['nomCabinet'].'</td>
+                                                <td>'.$v['codePostal'].'</td>
+                                                <input name="numVeterinaire" id="numVeterinaire" type="text" value="'.$v['numVeterinaire'].'" hidden>
+                                                <td>
+                                                    <button id="button" type="submit" class="btn btn-success">Annuler</button>
+                                                </td>
+                                            </tr>
+                                    </form>';
+                                };
+                            echo '</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            ';
+    }?>
+
+    <div class="row">
+        <div class="col d-flex justify-content-center text-center">
+            <label for="search_data" style="color:black;margin-top:30px">Recherchez un vétérinaire !</label>
+        </div>
+    </div>
+    <div class="form-group row justify-content-center barre-de-recherche">
+        <div class="col-6 d-flex justify-content-center text-center">
+            <button onclick="refreshing()" type="button" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="left" title="Réinitialiser">
+                <svg class="bi bi-arrow-clockwise" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 017.103-3.16.5.5 0 10.454-.892A6 6 0 1013.455 5.5a.5.5 0 00-.91.417 5 5 0 11-9.375.789z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M8.147.146a.5.5 0 01.707 0l2.5 2.5a.5.5 0 010 .708l-2.5 2.5a.5.5 0 11-.707-.708L10.293 3 8.147.854a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                </svg>
+            </button>
+            <input style="margin-left:5px" class="form-control" name="search_data" id="search_data" type="text" onkeyup="ajaxKeyWord()" placeholder=" Nom du cabinet">   
+        </div>
+    </div>
+    <div id="default"></div>
+    <div id="search_results"></div>
+
 </div>
+
+
+<script>
+    const tooltips = () => {
+        $('[data-toggle="tooltip"]').tooltip()
+    };
+
+    function refreshing(){
+        var text = $('#search_data').val();
+        if(text.length != 0){
+            $('#search_data').val('')
+            $('#search_results').hide();
+            $('#default').show();
+        }
+    }
+
+    function ajaxKeyWord(){
+        var input_data = $('#search_data').val();
+
+        if (input_data.length === 0) {
+            $('#search_results').hide();
+            $('#default').show();
+        } else {
+            var post_data = {
+                'search_data': input_data,
+                '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>utilisateurs/EleveurRechercheVeterinaires",
+                data: post_data,
+                success: (data => {
+                    $('#default').hide();
+                    $('#search_data').html(data);
+                    $('#search_data').show();                                
+                })
+            });
+        }
+    }
+</script>

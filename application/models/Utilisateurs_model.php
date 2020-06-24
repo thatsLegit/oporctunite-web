@@ -89,8 +89,7 @@
 
         //A la connexion
         public function getUtilisateur($idUtilisateur){
-            return $this->db->where('idutilisateur', $idUtilisateur)
-                                ->get('utilisateur')->row(0);
+            return $this->db->where('idutilisateur', $idUtilisateur)->get('utilisateur')->row(0);
         }
 
         public function getUserName($idUtilisateur, $statut){
@@ -179,8 +178,7 @@
             $this->db->select('tailleElevage');
             $this->db->from('elevage');
             $this->db->where('elevage.nomElevage', $name_elevage);
-            $query = $this->db->get();
-            return $query->result_array();
+            return $this->db->get()->result_array();
         }
 
         //Utilisé dans les suivis
@@ -188,18 +186,23 @@
             $this->db->select('numEleveur');
             $this->db->from('elevage');
             $this->db->where('elevage.nomElevage', $name_elevage);
-            $query = $this->db->get();
-            return $query->result_array();
+            return $this->db->get()->row(0)->numEleveur;
         }
 
         public function getNumVeterinaire_by_name($name_veterinaire){
             $this->db->select('numVeterinaire');
             $this->db->from('veterinaire');
             $this->db->where('veterinaire.nomCabinet', $name_veterinaire);
-            $query = $this->db->get();
-            return $query->result_array();
+            return $this->db->get()->row(0)->numVeterinaire;
         }
 
+        public function get_veto_search($search_data){
+            $this->db->select('*');
+            $this->db->like('nomCabinet', $search_data);
+            return $this->db->get('veterinaire')->result();
+        }
+
+        //utilisé dans la partie admin
         public function getTousVeterinaires($limit=FALSE, $offset=FALSE){
             if($limit){
                 $this->db->limit($limit, $offset);
@@ -207,9 +210,8 @@
             
             $this->db->select('*');
             $this->db->from('veterinaire');
-            $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur' ); 
-            $query = $this->db->get();
-            return $query->result_array();
+            $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur'); 
+            return $this->db->get()->result_array();
         }
 
         public function getTousElevages($limit=FALSE, $offset=FALSE){
@@ -219,9 +221,24 @@
 
             $this->db->select('*');
             $this->db->from('elevage');
-            $this->db->join('utilisateur', 'elevage.idutilisateur = utilisateur.idutilisateur' ); 
-            $query = $this->db->get();
-            return $query->result_array();
+            $this->db->join('utilisateur', 'elevage.idutilisateur = utilisateur.idutilisateur'); 
+            return $this->db->get()->result_array();
+        }
+
+        public function admin_get_elevage_search($search_data){
+            $this->db->select('*');
+            $this->db->from('elevage');
+            $this->db->join('utilisateur', 'elevage.idutilisateur = utilisateur.idutilisateur'); 
+            $this->db->like('nomElevage', $search_data);
+            return $this->db->get()->result();
+        }
+
+        public function admin_get_veterinaire_search($search_data){
+            $this->db->select('*');
+            $this->db->from('veterinaire');
+            $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur'); 
+            $this->db->like('nomCabinet', $search_data);
+            return $this->db->get()->result();
         }
 
     }

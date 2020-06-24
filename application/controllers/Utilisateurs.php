@@ -298,7 +298,7 @@
                         redirect('');
                     }
                     elseif($utilisateur_data['statut'] == "admin"){
-                        redirect('admin/utilisateurs');
+                        redirect('admin/elevages');
                     }
                     else{
                         show_404();
@@ -330,21 +330,20 @@
                 redirect('accueil');
             }
 
-            $name = $this->session->userdata('nom');
+            $nom = $this->session->userdata('nom');
             $id = $this->session->userdata('idutilisateur');
 
             if($this->session->userdata('statut') == "elevage"){
-                $data['tailleElevage'] = $this->utilisateurs_model->getTailleElevage($name);
+                $data['tailleElevage'] = $this->utilisateurs_model->getTailleElevage($nom);
+                
                 $this->load->view('templates/header');
                 $this->load->view('utilisateurs/profil-elevage', $data);
                 $this->load->view('templates/footer');
             }
             elseif($this->session->userdata('statut') == "veterinaire"){
-                $veterinaire = $this->utilisateurs_model->getNumVeterinaire_by_name($name);
-                foreach($veterinaire as $v){
-                    $numVeterinaire = $v['numVeterinaire'];
-                }
+                $numVeterinaire = $this->utilisateurs_model->getNumVeterinaire_by_name($nom);
                 $data['nbSuivis'] = $this->suivis_model->nb_elevages_suivis($numVeterinaire);
+
                 $this->load->view('templates/header');
                 $this->load->view('utilisateurs/profil-veterinaire', $data);
                 $this->load->view('templates/footer');
@@ -433,11 +432,122 @@
             }    
         }
 
-        public function rechercher_utilisateur_par_nom(){
+        public function adminRechercheElevage(){
             if(!$this->session->userdata('connecte') || $this->session->userdata('statut') != "admin"){
                 show_404();
             }
 
+            $search_data = $this->input->post('search_data');
+            $result = $this->utilisateurs_model->admin_get_elevage_search($search_data);
+
+            if (!empty($result)){
+                echo '<div class="row">
+                        <div class="col">
+                            <h4>Élevages possédant un compte O\'porctunité :</h4><br>          
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Elevage</th>
+                                        <th>Numéro eleveur</th>
+                                        <th>Taille</th>
+                                        <th>Adresse</th>
+                                        <th>Code Postal</th>
+                                        <th>Email</th>
+                                        <th>Téléphone</th>
+                                        <th> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                    foreach($result as $row){
+                                        echo '<tr>
+                                                <td>'.$row->nomElevage.'</td>
+                                                <td>'.$row->numEleveur.'</td>
+                                                <td>'.$row->tailleElevage.'</td>
+                                                <td>'.$row->adresse.'</td>
+                                                <td>'.$row->codePostal.'</td>
+                                                <td>'.$row->email.'</td>
+                                                <td>'.$row->telephone.'</td>
+                                                <td>
+                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">
+                                                        <button onclick="startTimer(\''.$row->nomElevage.'\', \'elevage\')" class="btn btn-danger">Bannir élevage</button>
+                                                    </a>
+                                                </td>
+                                        </tr>';
+                                    };
+                                echo '</tbody>
+                            </table>
+                        </div>
+                    </div>
+                    ';
+            } else {
+                echo '
+                    <div class="row">
+                        <div class="col-12">
+                            <p>
+                                Aucun élevage de correspond à votre recherche.
+                            </p> 
+                        </div>
+                    </div>
+                    ';
+            }
+        }
+
+        public function adminRechercheVeterinaire(){
+            if(!$this->session->userdata('connecte') || $this->session->userdata('statut') != "admin"){
+                show_404();
+            }
+
+            $search_data = $this->input->post('search_data');
+            $result = $this->utilisateurs_model->admin_get_veterinaire_search($search_data);
+
+            if (!empty($result)){
+                echo '<div class="row">
+                        <div class="col">
+                            <h4>Cabinets possédant un compte O\'porctunité :</h4><br>          
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Cabinet</th>
+                                        <th>Numéro vétérinaire</th>
+                                        <th>Adresse</th>
+                                        <th>Code Postal</th>
+                                        <th>Email</th>
+                                        <th>Téléphone</th>
+                                        <th> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                    foreach($result as $row){
+                                        echo '<tr>
+                                                <td>'.$row->nomCabinet.'</td>
+                                                <td>'.$row->numVeterinaire.'</td>
+                                                <td>'.$row->adresse.'</td>
+                                                <td>'.$row->codePostal.'</td>
+                                                <td>'.$row->email.'</td>
+                                                <td>'.$row->telephone.'</td>
+                                                <td>
+                                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">
+                                                        <button onclick="startTimer(\''.$row->nomCabinet.'\', \'elevage\')" class="btn btn-danger">Bannir vétérinaire</button>
+                                                    </a>
+                                                </td>
+                                        </tr>';
+                                    };
+                                echo '</tbody>
+                            </table>
+                        </div>
+                    </div>
+                    ';
+            } else {
+                echo '
+                    <div class="row">
+                        <div class="col-12">
+                            <p>
+                                Aucun cabinet de correspond à votre recherche.
+                            </p> 
+                        </div>
+                    </div>
+                    ';
+            }
         }
   
     }

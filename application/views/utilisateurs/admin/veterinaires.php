@@ -62,7 +62,7 @@
     </div>
     <div class="form-group row justify-content-center barre-de-recherche">
         <div class="col-6 d-flex justify-content-center text-center">
-            <button onclick="refreshing()" type="button" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="left" title="Rafraichir">
+            <button onclick="refreshing()" type="button" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="left" title="Réinitialiser">
                 <svg class="bi bi-arrow-clockwise" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 017.103-3.16.5.5 0 10.454-.892A6 6 0 1013.455 5.5a.5.5 0 00-.91.417 5 5 0 11-9.375.789z" clip-rule="evenodd"/>
                     <path fill-rule="evenodd" d="M8.147.146a.5.5 0 01.707 0l2.5 2.5a.5.5 0 010 .708l-2.5 2.5a.5.5 0 11-.707-.708L10.293 3 8.147.854a.5.5 0 010-.708z" clip-rule="evenodd"/>
@@ -71,45 +71,49 @@
             <input style="margin-left:5px" class="form-control" name="search_data" id="search_data" type="text" onkeyup="ajaxKeyWord()" placeholder=" Nom du cabinet">   
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <h4>Vétérinaires possédant un compte O'porctunité :</h4>
-            <br>          
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Cabinet</th>
-                        <th>Adresse</th>
-                        <th>Code Postal</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
-                        <th> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        foreach($veterinaire as $v){
-                            echo '<tr>
-                                <td>'.$v['nomCabinet'].'</td>
-                                <td>'.$v['adresse'].'</td>
-                                <td>'.$v['codePostal'].'</td>
-                                <td>'.$v['email'].'</td>
-                                <td>'.$v['telephone'].'</td>
-                                <td>
-                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">
-                                        <button onclick="startTimer(\''.$v['nomCabinet'].'\', \'veterinaire\')" class="btn btn-danger">Bannir vétérinaire</button>
-                                    </a>
-                                </td>
-                            </tr>';
-                        }
-                    ?>
-                </tbody>
-            </table>
-            <div class="pagination-links">
-                <?php echo $this->pagination->create_links(); ?>
+    <div id="default">
+        <div class="row">
+            <div class="col">
+                <h4>Cabinets possédant un compte O'porctunité :</h4><br>          
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Cabinet</th>
+                            <th>Numéro vétérinaire</th>
+                            <th>Adresse</th>
+                            <th>Code Postal</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            foreach($veterinaire as $v){
+                                echo '<tr>
+                                        <td>'.$v['nomCabinet'].'</td>
+                                        <td>'.$v['numVeterinaire'].'</td>
+                                        <td>'.$v['adresse'].'</td>
+                                        <td>'.$v['codePostal'].'</td>
+                                        <td>'.$v['email'].'</td>
+                                        <td>'.$v['telephone'].'</td>
+                                        <td>
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">
+                                                <button onclick="startTimer(\''.$v['nomCabinet'].'\', \'veterinaire\')" class="btn btn-danger">Bannir vétérinaire</button>
+                                            </a>
+                                        </td>
+                                </tr>';
+                            }
+                        ?>
+                    </tbody>
+                </table>
+                <div class="pagination-links">
+                    <?php echo $this->pagination->create_links(); ?>
+                </div>
             </div>
         </div>
     </div>
+    <div id="search_results"></div>
 
     <!-- The Modal -->
     <div class="modal fade" id="myModal">
@@ -175,22 +179,24 @@
     const countDownCleaner = () => {
         clearTimeout(countDown);
     }
-
-    //Form submission
-    const submitForm = () => {
-        document.getElementById("bannir-form").submit();
-    }
 </script>
 
 <script>
-    (() => {
+
+    const tooltips = () => {
         $('[data-toggle="tooltip"]').tooltip()
-    })();
+    };
+
+    const submitForm = () => {
+        document.getElementById("bannir-form").submit();
+    }
 
     function refreshing(){
         var text = $('#search_data').val();
         if(text.length != 0){
             $('#search_data').val('');
+            $('#search_results').hide();
+            $('#default').show();
         }
     }
 
@@ -198,9 +204,8 @@
         var input_data = $('#search_data').val();
 
         if (input_data.length === 0) {
-            $('#ficheParCateg').hide();
-            $('#autoSuggestionsList').hide();
-            $('#defaultList').show();
+            $('#search_results').hide();
+            $('#default').show();
         } else {
             var post_data = {
                 'search_data': input_data,
@@ -209,13 +214,12 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url(); ?>utilisateurs/searchVeto",
+                url: "<?php echo base_url(); ?>utilisateurs/adminRechercheVeterinaire",
                 data: post_data,
                 success: (data => {
-                    $('#ficheParCateg').hide();
-                    $('#defaultList').hide();
-                    $('#autoSuggestionsList').show();                                
-                    $('#autoSuggestionsList').html(data);
+                    $('#default').hide();
+                    $('#search_results').html(data);
+                    $('#search_results').show();                                
                 })
             });
         }

@@ -46,7 +46,7 @@
 					<li><a class="nav-link" href="<?php echo base_url(); ?>fiches_favoris">Fiches favoris</a></li>
 						<!-- Zone elevage -->
 						<?php if($this->session->userdata('statut') == 'elevage') : ?>
-						<li><a  class="nav-link" href="<?php echo base_url(); ?>suivre">Trouver un vétérinaire</a></li>
+						<li><a  class="nav-link" href="<?php echo base_url(); ?>suivre">Mon vétérinaire</a></li>
 						<li><a  class="nav-link" href="<?php echo base_url(); ?>bilan">Mon bilan</a></li>
 						<?php endif; ?>
 						<!-- Zone Veto -->

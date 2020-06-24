@@ -84,11 +84,7 @@
         <div>
             <label>Nombre d'elevage suivis :</label><br>
             <label class="zone_text">
-                <?php 
-                    foreach ($nbSuivis as $nb) : 
-                        echo $nb['nbSuivis'];
-                    endforeach;
-                ?>
+                <?php echo $nb['nbSuivis']?>
             </label>
         </div>
     </div>

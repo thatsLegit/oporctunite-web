@@ -152,9 +152,9 @@
 
 <script type="text/javascript">
 
-    (() => {
+    const tooltips = () => {
         $('[data-toggle="tooltip"]').tooltip()
-    })();
+    };
 
     function refreshing(){
         var selected = document.getElementById('categ').options[document.getElementById('categ').selectedIndex];

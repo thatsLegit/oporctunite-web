@@ -143,16 +143,18 @@
         <div class="row"  id="defaultList">
             <?php      
                 foreach($fiches as $fiche) :
-                    echo '  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
-                                <div style="padding:auto;margin:auto;">
-                                    <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
-                                        <input name="titre_fiche" type="text" value="'.$fiche['titreFiche'].'" hidden>
-                                        <h5 class="text-center">'.$fiche['titreFiche'].'</h5>
-                                        <p class="text-center">'.$fiche['nomCategorieG'].'</p>
-                                        <button type="submit" id="fiche-button" value="'.$fiche['titreFiche'].'"><b style="padding:1px;">En savoir plus</b></button>
-                                    </form>
-                                </div>
-                            </div>';
+                    echo '  
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
+                            <div style="padding:auto;margin:auto;">
+                                <form action="'; echo base_url() . "fiches/read"; echo '" method="post">
+                                    <input name="titre_fiche" type="text" value="'.$fiche['titreFiche'].'" hidden>
+                                    <h5 class="text-center">'.$fiche['titreFiche'].'</h5>
+                                    <p class="text-center">'.$fiche['nomCategorieG'].'</p>
+                                    <button type="submit" id="fiche-button" value="'.$fiche['titreFiche'].'"><b style="padding:1px;">En savoir plus</b></button>
+                                </form>
+                            </div>
+                        </div>
+                        ';
                 endforeach;
             ?> 
         </div>  
@@ -167,9 +169,9 @@
 
 <script type="text/javascript">
 
-    (() => {
+    const tooltips = () => {
         $('[data-toggle="tooltip"]').tooltip()
-    })();
+    };
 
     function refreshing1(){
         var text = $('#search_data').val();

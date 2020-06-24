@@ -41,29 +41,30 @@ class Fiches extends CI_Controller{
             show_404();
         }
 
-        //recherche des fiches
-        // load model
-        $this->load->model('Fiches_model');
         $search_data = $this->input->post('search_data');
         $result = $this->Fiches_model->get_autocomplete($search_data);
 
         if (!empty($result)){
             foreach ($result as $row):
-                echo '  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
-                            <div style="padding:auto;margin:auto;">
-                                <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
-                                    <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
-                                    <h5 class="text-center">'.$row->titreFiche.'</h5>
-                                    <p class="text-center">'.$row->nomCategorieG.'</p>
-                                    <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
-                                </form>
-                            </div>
-                        </div>';
+                echo '  
+                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
+                        <div style="padding:auto;margin:auto;">
+                            <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
+                                <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
+                                <h5 class="text-center">'.$row->titreFiche.'</h5>
+                                <p class="text-center">'.$row->nomCategorieG.'</p>
+                                <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
+                            </form>
+                        </div>
+                    </div>
+                    ';
             endforeach;
         } else {
-            echo '<div class="col" id="fiche">
+            echo '
+                <div class="col" id="fiche">
                     <h5> <em> Aucune fiche n\'a été trouvé </em> <h5>
-                    </div>';
+                </div>
+                ';
         }
 
     }
@@ -75,22 +76,23 @@ class Fiches extends CI_Controller{
             show_404();
         }
         
-        $this->load->model('Fiches_model');
         $cat = $this->input->post('category');
         $result = $this->Fiches_model->get_ajaxCat($cat);
 
         if (!empty($result)){
             foreach ($result as $row):
-                echo '  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
-                            <div style="padding:auto;margin:auto;">
-                                <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
-                                    <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
-                                    <h5 class="text-center">'.$row->titreFiche.'</h5>
-                                    <p class="text-center" style="margin:30px 0px;">'.$row->nomCategorieG.'</p>
-                                    <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
-                                </form>
-                            </div>
-                        </div>';
+                echo '  
+                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
+                        <div style="padding:auto;margin:auto;">
+                            <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
+                                <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
+                                <h5 class="text-center">'.$row->titreFiche.'</h5>
+                                <p class="text-center" style="margin:30px 0px;">'.$row->nomCategorieG.'</p>
+                                <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
+                            </form>
+                        </div>
+                    </div>
+                    ';
             endforeach;
         }
     }
@@ -102,27 +104,30 @@ class Fiches extends CI_Controller{
             show_404();
         }
         
-        $this->load->model('Fiches_model');
         $cat = $this->input->post('cat');
         $result = $this->Fiches_model->get_ajaxCat($cat);
 
         if (!empty($result)){
             foreach ($result as $row):
-                echo '  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
-                            <div style="padding:auto;margin:auto;">
-                                <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
-                                    <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
-                                    <h5 class="text-center">'.$row->titreFiche.'</h5>
-                                    <p class="text-center">'.$row->nomCategorieG.'</p>
-                                    <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
-                                </form> 
-                            </div>
-                        </div>';
+                echo '  
+                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
+                        <div style="padding:auto;margin:auto;">
+                            <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
+                                <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
+                                <h5 class="text-center">'.$row->titreFiche.'</h5>
+                                <p class="text-center">'.$row->nomCategorieG.'</p>
+                                <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
+                            </form> 
+                        </div>
+                    </div>
+                    ';
             endforeach;
         } else {
-            echo '<div class="col" id="fiche">
-            <h5> <em> Aucune fiche n\'a été trouvé </em></h5>
-            </div>';
+            echo '
+                <div class="col" id="fiche">
+                    <h5> <em> Aucune fiche n\'a été trouvé </em></h5>
+                </div>
+                ';
         }
     }
 
@@ -132,27 +137,30 @@ class Fiches extends CI_Controller{
             show_404();
         }
         
-        $this->load->model('Fiches_model');
         $cat = $this->input->post('cat');
         $result = $this->Fiches_model->get_ajax_favoris($cat, $this->session->userdata('idutilisateur'));
 
         if (!empty($result)){
             foreach ($result as $row):
-                echo '  <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
-                            <div style="padding:auto;margin:auto">
-                                <form action="'; echo base_url() . "fiches/read";   echo '" method="post">
-                                    <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
-                                    <h5 class="text-center">'.$row->titreFiche.'</h5>
-                                    <p class="text-center">'.$row->nomCategorieG.'</p>
-                                    <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
-                                </form>
-                            </div>
-                        </div>';
+                echo '  
+                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2" id="fiche">
+                        <div style="padding:auto;margin:auto">
+                            <form action="'; echo base_url() . "fiches/read"; echo '" method="post">
+                                <input name="titre_fiche" type="text" value="'.$row->titreFiche.'" hidden>
+                                <h5 class="text-center">'.$row->titreFiche.'</h5>
+                                <p class="text-center">'.$row->nomCategorieG.'</p>
+                                <button type="submit" id="fiche-button" value="'.$row->titreFiche.'"><b style="padding:1px;">En savoir plus</b></button>
+                            </form>
+                        </div>
+                    </div>
+                    ';
             endforeach;
         } else {
-            echo '<div class="col" id="fiche">
-            <h5> <em> Aucune fiche n\'a été trouvé </em></h5>
-            </div>';
+            echo '
+                <div class="col" id="fiche">
+                    <h5> <em> Aucune fiche n\'a été trouvé </em></h5>
+                </div>
+                ';
         }
     }
 
@@ -162,7 +170,6 @@ class Fiches extends CI_Controller{
             show_404();
         }
 
-        $this->load->model('Fiches_model');
         $titreFiche = $this->input->post('titre_fiche');
         $utilisateur = $this->session->userdata('idutilisateur');
         $fav = $this->Fiches_model->get_favoris_titre($titreFiche, $utilisateur);
@@ -202,7 +209,6 @@ class Fiches extends CI_Controller{
             show_404();
         }
 
-        $this->load->model('Fiches_model');
         $titreFiche = $this->input->post('titre_fiche');
         $utilisateur = $this->session->userdata('idutilisateur');
         $this->Fiches_model->delete_favoris($titreFiche, $utilisateur);
@@ -225,7 +231,6 @@ class Fiches extends CI_Controller{
             show_404();
         }
 
-        $this->load->model('Fiches_model');
         $titreFiche = $this->input->post('titre_fiche');
         $ajouterNote = $this->input->post('ajouterNote');
         $commentaire = $this->input->post('commentaire');

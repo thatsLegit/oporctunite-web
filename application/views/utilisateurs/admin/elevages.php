@@ -38,48 +38,84 @@
             border: 1px #ccc solid;
         }
     </style>
+    <style>
+        input[type=text] {
+            padding: 5px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border-radius: 20px;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+        }
+        .barre-de-recherche {
+            margin: 10px 0px 50px 0px
+        }
+    </style>
 </head>
 
 <div id="main" class="container">
-    <div class="container" style="margin-top:30px;">
-        <h4>Élevages possédant un compte O'porctunité :</h4>
-        <br>          
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                <th>Elevage</th>
-                    <th>Taille</th>
-                    <th>Adresse</th>
-                    <th>Code Postal</th>
-                    <th>Email</th>
-                    <th>Téléphone</th>
-                    <th> </th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                    foreach($elevage as $e){
-                        echo '<tr>
-                            <td>'.$e['nomElevage'].'</td>
-                            <td>'.$e['tailleElevage'].'</td>
-                            <td>'.$e['adresse'].'</td>
-                            <td>'.$e['codePostal'].'</td>
-                            <td>'.$e['email'].'</td>
-                            <td>'.$e['telephone'].'</td>
-                            <td>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">
-                                    <button onclick="startTimer(\''.$e['nomElevage'].'\', \'elevage\')" class="btn btn-danger">Bannir élevage</button>
-                                </a>
-                            </td>
-                        </tr>';
-                    }
-                ?>
-            </tbody>
-        </table>
-        <div class="pagination-links">
-            <?php echo $this->pagination->create_links(); ?>
+    <div class="row">
+        <div class="col d-flex justify-content-center text-center">
+            <label for="search_data" style="color:black;">Recherchez un élevage !</label>
         </div>
-    </div> 
+    </div>
+    <div class="form-group row justify-content-center barre-de-recherche">
+        <div class="col-6 d-flex justify-content-center text-center">
+            <button onclick="refreshing()" type="button" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="left" title="Réinitialiser">
+                <svg class="bi bi-arrow-clockwise" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 017.103-3.16.5.5 0 10.454-.892A6 6 0 1013.455 5.5a.5.5 0 00-.91.417 5 5 0 11-9.375.789z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M8.147.146a.5.5 0 01.707 0l2.5 2.5a.5.5 0 010 .708l-2.5 2.5a.5.5 0 11-.707-.708L10.293 3 8.147.854a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                </svg>
+            </button>
+            <input style="margin-left:5px" class="form-control" name="search_data" id="search_data" type="text" onkeyup="ajaxKeyWord()" placeholder=" Nom de l'élevage">   
+        </div>
+    </div>
+    <div id="default">
+        <div class="row">
+            <div class="col">
+                <h4>Élevages possédant un compte O'porctunité :</h4><br>          
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Elevage</th>
+                            <th>Numéro eleveur</th>
+                            <th>Taille</th>
+                            <th>Adresse</th>
+                            <th>Code Postal</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            foreach($elevage as $e){
+                                echo '<tr>
+                                        <td>'.$e['nomElevage'].'</td>
+                                        <td>'.$e['numEleveur'].'</td>
+                                        <td>'.$e['tailleElevage'].'</td>
+                                        <td>'.$e['adresse'].'</td>
+                                        <td>'.$e['codePostal'].'</td>
+                                        <td>'.$e['email'].'</td>
+                                        <td>'.$e['telephone'].'</td>
+                                        <td>
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">
+                                                <button onclick="startTimer(\''.$e['nomElevage'].'\', \'elevage\')" class="btn btn-danger">Bannir élevage</button>
+                                            </a>
+                                        </td>
+                                </tr>';
+                            }
+                        ?>
+                    </tbody>
+                </table>
+                <div class="pagination-links">
+                    <?php echo $this->pagination->create_links(); ?>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div id="search_results"></div>
 
     <!-- The Modal -->
     <div class="modal fade" id="myModal">
@@ -145,9 +181,49 @@
     const countDownCleaner = () => {
         clearTimeout(countDown);
     }
+</script>
 
-    //Form submission
+<script>
+
+    const tooltips = () => {
+        $('[data-toggle="tooltip"]').tooltip()
+    };
+
     const submitForm = () => {
         document.getElementById("bannir-form").submit();
+    }
+
+    function refreshing(){
+        var text = $('#search_data').val();
+        if(text.length != 0){
+            $('#search_data').val('');
+            $('#search_results').hide();
+            $('#default').show();
+        }
+    }
+
+    function ajaxKeyWord(){
+        var input_data = $('#search_data').val();
+
+        if (input_data.length === 0) {
+            $('#search_results').hide();
+            $('#default').show();
+        } else {
+            var post_data = {
+                'search_data': input_data,
+                '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>utilisateurs/adminRechercheElevage",
+                data: post_data,
+                success: (data => {
+                    $('#default').hide();
+                    $('#search_results').html(data);
+                    $('#search_results').show();                                
+                })
+            });
+        }
     }
 </script>
