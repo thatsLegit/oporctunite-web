@@ -7,6 +7,7 @@
             $this->db->from('suivre');
             $this->db->where('elevage.nomElevage', $nom_elevage);
             $this->db->join('elevage', 'elevage.numEleveur = suivre.numEleveur'); 
+            $this->db->join('utilisateur', 'elevage.idutilisateur = utilisateur.idutilisateur'); 
             $this->db->where('etat', 'Accepté');
             return $this->db->get()->result_array();
         }
@@ -16,23 +17,28 @@
             $this->db->from('suivre');
             $this->db->where('veterinaire.nomCabinet', $nom_veterinaire);
             $this->db->join('veterinaire', 'veterinaire.numVeterinaire = suivre.numVeterinaire');
+            $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur'); 
             $this->db->where('etat', 'Accepté');
             return $this->db->get()->result_array();
         }
 
         public function get_demande_suivi($nom, $type){
             if($type == 'elevage'){
-                $this->db->select('*');
+                $this->db->select('veterinaire.nomCabinet, utilisateur.codePostal, suivre.numVeterinaire');
                 $this->db->from('suivre');
-                $this->db->where('elevage.nomElevage', $nom);
                 $this->db->join('elevage', 'elevage.numEleveur = suivre.numEleveur'); 
-                $this->db->where('etat', 'Accepté');
+                $this->db->join('veterinaire', 'veterinaire.numVeterinaire = suivre.numVeterinaire'); 
+                $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur'); 
+                $this->db->where('elevage.nomElevage', $nom);
+                $this->db->where('etat', 'En cours');
                 return $this->db->get()->result_array();
             } else {
-                $this->db->select('*');
+                $this->db->select('elevage.nomElevage, utilisateur.codePostal, suivre.numEleveur');
                 $this->db->from('suivre');
+                $this->db->join('veterinaire', 'veterinaire.numVeterinaire = suivre.numVeterinaire'); 
+                $this->db->join('elevage', 'elevage.numEleveur = suivre.numEleveur'); 
+                $this->db->join('utilisateur', 'elevage.idutilisateur = utilisateur.idutilisateur'); 
                 $this->db->where('veterinaire.nomCabinet', $nom);
-                $this->db->join('veterinaire', 'veterinaire.numVeterinaire = suivre.numVeterinaire');
                 $this->db->where('etat', 'En cours');
                 return $this->db->get()->result_array();
             }

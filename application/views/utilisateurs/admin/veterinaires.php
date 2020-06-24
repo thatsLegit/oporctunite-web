@@ -187,10 +187,6 @@
         $('[data-toggle="tooltip"]').tooltip()
     };
 
-    const submitForm = () => {
-        document.getElementById("bannir-form").submit();
-    }
-
     function refreshing(){
         var text = $('#search_data').val();
         if(text.length != 0){

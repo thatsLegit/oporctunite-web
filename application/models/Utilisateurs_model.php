@@ -197,9 +197,10 @@
         }
 
         public function get_veto_search($search_data){
-            $this->db->select('*');
+            $this->db->select('veterinaire.nomCabinet, utilisateur.codePostal, veterinaire.numVeterinaire');
             $this->db->like('nomCabinet', $search_data);
-            return $this->db->get('veterinaire')->result();
+            $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur'); 
+            return $this->db->get('veterinaire', 10)->result();
         }
 
         //utilisé dans la partie admin

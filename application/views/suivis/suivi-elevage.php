@@ -33,7 +33,10 @@
             outline: none;
         }
         .barre-de-recherche {
-            margin: 10px 0px 50px 0px
+            margin: 10px 0px 50px 0px,
+        }
+        #barre-de-recherche {
+            min-height: 650px;
         }
     </style>
 </head>
@@ -42,18 +45,18 @@
 
     <div class="row">
         <div class="col-12">
-            <h4 style="margin:30px 0px;">Mon suivi vétérinaire</h4>   
+            <h4 style="margin:10px 0px 40px 0px;">Mon suivi vétérinaire</h4>   
         </div>
     </div> 
     <?php if(empty($suivi_veterinaire)){
         echo '
             <div class="row">
                 <div class="col-12">
-                    <p>
-                        Vôtre élevage n\'est pour l\'instant pas suivi.<br> 
-                        Vous pouvez facilement trouver vôtre vétérinaire porcin sur O\'porctunité dans nôtre outil de recherche!
+                    <p style="margin-bottom:30px">
+                        Votre élevage n\'est pour l\'instant pas suivi.<br><br>
+                        Trouvez facilement votre vétérinaire porcin sur O\'porctunité dans notre outil de recherche!
                     </p> 
-                    <a href="#barre-de-recherche"><button type="button"></button></a>
+                    <a href="#barre-de-recherche"><button class="btn btn-info" type="button">Lancer une recherche</button></a>
                 </div>
             </div>
             ';
@@ -67,7 +70,6 @@
                                 <tr>
                                     <th>Cabinet</th>
                                     <th>Code Postal</th>
-                                    <th>Etat de la demande</th>
                                     <th> &nbsp </th>
                                 </tr>
                             </thead>
@@ -75,11 +77,10 @@
                                 foreach($suivi_veterinaire as $suivi){
                                     echo '
                                         <tr>
-                                            <td>'.$v['nomCabinet'].'</td>
-                                            <td>'.$v['codePostal'].'</td>
-                                            <td> &nbsp </td>
+                                            <td>'.$suivi['nomCabinet'].'</td>
+                                            <td>'.$suivi['codePostal'].'</td>
                                             <td>
-                                                <button id="button" type="submit" class="btn btn-success">Plus d\informations</button>
+                                                <button class="btn btn-info" type="submit" class="btn btn-success">Plus d\informations</button>
                                             </td>
                                         </tr>
                                         ';
@@ -94,7 +95,7 @@
 
     <div class="row">
         <div class="col-12">
-            <h4 style="margin:30px 0px;">Mes demandes de suivi</h4>   
+            <h4 style="margin:60px 0px 30px 0px;">Mes demandes de suivi</h4>   
         </div>
     </div>
     <?php if(empty($demandes_suivi)){
@@ -127,11 +128,11 @@
                                     echo form_open('suivis/annuler_supprimer_suivi');
                                         echo '
                                             <tr>
-                                                <td>'.$v['nomCabinet'].'</td>
-                                                <td>'.$v['codePostal'].'</td>
-                                                <input name="numVeterinaire" id="numVeterinaire" type="text" value="'.$v['numVeterinaire'].'" hidden>
+                                                <td>'.$demande['nomCabinet'].'</td>
+                                                <td>'.$demande['codePostal'].'</td>
+                                                <input name="numVeterinaire" id="numVeterinaire" type="text" value="'.$demande['numVeterinaire'].'" hidden>
                                                 <td>
-                                                    <button id="button" type="submit" class="btn btn-success">Annuler</button>
+                                                    <button type="submit" class="btn btn-warning">Annuler demande</button>
                                                 </td>
                                             </tr>
                                     </form>';
@@ -144,24 +145,26 @@
             ';
     }?>
 
-    <div class="row">
-        <div class="col d-flex justify-content-center text-center">
-            <label for="search_data" style="color:black;margin-top:30px">Recherchez un vétérinaire !</label>
+    <section id="barre-de-recherche">
+        <div class="row">
+            <div class="col d-flex justify-content-center text-center">
+                <label for="search_data" style="color:black;margin-top:50px">Recherchez un vétérinaire !</label>
+            </div>
         </div>
-    </div>
-    <div class="form-group row justify-content-center barre-de-recherche">
-        <div class="col-6 d-flex justify-content-center text-center">
-            <button onclick="refreshing()" type="button" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="left" title="Réinitialiser">
-                <svg class="bi bi-arrow-clockwise" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 017.103-3.16.5.5 0 10.454-.892A6 6 0 1013.455 5.5a.5.5 0 00-.91.417 5 5 0 11-9.375.789z" clip-rule="evenodd"/>
-                    <path fill-rule="evenodd" d="M8.147.146a.5.5 0 01.707 0l2.5 2.5a.5.5 0 010 .708l-2.5 2.5a.5.5 0 11-.707-.708L10.293 3 8.147.854a.5.5 0 010-.708z" clip-rule="evenodd"/>
-                </svg>
-            </button>
-            <input style="margin-left:5px" class="form-control" name="search_data" id="search_data" type="text" onkeyup="ajaxKeyWord()" placeholder=" Nom du cabinet">   
+        <div class="form-group row justify-content-center barre-de-recherche">
+            <div class="col-6 d-flex justify-content-center text-center">
+                <button onclick="refreshing()" type="button" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="left" title="Réinitialiser">
+                    <svg class="bi bi-arrow-clockwise" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 017.103-3.16.5.5 0 10.454-.892A6 6 0 1013.455 5.5a.5.5 0 00-.91.417 5 5 0 11-9.375.789z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M8.147.146a.5.5 0 01.707 0l2.5 2.5a.5.5 0 010 .708l-2.5 2.5a.5.5 0 11-.707-.708L10.293 3 8.147.854a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                    </svg>
+                </button>
+                <input style="margin-left:5px" class="form-control" name="search_data" id="search_data" type="text" onkeyup="ajaxKeyWord()" placeholder=" Nom du cabinet">   
+            </div>
         </div>
-    </div>
-    <div id="default"></div>
-    <div id="search_results"></div>
+        <div id="default"></div>
+        <div id="search_results"></div>
+    </section>
 
 </div>
 
@@ -171,10 +174,24 @@
         $('[data-toggle="tooltip"]').tooltip()
     };
 
+    const ajaxDemande = (numVeterinaire) => {
+        var post_data = {
+            'search_data': numVeterinaire,
+            '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>'
+        };
+            
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>suivis/demander_suivi",
+            data: post_data,
+            success: (() => location.reload())
+        });
+    }
+
     function refreshing(){
         var text = $('#search_data').val();
         if(text.length != 0){
-            $('#search_data').val('')
+            $('#search_data').val('');
             $('#search_results').hide();
             $('#default').show();
         }
@@ -194,12 +211,12 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url(); ?>utilisateurs/EleveurRechercheVeterinaires",
+                url: "<?php echo base_url(); ?>suivis/EleveurRechercheVeterinaire",
                 data: post_data,
                 success: (data => {
                     $('#default').hide();
-                    $('#search_data').html(data);
-                    $('#search_data').show();                                
+                    $('#search_results').html(data);
+                    $('#search_results').show();                                
                 })
             });
         }

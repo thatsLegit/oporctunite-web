@@ -59,9 +59,8 @@
                 show_404();
             }
 
-            $nom_elevage = $this->session->userdata('nom');
-            $numVeterinaire = $this->input->post('numVeterinaire');
-            $numElevage = $this->utilisateurs_model->getNumElevage_by_name($nom_elevage);
+            $numVeterinaire = $this->input->post('search_data');
+            $numElevage = $this->utilisateurs_model->getNumElevage_by_name($this->session->userdata('nom'));
 
             $this->suivis_model->ajouter_suivi($numElevage, $numVeterinaire);
             redirect('suivre');
@@ -80,13 +79,14 @@
             redirect('suivre');
         }
 
-        public function EleveurRechercheVeterinaires(){
+        public function EleveurRechercheVeterinaire(){
             if(!$this->session->userdata('connecte') || $this->session->userdata('statut') != "elevage"){
                 show_404();
             }
 
             $search_data = $this->input->post('search_data');
-            $veterinaires = $this->utilisateurs_model->get_veto_search($search_data);
+            $result = $this->utilisateurs_model->get_veto_search($search_data);
+            $dejaDemandes = $this->suivis_model->get_demande_suivi($this->session->userdata('nom'), 'elevage');
 
             if (!empty($result)){
                 echo '
@@ -101,17 +101,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>';
-                                    foreach($veterinaires as $v){
-                                        echo form_open('suivis/demander_suivi');
-                                            echo '<tr>
-                                                <td>'.$v['nomCabinet'].'</td>
-                                                <td>'.$v['codePostal'].'</td>
-                                                <input name="numVeterinaire" id="numVeterinaire" type="text" value="'.$v['numVeterinaire'].'" hidden>
+                                    foreach($result as $row){
+                                        $pass = false;
+                                        foreach($dejaDemandes as $deja){
+                                            if($deja['numVeterinaire'] == $row->numVeterinaire){
+                                                $pass = true;
+                                                echo '
+                                                    <tr>
+                                                        <td>'.$row->nomCabinet.'</td>
+                                                        <td>'.$row->codePostal.'</td>
+                                                        <td>
+                                                            <button type="button" disabled class="btn btn-success">Demande en cours</button>
+                                                        </td>
+                                                    </tr>
+                                                ';
+                                                break;
+                                            }
+                                        }
+                                        if($pass == true){
+                                            $pass = false;
+                                            continue;
+                                        }
+                                        echo '
+                                            <tr>
+                                                <td>'.$row->nomCabinet.'</td>
+                                                <td>'.$row->codePostal.'</td>
                                                 <td>
-                                                    <button id="button" type="submit" class="btn btn-success">Demander le suivi</button>
+                                                    <button type="button" onclick="ajaxDemande(\''.$row->numVeterinaire.'\')" class="btn btn-success">Demander suivi</button>
                                                 </td>
                                             </tr>
-                                        </form>';
+                                            ';
                                     }
                                 '</tbody>
                             </table>
@@ -123,7 +142,7 @@
                     <div class="row">
                         <div class="col-12">
                             <p>
-                                Aucun nom de cabinet de correspond à vôtre recherche.
+                                Aucun nom de cabinet de correspond à votre recherche.
                             </p> 
                         </div>
                     </div>
