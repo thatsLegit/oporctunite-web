@@ -21,6 +21,11 @@
             margin-top:120px;
             padding: 10px;
         }
+        img { 
+            max-width: 200px;
+            max-height: 200px;
+            margin-bottom: 30px;
+        }
     </style>
     <style>
         input[type=text] {
@@ -80,7 +85,14 @@
                                             <td>'.$suivi['nomCabinet'].'</td>
                                             <td>'.$suivi['codePostal'].'</td>
                                             <td>
-                                                <button class="btn btn-info" type="submit" class="btn btn-success">Plus d\informations</button>
+                                                <a href="javascript:void(0)" data-toggle="modal" data-target="#profilVeto" data-backdrop="static" data-keyboard="false">
+                                                    <button 
+                                                        type="button" 
+                                                        onclick="vetoSelection(\''.$suivi['numVeterinaire'].'\', \''.$suivi['nomCabinet'].'\', \''.$suivi['adresse'].'\', \''.$suivi['utilisateurPhoto'].'\', \''.$suivi['ville'].'\', \''.$suivi['telephone'].'\', \''.$suivi['email'].'\')" 
+                                                        class="btn btn-info">
+                                                        Gérer le suivi
+                                                    </button>
+                                                </a>
                                             </td>
                                         </tr>
                                         ';
@@ -118,7 +130,6 @@
                                 <tr>
                                     <th>Cabinet</th>
                                     <th>Code Postal</th>
-                                    <th>Etat de la demande</th>
                                     <th> &nbsp </th>
                                 </tr>
                             </thead>
@@ -166,6 +177,35 @@
         <div id="search_results"></div>
     </section>
 
+
+    <!-- The Modal -->
+    <div class="modal fade" id="profilVeto">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 id="nomCabinet" class="modal-title w-100 text-center" style="color:rgb(0,195,119)"></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body w-100 text-center" style="padding: 15px; color:black">
+                    <img id="utilisateurPhoto" alt="Image de Profil" />
+                    <p id="ville"></p>
+                    <p id="adresse"></p><br>
+                    <p id="email"></p>
+                    <p id="telephone"></p>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer justify-content-center">
+                    <form id="nePlusSuivre-form" action="<?php echo base_url(); ?>suivis/annuler_supprimer_suivi" method="post">
+                        <input id="numVeto" name="numVeterinaire" type="text" hidden>
+                        <button onclick="submitForm()" class="btn btn-danger" type="submit">Ne plus suivre</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
@@ -173,6 +213,10 @@
     const tooltips = () => {
         $('[data-toggle="tooltip"]').tooltip()
     };
+
+    const submitForm = () => {
+        document.getElementById("nePlusSuivre-form").submit();
+    }
 
     const ajaxDemande = (numVeterinaire) => {
         var post_data = {
@@ -200,7 +244,7 @@
     function ajaxKeyWord(){
         var input_data = $('#search_data').val();
 
-        if (input_data.length === 0) {
+        if (input_data.length < 3) {
             $('#search_results').hide();
             $('#default').show();
         } else {
@@ -220,5 +264,22 @@
                 })
             });
         }
+    }
+
+    const vetoSelection = (numVeterinaire, nomCabinet, adresse, utilisateurPhoto, ville, telephone, email) => {
+        window.numVeterinaire = numVeterinaire;
+        window.nomCabinet = nomCabinet;
+        window.adresse = adresse;
+        window.utilisateurPhoto = utilisateurPhoto;
+        window.ville = ville;
+        window.telephone = telephone;
+        window.email = email;
+        document.getElementById("numVeto").value = window.numVeterinaire;
+        document.getElementById("nomCabinet").innerHTML = "<strong>" + window.nomCabinet + "</strong>";
+        document.getElementById("ville").innerHTML = "<strong>" + window.ville + "</strong>";
+        document.getElementById("adresse").innerHTML = "<strong>" + window.adresse + "</strong>";
+        document.getElementById("email").innerHTML = "<strong>" + window.telephone + "</strong>";
+        document.getElementById("telephone").innerHTML = "<strong>" + window.email + "</strong>";
+        document.getElementById("utilisateurPhoto").src = "<?php echo base_url().'assets/img/photos/'?>" + window.utilisateurPhoto;
     }
 </script>

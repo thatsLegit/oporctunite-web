@@ -87,6 +87,7 @@
             $search_data = $this->input->post('search_data');
             $result = $this->utilisateurs_model->get_veto_search($search_data);
             $dejaDemandes = $this->suivis_model->get_demande_suivi($this->session->userdata('nom'), 'elevage');
+            $dejaSuivi = $this->suivis_model->getVeterinaire_suivi($this->session->userdata('nom'));
 
             if (!empty($result)){
                 echo '
@@ -112,6 +113,21 @@
                                                         <td>'.$row->codePostal.'</td>
                                                         <td>
                                                             <button type="button" disabled class="btn btn-success">Demande en cours</button>
+                                                        </td>
+                                                    </tr>
+                                                ';
+                                                break;
+                                            }
+                                        }
+                                        foreach($dejaSuivi as $suivi){
+                                            if($suivi['numVeterinaire'] == $row->numVeterinaire){
+                                                $pass = true;
+                                                echo '
+                                                    <tr>
+                                                        <td>'.$row->nomCabinet.'</td>
+                                                        <td>'.$row->codePostal.'</td>
+                                                        <td>
+                                                            <button type="button" disabled class="btn btn-success">Suivi en cours</button>
                                                         </td>
                                                     </tr>
                                                 ';

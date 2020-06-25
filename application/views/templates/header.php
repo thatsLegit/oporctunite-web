@@ -69,7 +69,7 @@
 
 			<ul class="nav navbar-nav navbar-right">	
 				<!-- Bouton deco zone membre -->
-				<?php if($this->session->userdata('connecte') && $this->session->userdata('statut') != 'admin' && (base_url(uri_string())=='https://oporctunite.envt.fr/Utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr/utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr' || base_url(uri_string())=='https://oporctunite.envt.fr/')) : ?>
+				<?php if($this->session->userdata('connecte') && $this->session->userdata('statut') != 'admin' && (base_url(uri_string())=='https://oporctunite.envt.fr/Utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr/utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr' || base_url(uri_string())=='https://oporctunite.envt.fr/') || base_url(uri_string())=='http://localhost/oporctunite/Utilisateurs/profil') : ?>
 				<li>
 					<a href="<?php echo base_url(); ?>utilisateurs/logout">
 						<button type="button" class="btn btn-outline-light">

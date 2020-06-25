@@ -5,9 +5,10 @@
         public function getVeterinaire_suivi($nom_elevage){
             $this->db->select('*');
             $this->db->from('suivre');
-            $this->db->where('elevage.nomElevage', $nom_elevage);
             $this->db->join('elevage', 'elevage.numEleveur = suivre.numEleveur'); 
-            $this->db->join('utilisateur', 'elevage.idutilisateur = utilisateur.idutilisateur'); 
+            $this->db->join('veterinaire', 'veterinaire.numVeterinaire = suivre.numVeterinaire');
+            $this->db->join('utilisateur', 'veterinaire.idutilisateur = utilisateur.idutilisateur'); 
+            $this->db->where('elevage.nomElevage', $nom_elevage);
             $this->db->where('etat', 'Accepté');
             return $this->db->get()->result_array();
         }

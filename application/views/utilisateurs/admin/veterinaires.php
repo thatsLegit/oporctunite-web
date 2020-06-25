@@ -182,10 +182,13 @@
 </script>
 
 <script>
-
     const tooltips = () => {
         $('[data-toggle="tooltip"]').tooltip()
     };
+
+    const submitForm = () => {
+        document.getElementById("bannir-form").submit();
+    }
 
     function refreshing(){
         var text = $('#search_data').val();
