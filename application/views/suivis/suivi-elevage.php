@@ -50,6 +50,7 @@
 
     <div class="row">
         <div class="col-12">
+            <div id="infoSuiviTermine"></div>
             <h4 style="margin:10px 0px 40px 0px;">Mon suivi vétérinaire</h4>   
         </div>
     </div> 
@@ -107,7 +108,8 @@
 
     <div class="row">
         <div class="col-12">
-            <h4 style="margin:60px 0px 30px 0px;">Mes demandes de suivi</h4>   
+            <div style="margin:60px 0px 30px 0px;" id="infoDemandeReussie"></div>
+            <h4 style="margin:20px 0px 30px 0px;">Mes demandes de suivi</h4>   
         </div>
     </div>
     <?php if(empty($demandes_suivi)){
@@ -143,7 +145,7 @@
                                                 <td>'.$demande['codePostal'].'</td>
                                                 <input name="numVeterinaire" id="numVeterinaire" type="text" value="'.$demande['numVeterinaire'].'" hidden>
                                                 <td>
-                                                    <button type="submit" class="btn btn-warning">Annuler demande</button>
+                                                    <button onclick="(() => sessionStorage.demandeAnnulee = true)()" type="submit" class="btn btn-warning">Annuler demande</button>
                                                 </td>
                                             </tr>
                                     </form>';
@@ -199,7 +201,7 @@
                 <div class="modal-footer justify-content-center">
                     <form id="nePlusSuivre-form" action="<?php echo base_url(); ?>suivis/annuler_supprimer_suivi" method="post">
                         <input id="numVeto" name="numVeterinaire" type="text" hidden>
-                        <button onclick="submitForm()" class="btn btn-danger" type="submit">Ne plus suivre</button>
+                        <button onclick="submitForm();(() => sessionStorage.suiviAnnule = true)()" class="btn btn-danger" type="submit">Ne plus suivre</button>
                     </form>
                 </div>
             </div>
@@ -228,8 +230,31 @@
             type: "POST",
             url: "<?php echo base_url(); ?>suivis/demander_suivi",
             data: post_data,
-            success: (() => location.reload())
+            success: (() => {
+                sessionStorage.demandeReussie = true;
+                location.reload();
+            })
         });
+    }
+    
+    $( function () {
+            if (sessionStorage.demandeReussie) {
+                document.getElementById('infoDemandeReussie').innerHTML = '<div class="alert alert-success alert-dismissible fade show" role="alert"> <strong>Demande enregistrée!</strong> <button type="button" onclick="storageCleaner()" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>'
+                sessionStorage.demandeReussie = false;
+            }
+            if (sessionStorage.demandeAnnulee) {
+                document.getElementById('infoDemandeReussie').innerHTML = '<div class="alert alert-info alert-dismissible fade show" role="alert"> <strong>Demande annulée!</strong> <button type="button" onclick="storageCleaner()" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>'
+                sessionStorage.demandeReussie = false;
+            }
+            if (sessionStorage.suiviAnnule) {
+                document.getElementById('infoSuiviTermine').innerHTML = '<div class="alert alert-danger alert-dismissible fade show" role="alert"> <strong>Suivi terminé!</strong> <button type="button" onclick="storageCleaner()" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>'
+                sessionStorage.demandeReussie = false;
+            }
+        } 
+    );
+
+    const storageCleaner = () => {
+        sessionStorage.clear();
     }
 
     function refreshing(){

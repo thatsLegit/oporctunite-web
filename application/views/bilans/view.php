@@ -79,7 +79,7 @@
         transition: 0.5s;
     }
 
-	#main{
+	#main {
 		margin-top:120px;
         padding: 10px;
 	}
@@ -89,7 +89,9 @@
 
 <div class="container" id="main">
 	
-	<h3 style="color:black;">Résultats des tests</h3>
+	<div class="row justify-content-md-center">
+		<h3 style="color:black;margin-bottom:50px">Résultats de vos évaluations.</h3>
+	</div>
 	
 	<div class="row justify-content-md-center">
 		<div class="col-md-auto">

@@ -18,10 +18,19 @@
   	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
 	<style>
-		#mainNav{
+		#mainNav {
 			padding-top:20px;
 			padding-bottom:20px;
 		}	
+		.navbar-dark .navbar-nav .nav-link {
+			color: rgba(255, 255, 255, 0.75);
+		}
+		.navbar-dark .navbar-nav .nav-link:hover {
+			color: rgba(255, 255, 255, 1);
+		}
+		.contact {
+			margin-right: 40px
+		}
 	</style>
 </head>
 
@@ -53,8 +62,6 @@
 						<?php if($this->session->userdata('statut') == 'veterinaire') : ?>
 						<li><a  class="nav-link" href="<?php echo base_url(); ?>suivis">Mes eleveurs</a></li>
 						<?php endif; ?>
-					<!-- Zone all membre -->
-					<li><a class="nav-link" href="<?php echo base_url(); ?>contact">Contacts</a></li>
 				<?php endif; ?>
 				<!-- Zone Admin -->
 				<?php if($this->session->userdata('connecte') && $this->session->userdata('statut') == 'admin') : ?>
@@ -67,9 +74,13 @@
 				<?php endif; ?>
 			</ul>
 
-			<ul class="nav navbar-nav navbar-right">	
+			<ul class="nav navbar-nav navbar-right">
+				<!-- Zone all membre -->
+				<?php if($this->session->userdata('connecte') && $this->session->userdata('statut') != 'admin') : ?>
+					<li><a class="nav-link contact" href="<?php echo base_url(); ?>contact">Contacts</a></li>	
+				<?php endif; ?>
 				<!-- Bouton deco zone membre -->
-				<?php if($this->session->userdata('connecte') && $this->session->userdata('statut') != 'admin' && (base_url(uri_string())=='https://oporctunite.envt.fr/Utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr/utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr' || base_url(uri_string())=='https://oporctunite.envt.fr/') || base_url(uri_string())=='http://localhost/oporctunite/Utilisateurs/profil') : ?>
+				<?php if($this->session->userdata('connecte') && $this->session->userdata('statut') != 'admin' && (base_url(uri_string())=='https://oporctunite.envt.fr/Utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr/utilisateurs/profil' || base_url(uri_string())=='https://oporctunite.envt.fr' || base_url(uri_string())=='https://oporctunite.envt.fr/') || base_url(uri_string())=='http://localhost/oporctunite/Utilisateurs/profil' || base_url(uri_string())=='http://localhost/oporctunite/') : ?>
 				<li>
 					<a href="<?php echo base_url(); ?>utilisateurs/logout">
 						<button type="button" class="btn btn-outline-light">

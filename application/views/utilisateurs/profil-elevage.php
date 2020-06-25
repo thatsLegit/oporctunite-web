@@ -15,16 +15,11 @@
             align-content: center;    
         }
         .menu {
-            background-color: rgba(255,255,255,0.8);
+            background-color: rgba(255,255,255,0.9);
             padding: 20px;
             width: 550px;
             border-radius: 15px;
         }     
-        .title {
-            font-size: 1.7em;
-            font-weight: 700 !important;
-            color: #818181;
-        }
         h2 {
             padding: 25px;
             margin-top: 25px;
@@ -46,8 +41,8 @@
             margin-top: 4vh;
         }
         #imageProfil {
-            height: 125px;
-            width: auto;
+            height: 200px;
+            width: 200px;
             margin-top: -3vh;
         }
     </style>
@@ -55,7 +50,6 @@
 
 <div id="main" class="text-center">
     <div class="menu" id="menu-accueil">
-        <h2 class="title">Bienvenue !</h2>
         <div id="container-profil">
             <img name="imageProfil" id="imageProfil" src="<?php echo base_url().'/assets/img/photos/'.$this->session->userdata['utilisateurPhoto']?>" alt="Image de Profil">
         </div>
@@ -70,7 +64,7 @@
             </label>
         </div>
         <div id="container-profil">
-            <label class="">Lieu d'elevage :</label><br>
+            <label>Emplacement de l'elevage :</label><br>
             <label class="zone_text">
                 <?php 
                     echo $this->session->userdata['adresse'];
@@ -82,7 +76,7 @@
             </label>
         </div>
         <div id="container-profil">
-            <label class="">Taille elevage :</label><br>
+            <label class="">Taille de l'élevage :</label><br>
             <label class="zone_text"> 
                 <?php 
                     foreach ($tailleElevage as $taille) : 
