@@ -1,7 +1,7 @@
 <head>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-    <script src="<?php echo base_url().'/assets/js/starrr.js'?>"></script>
-    <link rel="stylesheet" href=""<?php echo base_url().'/assets/css/starrr.css'?>>
+    <script src="/assets/js/starrr.js"></script>
+    <link rel="stylesheet" href="/assets/css/starrr.css">
     <style>
       
         body {   
