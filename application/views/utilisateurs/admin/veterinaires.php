@@ -71,7 +71,6 @@
             <input style="margin-left:5px" class="form-control" name="search_data" id="search_data" type="text" onkeyup="ajaxKeyWord()" placeholder=" Nom du cabinet">   
         </div>
     </div>
-    <div id="banni"></div>
     <div id="default">
         <div class="row">
             <div class="col">
@@ -133,7 +132,7 @@
                     <form id="bannir-form" action="<?php echo base_url(); ?>utilisateurs/bannir" method="post">
                         <input id="nom" name="nom" type="text" hidden>
                         <input id="type" name="type" type="text" hidden>
-                        <button id="bannir" onclick="submitForm();buttonDisabler();(() => sessionStorage.banni = true)()" class="btn btn-danger" type="submit" disabled>Bannir</button>
+                        <button id="bannir" onclick="submitForm();buttonDisabler()" class="btn btn-danger" type="submit" disabled>Bannir</button>
                     </form>
                     <button type="button" onclick="timerCleaner();countDownCleaner();buttonDisabler()" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                 </div>
@@ -189,18 +188,6 @@
 
     const submitForm = () => {
         document.getElementById("bannir-form").submit();
-    }
-
-    $( function () {
-            if (sessionStorage.banni) {
-                document.getElementById('banni').innerHTML = '<div class="alert alert-info alert-dismissible fade show" role="alert"> <strong>Vétérinaire banni !</strong> <button type="button" onclick="storageCleaner()" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>'
-                sessionStorage.banni = false;
-            }
-        } 
-    );
-
-    const storageCleaner = () => {
-        sessionStorage.clear();
     }
 
     function refreshing(){

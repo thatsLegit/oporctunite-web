@@ -182,7 +182,7 @@
 									</tr>
 									<tr>
 										<td>Evaluation qualitative du comportement</td>
-										<td>Evaluation qualitative du comportement</td>
+										<td>Emotions positives</td>
 									</tr>
 								</tr>
 							</table>
@@ -190,10 +190,10 @@
 						<div class="table-responsive">
 							<table class="table">
 								<tr>
-									<th colspan="2" class="text-center">Bon logement</th>
+									<th colspan="2" class="text-center">Hébergement approprié</th>
 								<tr>
 									<tr>
-										<td rowspan="4">Confort autour du repos</td>
+										<td rowspan="4">Confort au repos</td>
 										<tr><td>Bursite</td></tr>
 										<tr><td>Plaie à l'épaule</td></tr>
 										<tr><td>Lisier sur le corps</td></tr>
