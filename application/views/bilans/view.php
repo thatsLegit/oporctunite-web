@@ -131,7 +131,7 @@
 						<div class="table-responsive">
 							<table class="table">
 								<tr>
-									<th colspan="2" class="text-center">Bonne santé</th>
+									<th colspan="2" class="text-center">Santé</th>
 								</tr>
 									<tr>
 										<td rowspan="5">Absence de blessures</td>
@@ -145,7 +145,7 @@
 										<tr><td>Mortalité</td></tr>
 										<tr><td>Eternuement</td></tr>
 										<tr><td>Toux</td></tr>
-										<tr><td>Pompage</td></tr>
+										<tr><td>Dyspnée</td></tr>
 										<tr><td>Prolapsus rectal</td></tr>
 										<tr><td>Diarrhée</td></tr>
 										<tr><td>Constipation</td></tr>
@@ -165,48 +165,45 @@
 						<div class="table-responsive">
 							<table class="table">
 								<tr>
-									<th colspan="2" class="text-center">Comportement approprié</th>
+									<th colspan="2" class="text-center">Expression des comportements</th>
 								<tr>
 									<tr>
 										<td>Expression sociale du comportement</td>
 										<td>Comportement social (positif ou négatif)</td>
 									</tr>
 									<tr>
-										<td rowspan="3">Expression des autres comportements</td>
-										<tr><td>Stereotypies</td></tr>
+										<td rowspan="2">Expression des autres comportements</td>
+										<tr><td>Stéréotypies</td></tr>
 										<tr><td>Exploration individuelle</td></tr>
 									</tr>
 									<tr>
 										<td>Bonne relation homme-animal</td>
 										<td>La peur des hommes</td>
 									</tr>
-									<tr>
-										<td>Evaluation qualitative du comportement</td>
-										<td>Emotions positives</td>
-									</tr>
 								</tr>
 							</table>
 						</div>
 						<div class="table-responsive">
 							<table class="table">
 								<tr>
-									<th colspan="2" class="text-center">Hébergement approprié</th>
+									<th colspan="2" class="text-center">Environnement approprié</th>
 								<tr>
 									<tr>
-										<td rowspan="4">Confort au repos</td>
+										<td rowspan="5">Confort autour du repos</td>
 										<tr><td>Bursite</td></tr>
 										<tr><td>Plaie à l'épaule</td></tr>
-										<tr><td>Lisier sur le corps</td></tr>
+										<tr><td>Souillure</td></tr>
+										<tr><td>Propreté des cases</td></tr>
 									</tr>
 									<tr>
-										<td rowspan="3">Confort thermal</td>
+										<td rowspan="3">Confort thermique</td>
 										<tr><td>Halètement</td></tr>
-										<tr><td>Blotissement</td></tr>
+										<tr><td>Entassement</td></tr>
 									</tr>
 									<tr>
-										<td rowspan="3">Facilité de mouvement</td>
-										<tr><td>Espace alloué</td></tr>
-										<tr><td>Les cases de mise-bas</td></tr>
+										<td rowspan="3">Facilité de déplacement</td>
+										<tr><td>Surface par truie en m2</td></tr>
+										<tr><td>Dimensions des cases de mise-bas</td></tr>
 									</tr>
 								</tr>
 							</table>
@@ -214,10 +211,10 @@
 						<div class="table-responsive">
 							<table class="table">
 								<tr>
-									<th colspan="2" class="text-center">Bonne alimentation</th>
+									<th colspan="2" class="text-center">Bon état général</th>
 								<tr>
 									<tr>
-										<td>Absence de faim prolongée</td>
+										<td>Absence de faim</td>
 										<td>Etat corporel</td>
 									</tr>
 									<tr>
