@@ -135,7 +135,7 @@
 								</tr>
 									<tr>
 										<td rowspan="5">Absence de blessures</td>
-										<tr><td>Boiteries</td></tr>
+										<tr><td>Boiterie</td></tr>
 										<tr><td>Blessures sur le corps</td></tr>
 										<tr><td>Lésions de la vulve</td></tr>
 										<tr><td>Mammite</td></tr>
@@ -150,8 +150,8 @@
 										<tr><td>Diarrhée</td></tr>
 										<tr><td>Constipation</td></tr>
 										<tr><td>Métrite</td></tr>
-										<tr><td>Condition de la peau</td></tr>
-										<tr><td>Ruptures et hernies</td></tr>
+										<tr><td>Aspect de la peau</td></tr>
+										<tr><td>Hernies</td></tr>
 										<tr><td>Infections locales</td></tr>
 										<tr><td>Prolapsus utérin</td></tr>
 									</tr>
