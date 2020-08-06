@@ -155,7 +155,7 @@
             <?php
                 foreach($fiche as $f){
                     echo '  <div class="embed-responsive embed-responsive-16by9">
-                                <object class="embed-responsive-item" data="'.base_url().''.$f['urlImage'].'" type="application/pdf" width="100%" height="800px"> 
+                                <object class="embed-responsive-item" data="'.$f['urlImage'].'" type="application/pdf" width="100%" height="800px"> 
                                 <p>Votre naviguateur ne permet pas de visualiser des fichiers pdf, vous pouvez <a href="/media/post/bootstrap-responsive-embed-aspect-ratio/example.pdf">télécharger</a> 
                                 la fiche ou essayer sur un autre naviguateur.</p>
                                 </object>
