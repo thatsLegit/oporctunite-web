@@ -36,24 +36,25 @@
                     $enc_password = md5($this->input->post('password'));
                     //Créer l'utilisateur
                     $this->utilisateurs_model->inscription($enc_password);
+
                     //Ajouter la photo ensuite en la renommant avec l'id utilisateur
                     $Id = $this->utilisateurs_model->get_utilisateur_id($this->input->post('email'), $enc_password);
                     $ext = pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
-                    $name = $Id . "." . $ext;
 
-                    //upload images config
-                    $config['upload_path'] = './assets/img/photos';
-                    $config['allowed_types'] = 'gif|jpg|png';
-                    $config['max_size'] = '2048';
-                    $config['max_width'] = '3000';
-                    $config['max_height'] = '3000';
-                    $config['file_name'] = $name;
+                    //The URL that we want to send a PUT request to.
+                    $url = 'http://oporctunite.envt.fr/oporctunite-api/utilisateurs/photos';
+                    //Initiate cURL
+                    $ch = curl_init($url);                   
+                    //Use the CURLOPT_PUT option to tell cURL that this is a PUT request.
+                    curl_setopt($ch, CURLOPT_PUT, true);                   
+                    //Our fields.
+                    $fields = array("id" => $Id);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));                  
+                    //Pass the file to CURLOPT_INFILE
+                    curl_setopt($ch, CURLOPT_INFILE, $this->input->post('photo'));
+                    //Execute the request.
+                    curl_exec($ch);
 
-                    //ajouter le nom à la bd
-                    $this->load->library('upload', $config);
-                    if($this->upload->do_upload()){
-                        $this->utilisateurs_model->add_image($Id, $name);
-                    }
                     //session message
                     $this->session->set_flashdata('elevage_created', 
                     'Bienvenue sur Oporctunité '.$this->input->post('nomElevage'));
@@ -106,21 +107,24 @@
                     //Ajouter la photo ensuite en la renommant avec l'id utilisateur
                     $Id = $this->utilisateurs_model->get_utilisateur_id($this->input->post('email'), $enc_password);
                     $ext = pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
-                    $name = $Id . "." . $ext;
+                    
+                    //Ajouter la photo ensuite en la renommant avec l'id utilisateur
+                    $Id = $this->utilisateurs_model->get_utilisateur_id($this->input->post('email'), $enc_password);
+                    $ext = pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
 
-                    //upload images config
-                    $config['upload_path'] = './assets/img/photos';
-                    $config['allowed_types'] = 'gif|jpg|png';
-                    $config['max_size'] = '5120';
-                    $config['max_width'] = '4000';
-                    $config['max_height'] = '4000';
-                    $config['file_name'] = $name;
-
-                    //ajouter le nom à la bd
-                    $this->load->library('upload', $config);
-                    if($this->upload->do_upload()){
-                        $this->utilisateurs_model->add_image($Id, $name);
-                    }
+                    //The URL that we want to send a PUT request to.
+                    $url = 'http://oporctunite.envt.fr/oporctunite-api/utilisateurs/photos';
+                    //Initiate cURL
+                    $ch = curl_init($url);                   
+                    //Use the CURLOPT_PUT option to tell cURL that this is a PUT request.
+                    curl_setopt($ch, CURLOPT_PUT, true);                   
+                    //Our fields.
+                    $fields = array("id" => $Id);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($fields));                  
+                    //Pass the file to CURLOPT_INFILE
+                    curl_setopt($ch, CURLOPT_INFILE, $this->input->post('photo'));
+                    //Execute the request.
+                    curl_exec($ch);
 
                     //session message
                     $this->session->set_flashdata('veterinaire_created', 

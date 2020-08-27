@@ -51,7 +51,7 @@
 <div id="main" class="text-center">
     <div class="menu" id="menu-accueil">
         <div id="container-profil">
-            <img name="imageProfil" id="imageProfil" src="<?php echo base_url().'/assets/img/photos/'.$this->session->userdata['utilisateurPhoto']?>" alt="Image de Profil">
+            <img name="imageProfil" id="imageProfil" src="<?php echo 'https://oporctunite.envt.fr/oporctunite-api/img/photos/'.$this->session->userdata['utilisateurPhoto']?>" alt="Image de Profil">
         </div>
         <div id="container-profil">
             <label>Nom :</label><br>
