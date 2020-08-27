@@ -31,3 +31,4 @@ Changez le username et pwd votre base de donnée dans application/config/databas
 - Configurer serveur SMTP pour pouvoir soumettre les formulaires de contact (page d'accueil et page contact) // smtprelais.envt.fr, port 25
 - Ajouter un message d'erreur en cas d'echec de connexion
 - Checker si l’image de profil s’upload bien sur l’api à l’inscription sur le site (requête http PUT dans controllers/utilisateurs.php)
+- L'administrateur doit valider l'inscription des utilisateurs
