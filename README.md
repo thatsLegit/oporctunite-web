@@ -6,12 +6,12 @@ Pour le développement en local, tiliser de préférence MAMP, XAMP, WAMP ou aut
 
 Cloner le project directement dans le dossier racine du serveur (c:\wamp\www sur WAMP et applications/MAMP/htdocs sur MAMP généralement).<br>
 
-Pour reconsituer la bd en local, exportez la depuis l'envt sur phpmyadmin.<br><br>
+Pour reconsituer la bd en local, exportez la depuis l'envt sur phpmyadmin.<br>
 
 # Config
 
 Changer la valeur de base_url dans application/config/config.php en *http://localhost/oporctunite* <br>
-Changez le username et pwd votre base de donnée dans application/config/database.php
+Changez le username et pwd votre base de donnée dans application/config/database.php <br>
 
 # A faire
 
