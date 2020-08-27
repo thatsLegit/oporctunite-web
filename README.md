@@ -1,17 +1,23 @@
-# Oporctunite projet appli web codeigniter
+## Installation
 
-Branches : <br>
-Master : La branche principale, on fait gaffe ici <br>
-Test : On push le code d'abord là dedans et ensuite on merge vers master 
-si c'est validé.
+# Serveur web, Mysql
 
-Quand vous clonez le projet, mettez vous sur la branche test : <br>
-**git clone url** <br>
-**git checkout test** <br>
-**git remote add origin url**
+Pour le développement en local, tiliser de préférence MAMP, XAMP, WAMP ou autre solution 'tout-en-un'. <br><br>
 
-Puis après vos modifs,  <br>
-**git push origin test**
+Cloner le project directement dans le dossier racine du serveur (c:\wamp\www sur WAMP et applications/MAMP/htdocs sur MAMP généralement).<br>
 
+Pour reconsituer la bd en local, exportez la depuis l'envt sur phpmyadmin.<br><br>
 
-PS: Pour modifier en local, pensez à changer la valeur de base_url dans application/config/config.php et de liè votre base de donnée dans application/config/database.php
+# Config
+
+Changer la valeur de base_url dans application/config/config.php en *http://localhost/oporctunite* <br>
+Changez le username et pwd votre base de donnée dans application/config/database.php
+
+# A faire
+
+Finir les parties suivi elevage et vétos <br>
+Notation complète (avec les autres critères et page détail)<br>
+Finir la partie administrateur (fiches et commentaires)<br>
+Faire section modification des données perso<br>
+Uniformiser image de fond sur toutes les pages du site<br>
+Améliorations esthétiques recherche de fiches, page contact et profil<br>
