@@ -2,7 +2,7 @@
 
 # Serveur web, Mysql
 
-Pour le développement en local, tiliser de préférence MAMP, XAMP, WAMP ou autre solution 'tout-en-un'. <br><br>
+Pour le développement en local, tiliser de préférence MAMP, XAMP, WAMP ou autre solution 'tout-en-un'. <br>
 
 Cloner le project directement dans le dossier racine du serveur (c:\wamp\www sur WAMP et applications/MAMP/htdocs sur MAMP généralement).<br>
 
@@ -15,9 +15,9 @@ Changez le username et pwd votre base de donnée dans application/config/databas
 
 # A faire
 
-Finir les parties suivi elevage et vétos <br>
-Notation complète (avec les autres critères et page détail)<br>
-Finir la partie administrateur (fiches et commentaires)<br>
-Faire section modification des données perso<br>
-Uniformiser image de fond sur toutes les pages du site<br>
-Améliorations esthétiques recherche de fiches, page contact et profil<br>
+- Finir les parties suivi elevage et vétos <br>
+- Notation complète (avec les autres critères et page détail)<br>
+- Finir la partie administrateur (fiches et commentaires)<br>
+- Faire section modification des données perso<br>
+- Uniformiser image de fond sur toutes les pages du site<br>
+- Améliorations esthétiques recherche de fiches, page contact et profil<br>
