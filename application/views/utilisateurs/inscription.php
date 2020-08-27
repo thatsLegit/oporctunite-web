@@ -154,7 +154,7 @@
                                 <div id="poliqueCookies" class="overlay">
                                     <a href="javascript:void(0)" class="closePoliqueCookies" onclick="closePoliqueCookies()">&times;</a>
                                     <div class="overlay-content">
-                                        <iframe src="<?php echo base_url(); ?>assets/CookiePdf/confidentialite.pdf" width="600" height="780" style="border: none;"></iframe>
+                                        <iframe src="https://oporctunite.envt.fr/oporctunite-api/img/politique_de_confidentialite.pdf" width="600" height="780" style="border: none;"></iframe>
                                     </div>
                                 </div>
                                 <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez accepter la politique de confidentialité.</span>
