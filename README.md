@@ -39,4 +39,8 @@ Sur Oporctunite, il est utilisé pour éviter le spam de création de comptes à
 > Se connecter à Google en utilisant l'adresse email enregistrée dans le service (demander à Ilya pour ajouter une adresse : ilja.stepanov@envt.fr)<br>
 > Pour configurer, taper « recaptcha admin » dans google et aller sur le 1er résultat de la recherche.<br>
 > Aller ensuite sur le rouage « paramètres » en haut à droite.<br>
-> Ici il est possible d’ajouter des propriétaires, des noms de domaines à protéger et surtout avoir accès aux clés qui permettent au recaptcha de fonctionner. On retrouve également la doc qui explique comment implémenter le captcha coté serveur et client.
+> Ici il est possible d’ajouter des propriétaires, des noms de domaines à protéger et surtout avoir accès aux clés qui permettent au recaptcha de fonctionner. On retrouve également la doc qui explique comment implémenter le captcha coté serveur et client. <br><br>
+
+Le captcha ne marchera que pour les ndd enregistrés (oporctunite.envt.fr) donc ne fonctionnera pas en developpement local.
+
+
