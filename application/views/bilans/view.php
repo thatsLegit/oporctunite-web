@@ -1,5 +1,8 @@
-<!-- mettre des hovers sur les datasets labels et graphique historique -->
-<!-- augmenter police labels -->
+<!-- Page permettant d'afficher le bilan de l'elevage ainsi que l'historique de ses tests réalisés -->
+<!-- Charts.js est utilisé pour le graphique des résultats -->
+<!-- Le tableau représentant l'historique est inspité des graphs d'activité de github -->
+<!-- Toutes les données sont des randoms, pas des données de la bd, pour cela il faut compléter le controleur Bilan -->
+<!-- Page encore en développement -->
 
 <head>	
 	<!-- css graphique historique -->

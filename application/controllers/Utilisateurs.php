@@ -1,9 +1,7 @@
 <?php
 
-    //pour la connexion, ajouter la fonction d'oubli de mdp
-    //confirmation d'inscription par mail
-    //Empêcher la rafraichissement de la page d’inscription 
-    //mettre la partie suivi dans un controller séparé
+    //Controleur permettant de gérer l'inscription/connexion/deconnexion mais
+    //également la partie administrateur et les pages de profil
     
     class Utilisateurs extends CI_Controller{
         public function inscription(){

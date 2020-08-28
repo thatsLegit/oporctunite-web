@@ -1,6 +1,9 @@
 <?php 
 class Fiches extends CI_Controller{
 
+    /* Ici sont gérées toutes les actions relatives aux fiches, que ce soit la mise en favoris, ou 
+    l'ajout d'un commentaire, l'affichage d'une fiche, etc... */
+
     public function __construct(){
         parent::__construct();
     }

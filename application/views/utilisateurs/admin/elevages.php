@@ -1,3 +1,7 @@
+<!-- Compte admin : adminOporctunite123@mail.com / admin_Oporctunite_123 -->
+<!-- Permet de bannir les elevages. Cette page pourrait aussi servir à autoriser
+les inscriptions de nouveaux elevages -->
+
 <head>
     <style>
         body {

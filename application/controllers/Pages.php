@@ -1,5 +1,7 @@
 <?php
-class Pages extends CI_Controller{
+class Pages extends CI_Controller {
+
+	//controlleur dont le seul but est d'afficher les pages contact et accueil
 	
 	public function contact(){
 

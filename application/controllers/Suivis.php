@@ -1,5 +1,10 @@
 <?php
 
+    /* Le controleur pour le suivi se distingue en actions pouvant être effectuées par le véto (
+    accepter une demande de suivi, rechercher des elevages, ne plus suivre un elevage, voir les
+    infos relatives à un elevage, etc...), et en actions reservées à  l'élevage (demander un suivi, 
+    annuler la demande, ne plus suivre, avoir des infos sur le véto, rechercher un véto...) */
+
     class Suivis extends CI_Controller {
 
         //Actions véto

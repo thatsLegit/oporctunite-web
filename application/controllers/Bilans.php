@@ -1,6 +1,10 @@
 <?php
 
-    Class Bilans extends CI_Controller{
+    Class Bilans extends CI_Controller {
+
+        /* Pour l'instant ne fait qu'afficher la page bilan, mais on veut ici des calls sur les models
+        pour avoir les notes de l'élevage. Il faut ici s'inspirer de ce qui a été fait dans l'api pour
+        la partie bilan, ou carrément faire les requêtes directement sur l'api */
 
         public function view(){
 

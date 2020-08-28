@@ -50,7 +50,11 @@
 }
 </style>
 
+<!-- Ce script doit être avant le html pour faire marcher le captcha -->
 <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+
+<!-- L'inscription est composée de 2 divs qui se superposent mais s'affichent alternativement;
+la fonction changer permet de switcher de l'inscription d'élevage à vétérinaire -->
 
 <div id="page-top">
     
@@ -63,12 +67,17 @@
             <div class="form mt-5">
                 <strong><label style="color:rgb(0,177,77);font-size:1.5em"> Qui êtes-vous ? </label></strong>
                 <select onchange="changer();" id="selectchange" class="custom-select mb-2">
-                    <option value="1">Elevage</option>
-                    <option value="2">Veterinaire</option>
+                    <option value="1">Elevage</option> 
+                    <!-- La partie vétérinaire est mise en stand-by -->
+                    <!-- <option value="2">Veterinaire</option> -->
                 </select>
             </div>
         </div>
     </div>
+
+    <!-- Chaque input est suivi d'une span qui est invisible initialement mais dévient fausse quand le champs
+    n'est pas validé. A la soumission du formulaire, tous les inputs sont recheckés et si un seul n'est pas
+    valide, le formulaire ne peut être envoyé -->
 
     <div class="container" id="elevage">
         <div class="row">
@@ -161,6 +170,7 @@
                             </div>
                         </div>
 
+                        <!-- Mettre la div captcha en comms si vs souhaitez modif l'inscription, le captcha ne fonctionne que sur oporctunite.envt.fr -->
                         <div class="g-recaptcha" data-sitekey="6LfkHOkUAAAAAE4GVIhhHfrawB97CGB9fWT4NgAh"></div>
                         <span id="alertCaptcha" class="d-none" style="font-size:1em;">Veuillez valider le Captcha.</span><br>
 
@@ -330,7 +340,7 @@
                                 <div id="poliqueCookies2" class="overlay">
                                     <a href="javascript:void(0)" class="closePoliqueCookies" onclick="closePoliqueCookies()">&times;</a>
                                     <div class="overlay-content">
-                                        <iframe src="<?php echo base_url(); ?>assets/CookiePdf/confidentialite.pdf" width="600" height="780" style="border: none;"></iframe>
+                                        <iframe src="https://oporctunite.envt.fr/oporctunite-api/img/politique_de_confidentialite.pdf" width="600" height="780" style="border: none;"></iframe>
                                     </div>
                                 </div>
                                 <span class="d-inline-block bg-danger" style="font-size:1em;">Veuillez accepter la politique de confidentialité.</span>

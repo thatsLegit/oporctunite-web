@@ -1,3 +1,5 @@
+<!-- Permet de rechercher et visualiser les vétérinaires que l'élevage suit -->
+
 <head>
     <style>
         body {
@@ -180,7 +182,7 @@
     </section>
 
 
-    <!-- The Modal -->
+    <!-- Modal permettant d'afficher la popup qui donne des infos sur le veto suivi -->
     <div class="modal fade" id="profilVeto">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -212,6 +214,7 @@
 
 
 <script>
+    //Permet d'afficher les infos qui s'affichent au survol de la barre de recherche
     const tooltips = () => {
         $('[data-toggle="tooltip"]').tooltip()
     };
@@ -291,6 +294,7 @@
         }
     }
 
+    //Met à jour les variables du veto suivi, s'execute quand le modal d'infos veto s'affiche
     const vetoSelection = (numVeterinaire, nomCabinet, adresse, utilisateurPhoto, ville, telephone, email) => {
         window.numVeterinaire = numVeterinaire;
         window.nomCabinet = nomCabinet;

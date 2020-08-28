@@ -1,3 +1,7 @@
+<!-- Bannière principale de navigation du site. Change en fonction du type d'utilisateur, 
+état de la connexion et de l'appareil sur lequel le site est visité. 
+S'affiche sur toutes les pages du site lorsque l'utilisateur est connecté. -->
+
 <!DOCTYPE html>
 <html lang="fr">
 

@@ -1,3 +1,5 @@
+<!-- Un elevage ou veto peut ici afficher et rechercher les fiches qu'il a mis en favoris -->
+
 <head>
     <style> 
         ::selection{ background-color: #E13300; color: white; }

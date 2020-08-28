@@ -1,3 +1,6 @@
+<!-- Permet de rechercher et visualiser les elevages que le veterinaire suit -->
+<!-- Page non terminée, à refaire sur le modèle du suivi des elevages -->
+
 <head>
     <style>
         body {

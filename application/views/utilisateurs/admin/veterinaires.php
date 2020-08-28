@@ -1,3 +1,7 @@
+<!-- Compte admin : adminOporctunite123@mail.com / admin_Oporctunite_123 -->
+<!-- Permet de bannir les veterinaires. Cette page pourrait aussi servir à autoriser
+les inscriptions de nouveaux veterinaires -->
+
 <head>
     <style>
         body {

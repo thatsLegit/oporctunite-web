@@ -1,3 +1,5 @@
+<!-- Un elevage ou veto peut ici lire, commenter, mettre en favoris et noter la fiche conseil séléctionnée -->
+
 <head>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
     <script src="<?php echo base_url().'/assets/js/starrr.js'?>"></script>

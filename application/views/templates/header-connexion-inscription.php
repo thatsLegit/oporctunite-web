@@ -1,3 +1,5 @@
+<!-- Bannière alternative, s'affiche sur les pages ou la connexion n'est pas requise -->
+
 <!DOCTYPE html>
 <html lang="fr">
 

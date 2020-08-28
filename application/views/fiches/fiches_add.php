@@ -1,3 +1,6 @@
+<!-- Page reservée à l'administrateur qui pourra ajouter des fiches conseils -->
+<!-- En développement -->
+
 <head>
     <style>
         body {
