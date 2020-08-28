@@ -30,3 +30,13 @@ Pour reconsituer la bd en local, exportez la depuis l'envt sur phpmyadmin.<br>
 
 Changer la valeur de base_url dans application/config/config.php en *http://localhost/oporctunite* <br>
 Changez le username et pwd votre base de donnée dans application/config/database.php <br>
+
+# ReCaptcha
+
+Produit de Google permettant d’éviter le spam et toutes sortes d’abus à la soumission d’un formulaire. Il permet aussi d’analyser le traffic.<br>
+Sur Oporctunite, il est utilisé pour éviter le spam de création de comptes à l’inscription.<br><br>
+
+> Se connecter à Google en utilisant l'adresse email enregistrée dans le service (demander à Ilya pour ajouter une adresse : ilja.stepanov@envt.fr)
+> Pour configurer, taper « recaptcha admin » dans google et aller sur le 1er résultat de la recherche.<br>
+> Aller ensuite sur le rouage « paramètres » en haut à droite.<br>
+> Ici il est possible d’ajouter des propriétaires, des noms de domaines à protéger et surtout avoir accès aux clés qui permettent au recaptcha de fonctionner. On retrouve également la doc qui explique comment implémenter le captcha coté serveur et client.
