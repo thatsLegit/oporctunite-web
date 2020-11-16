@@ -65,7 +65,7 @@
 
         public function login($login, $password){ 
             $result = $this->db->where("password='".$password."' 
-                                AND (email='".$login."' OR telephone='".$login."')")
+                                AND (email='".$login."' OR telephone='".$login."') AND validation = true")
                                 ->get('utilisateur');
             if($result->num_rows() == 1){
                 return $result->row(0)->idutilisateur;
